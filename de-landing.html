@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compas Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <style>
+ html, body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      font-family: 'Exo', sans-serif;
+      color: white;
+    }
+    body {
+      background-color: #0E4D3C;
+    }
+    header {
+      background-color: #0E4D3C;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      z-index: 1000;
+    }
+    header img {
+      height: auto;
+      max-height: 80px;
+      width: auto;
+      max-width: 180px;
+      object-fit: contain;
+      margin-right: 64px;
+    }
+    nav {
+      display: flex;
+      gap: 1rem;
+    }
+    nav a {
+      font-family: 'Montserrat', sans-serif;
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      padding: 0.5rem 1rem;
+    }
+    .logo-flags {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+    }
+    .logo-flags img:first-child {
+      height: auto;
+      max-height: 80px;
+      max-width: 180px;
+    }
+    .language-select {
+      font-family: 'Exo', sans-serif;
+      font-size: 0.7rem;
+      padding: 0.3rem;
+      background-color: white;
+      color: #0E4D3C;
+      border: none;
+      border-radius: 4px;
+      order: -1;
+    }
+ /* Dropdown Styles */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 180px;
+      background-color: #126d56;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      animation: slideDown 0.3s ease forwards;
+      z-index: 999;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: white;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #159b77;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 2rem;
+      scroll-snap-align: start;
+      transition: all 0.5s ease;
+      background-color: #0E4D3C;
+    }
+    .hero {
+      background: url('digital_gas_turbine.png') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      background-color: transparent;
+    }
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+    }
+    .section-two {
+      background: url('backgroundimg.jpg') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      background-color: transparent;
+    }
+    .section-two h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .section-two ul {
+      list-style: none;
+      padding: 0;
+      font-size: 1.25rem;
+    }
+    .section-two li {
+      margin-bottom: 1.5rem;
+    }
+    .portfolio {
+      background-color: rgb(90, 212, 166);
+      color: black;
+      text-align: center;
+    }
+    .portfolio h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    .slider {
+      position: relative;
+      width: 40%;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .slides-wrapper {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      background: white;
+      color: black;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .slide img {
+      width: 50%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .controls {
+      margin-top: 1rem;
+    }
+    .controls button {
+      margin: 0 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #0E4D3C;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .scroll-up {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: url('cs_triangle.png') no-repeat center center;
+      background-size: contain;
+      cursor: pointer;
+      z-index: 1001;
+      display: none;
+    }
+    .scroll-up.show {
+      display: block;
+    }
+.highlight {
+  color: rgb(90, 212, 166);
+  font-weight: bold;
+   }
+   .basic-shadow {
+      text-shadow: 2px 2px 3px rgba(90, 212, 166, 10);
+    }
+    footer {
+      background-color: #000000;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: rgb(90, 212, 166);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="highlight">Startseite</a>
+    <a href="aboutus.html">Über Uns</a>
+    <div class="dropdown">
+      <a href="Services.html" style="display: inline-block;">Dienstleistungen</a>
+      <div class="dropdown-content">
+        <a href="industries.html">Anwendungsfälle</a>
+        <a href="Mbse_Approach.html">MBSE-Ansatz</a>
+      </div>
+    </div>
+    <a href="Contact.html">Kontakt</a>
+    <a href="resources.html">Ressourcen</a>
+  </nav>
+  <div class="logo-flags">
+    <select class="language-select" onchange="location = this.value;">
+      <option value="tr-landing.html">Türkçe</option>
+      <option value="de-landing.html" selected>Deutsch</option>
+      <option value="index.html">English</option>
+    </select>
+    <a href="index.html">
+      <img src="images/CSBD-LOGO.png" alt="COMPAS Solutions Logo">
+    </a>
+  </div>
+</header>
+
+<section class="hero" id="landing">
+  <h1 class="basic-shadow">Nahtlose Produktentwicklung mit Model Based Systems Engineering</h1>
+  <p style="font-size: 1.5rem;">Von der Idee zur Realität: Agile Systemtechnik für dynamische Tech-Teams.</p>
+</section>
+
+<section class="section-two" id="services">
+  <h2>Innovation für zukunftsorientierte Unternehmen</h2>
+  <ul>
+    <li><strong>Modellbasierte Systemarchitektur –</strong> <span style="color: #FFFF33;">Kostenfrei!</span></li>
+    <li><strong>360° Unterstützung über den gesamten Lebenszyklus</strong> – <br>Von der Ideenfindung bis zur Implementierung: Wir sind in jeder Phase an Ihrer Seite.</li>
+    <li><strong>Infrastrukturaufbau –</strong> Maßgeschneiderte Lösungen für alle Domänen – bereit für Wachstum.</li>
+  </ul>
+</section>
+
+<section class="portfolio" id="portfolio">
+  <h2 style="color: #FFFFFF;" class="basic-shadow">Unser Portfolio</h2>
+  <div class="slider">
+    <div class="slides-wrapper" id="slidesWrapper">
+      <div class="slide">
+        <img src="chatgpt_img.png" alt="Projekt 1">
+        <p>Eingebettetes Steuerungssystem für die Luft- und Raumfahrt – <a href="industries.html #Agrotech">Mehr erfahren</a></p>
+      </div>
+      <div class="slide">
+        <img src="uav.jpg" alt="Projekt 2">
+        <p>PLM-Integration mit CAD & Simulink – <a href="industries.html #Aerospace">Mehr erfahren</a></p>
+      </div>
+      <div class="slide">
+        <img src="project3.jpg" alt="Projekt 3">
+        <p>Digitaler Zwilling für elektrischen Antriebsstrang – <a href="#">Mehr erfahren</a></p>
+      </div>
+    </div>
+    <div class="controls">
+      <button onclick="prevSlide()">Zurück</button>
+      <button onclick="nextSlide()">Weiter</button>
+    </div>
+  </div>
+</section>
+
+<div class="scroll-up" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"></div>
+
+<footer>
+  <p>&copy; 2025 Compas Solutions. Alle Rechte vorbehalten. | <a href="Contact.html">Kontakt</a> | <a href="privacy_pol.html">Datenschutz</a></p>
+</footer>
+
+<script>
+  const scrollBtn = document.querySelector('.scroll-up');
+  window.addEventListener('scroll', () => {
+    const firstSection = document.getElementById('landing');
+    if (window.scrollY > firstSection.offsetHeight / 2) {
+      scrollBtn.classList.add('show');
+    } else {
+      scrollBtn.classList.remove('show');
+    }
+  });
+
+  let currentIndex = 0;
+  const slidesWrapper = document.getElementById('slidesWrapper');
+  const totalSlides = slidesWrapper.children.length;
+
+  function updateSlider() {
+    slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlider();
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateSlider();
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hizmetler – Compas Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <style>
+  html, body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      font-family: 'Exo', sans-serif;
+      background-color: #0E4D3C;
+      color: white;
+    }
+
+    header {
+      background-color: #0E4D3C;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      z-index: 1000;
+    }
+
+    header img {
+      height: auto;
+      max-height: 80px;
+      width: auto;
+      max-width: 180px;
+      object-fit: contain;
+      margin-right: 64px;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+    }
+    nav a {
+      font-family: 'Montserrat', sans-serif;
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      padding: 0.5rem 1rem;
+    }
+   .logo-flags {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+    }
+    .logo-flags img:first-child {
+      height: auto;
+      max-height: 80px;
+      max-width: 180px;
+    }
+    .language-select {
+      font-family: 'Exo', sans-serif;
+      font-size: 0.7rem;
+      padding: 0.3rem;
+      background-color: white;
+      color: #0E4D3C;
+      border: none;
+      border-radius: 4px;
+      order: -1;
+    }
+    .service-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 2rem 4rem;
+      max-width: 100%;
+      margin: 0;
+    }
+
+    .service-text, .service-image {
+      flex: 1 1 500px;
+      padding: 1rem;
+    }
+
+    .service-text h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      color: rgb(90, 212, 166);
+      margin-bottom: 1rem;
+    }
+
+    .service-text p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .service-image img {
+      max-width: 100%;
+      border-radius: 12px;
+    }
+
+    .reverse {
+      flex-direction: row-reverse;
+    }
+
+    .white-bg {
+      background-color: white;
+      color: #0E4D3C;
+      width: 100%;
+    }
+
+    footer {
+      background-color: #000000;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: rgb(90, 212, 166);
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .service-section {
+        flex-direction: column !important;
+        padding-top: 5rem;
+      }
+
+    }
+    .highlight {
+      color: rgb(90, 212, 166);
+      font-weight: bold;
+   }
+    .scroll-up {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: url('cs_triangle.png') no-repeat center center;
+      background-size: contain;
+      cursor: pointer;
+      z-index: 1001;
+      display: none;
+    }
+
+    /* Dropdown Styles */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 180px;
+      background-color: #126d56;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      animation: slideDown 0.3s ease forwards;
+      z-index: 999;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: white;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #159b77;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .scroll-up.show {
+      display: block;
+    }  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html">Ana Sayfa</a>
+    <a href="aboutus.html">Hakkımızda</a>
+    <div class="dropdown">
+      <a href="Services.html" style="display: inline-block;" class="highlight">Hizmetler</a>
+      <div class="dropdown-content">
+        <a href="industries.html">Kullanım Senaryoları</a>
+        <a href="Mbse_Approach.html">MBSE Yaklaşımı</a>
+      </div>
+    </div>
+    <a href="Contact.html">İletişim</a>
+    <a href="resources.html">Kaynaklar</a>
+  </nav>
+  <div class="logo-flags">
+    <select class="language-select" onchange="location = this.value;">
+      <option value="tr-landing.html" selected>Türkçe</option>
+      <option value="de-landing.html">Deutsch</option>
+      <option value="index.html">English</option>
+    </select>
+    <a href="index.html">
+      <img src="images/CSBD-LOGO.png" alt="COMPAS Solutions Logosu">
+    </a>
+  </div>
+</header>
+
+<main>
+
+<div class="service-section reverse white-bg">
+  <div class="service-text">
+    <h2>MBSE Altyapı Kurulumu</h2>
+    <p>Model Tabanlı Sistem Mühendisliği'nin (MBSE) organizasyonunuzda sorunsuz çalışmasını sağlamak için gerekli araç ve sistemleri kuruyoruz. Buna şunlar dahildir:</p>
+    <ul>
+      <li>Veri ve doküman yönetimi için PLM sistemleriyle entegrasyon</li>
+      <li>CAD ve MATLAB/Simulink gibi mühendislik araçlarıyla bağlantı</li>
+      <li>Modellerin ve bilgilerin merkezi depolanması için veritabanı düzenlemesi</li>
+    </ul>
+    <p><strong>Örnek:</strong> Yakın zamanda bir uzay ve savunma sanayi müşterimiz için <br> Capella MBSE, JIRA, Git ve CAD araçlarının entegrasyonunu gösterdik.</p>
+    <p>Bu kurulum, hızlı ve otomatik belge üretimi sağladı, proje teslim süresini hızlandırdı ve mühendislik ekipleri arasında tutarlılık sağladı.</p>
+    <p>Amacımız, ekip çalışmasını destekleyen ve projelerinizi yolunda tutan verimli ve bağlantılı bir ortam yaratmaktır.</p>
+  </div>
+  <div class="service-image">
+    <img src="Model-based_system_engineering_pillars.jpg" alt="MBSE Altyapı Kurulumu">
+  </div>
+</div>
+
+<div class="service-section">
+  <div class="service-text">
+    <h2>Sistem Modeli Tedariki</h2>
+    <ul>
+      <li>Temel işlevselliğe göre uyarlanmış, kullanıma hazır bileşen modelleri sunuyoruz ve sistem geliştirme sürecinizi hızlandırıyoruz.</li>
+      <li>İlk modül düzeyindeki bileşeniniz <strong>ücretsiz</strong> olarak sağlanır.</li>
+      <li>Talep üzerine tam sistem ve alt sistem mimarileri sunulur ve MBSE altyapınıza sorunsuz bir şekilde entegre edilir.</li>
+    </ul>
+  </div>
+  <div class="service-image">
+    <img src="860x580-Model-Based-Systems-Engineering.png" alt="Sistem Modeli Tedariki">
+  </div>
+</div>
+
+<div class="service-section reverse white-bg">
+  <div class="service-text">
+    <h2>Model Geliştirme</h2>
+    <ul>
+      <li>Gereksinimlerden doğrudan türetilmiş CAD modelleri sunuyoruz; doğruluk ve izlenebilirlik sağlıyoruz.</li>
+      <li>Ayrıca, sistemin dinamik performansını simüle eden MATLAB/Simulink tabanlı davranış modelleri de sağlıyoruz.</li>
+    </ul>
+    <p class="highlight">Modeller, her aşamada yüksek güven sağlamak için <strong>sistem gereksinimlerine</strong> göre doğrulanır ve geçerlenir.</p> 
+  </div>
+  <div class="service-image">
+    <img src="go-beyond.jpg" alt="Model Geliştirme">
+  </div>
+</div>
+
+<div class="service-section">
+  <div class="service-text">
+    <h2>Test ve Analiz</h2>
+    <p>Sistemlerinizi doğrulamak ve geçerli kılmak için gelişmiş sanal test ortamlarımızı kullanın:</p>
+    <ul>
+      <li>Simulink’te Yazılımda Test (SIL)</li>
+      <li>Abaqus ile Sonlu Elemanlar Analizi (FEA)</li>
+      <li>Kullanım senaryosu odaklı simülasyonlar</li>
+      <li>Test raporlama</li>
+    </ul>
+    <p class="highlight">Tasarımınız gerçek dünyaya çıkmadan önce sağlamlığını garanti ediyoruz.</p>
+  </div>
+  <div class="service-image">
+    <img src="SysmlTestConnect_2.jpg" alt="Test ve Analiz">
+  </div>
+</div>
+
+<div class="service-section reverse white-bg">
+  <div class="service-text">
+    <h2>Gereksinim Yönetimi</h2>
+    <p>Klasik ve model tabanlı yaklaşımları kapsayan eksiksiz gereksinim mühendisliği sürecini destekliyoruz. DOORS, SysML ve entegre PLM platformları gibi araçlarla izlenebilir gereksinimlerin çıkarılması, yapılandırılması, doğrulanması ve sürdürülmesi süreçlerinde destek sağlıyoruz. Yaklaşımımız, vizyon ile uygulama arasında tam uyum sağlar.</p>
+  </div>
+  <div class="service-image">
+    <img src="reqsImg.png" alt="Gereksinim Yönetimi">
+  </div>
+</div>
+
+</main>
+
+<div class="scroll-up" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"></div>
+
+<footer>
+  <p>&copy; 2025 Compas Solutions. Tüm hakları saklıdır. | <a href="Contact.html">İletişim</a> | <a href="privacy_pol.html">Gizlilik Politikası</a></p>
+</footer>
+
+<script>
+  const scrollBtn = document.querySelector('.scroll-up');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      scrollBtn.classList.add('show');
+    } else {
+      scrollBtn.classList.remove('show');
+    }
+  });
+</script>
+
+</body>
+</html>

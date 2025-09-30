@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compas Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      font-family: 'Exo', sans-serif;
+      color: white;
+    }
+    body {
+      background-color: #0E4D3C;
+    }
+    header {
+      background-color: rgba(14, 77, 60,0.8);
+      position: fixed;
+      width: 100%;
+      height: 5%;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      z-index: 1000;
+    }
+    header img {
+      height: auto;
+      max-height: 80px;
+      width: auto;
+      max-width: 180px;
+      object-fit: contain;
+      margin-right: 64px;
+    }
+    nav {
+      display: flex;
+      gap: 1rem;
+    }
+    nav a {
+      font-family: 'Montserrat', sans-serif;
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      padding: 0.5rem 1rem;
+    }
+    .logo-flags {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+    }
+    .logo-flags img:first-child {
+      height: auto;
+      max-height: 80px;
+      max-width: 180px;
+    }
+    .language-select {
+      font-family: 'Exo', sans-serif;
+      font-size: 0.7rem;
+      padding: 0.3rem;
+      background-color: white;
+      color: #0E4D3C;
+      border: none;
+      border-radius: 4px;
+      order: -1;
+    }
+ /* Dropdown Styles */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 180px;
+      background-color: #126d56;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      animation: slideDown 0.3s ease forwards;
+      z-index: 999;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: white;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #159b77;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section {
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 2rem;
+      scroll-snap-align: start;
+      transition: all 0.5s ease;
+      background-color: #0E4D3C;
+    }
+    .hero {
+      /* background: url('digital_gas_turbine.png') center/cover no-repeat; */
+      color: white;
+      text-align: center;
+      background-color: transparent;
+    }
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+    }
+    .section-two {
+      background-image: url('images/2ndslide.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover; /* This stretches image to cover entire area */
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: 40px;
+      background-color: transparent;
+      height: 80vh;
+    }
+    .section-two h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .section-two ul {
+      list-style: none;
+      padding: 0;
+      font-size: 1.25rem;
+      align-items: center;
+    }
+    .section-two li {
+      margin-bottom: 1.5rem;
+      align-items: center;
+    }
+    .portfolio {
+      background-color: white;
+      color: black;
+      text-align: center;
+      height: fit-content;
+    }
+    .portfolio h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    .slider {
+      position: relative;
+      width: 40%;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .slides-wrapper {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      background: rgb(90, 212, 166);
+      color: black;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .slide img {
+      width: 50%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .controls {
+      margin-top: 1rem;
+    }
+    .controls button {
+      margin: 0 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #0E4D3C;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .scroll-up {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: url('cs_triangle.png') no-repeat center center;
+      background-size: contain;
+      cursor: pointer;
+      z-index: 1001;
+      display: none;
+    }
+    .scroll-up.show {
+      display: block;
+    }
+.highlight {
+  color: rgb(90, 212, 166);
+  font-weight: bold;
+   }
+   .basic-shadow {
+      text-shadow: 2px 2px 3px rgba(90, 212, 166, 10);
+    }
+    .faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  }
+
+.faq-item.active .faq-answer {
+  max-height: 300px; /* Adjust as needed depending on content */
+}
+.faq-section {
+  background-color: #0E4D3C;
+  padding: 3rem 2rem;
+  color: white;
+  text-align: center;
+  height: 75vh;
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem 0;
+  cursor: pointer;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding-top: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 300px; /* Enough space for multi-line answers */
+}
+
+.faq-toggle {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+    footer {
+      background-color: #000000;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: rgb(90, 212, 166);
+      text-decoration: none;
+    }
+    .blocksatz 
+    {
+    text-align: justify;
+    text-justify: inter-word; /* Better word spacing */
+    hyphens: auto;            /* Allows hyphenation */
+    }
+.hero {
+  position: relative;
+  width: auto;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 6rem 2rem 4rem; /* account for fixed header */
+  overflow: hidden;
+}
+
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  background-color: rgba(14, 77, 60, 0.5); /* optional for contrast */
+  border-radius: 8px;
+  max-width: 1000px;
+}
+
+.hero-overlay h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-overlay p {
+  font-size: 1.25rem;
+}
+
+
+.benefits-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.benefit-card {
+  background: rgba(255, 255, 255, 0.92); /* light card for readability */
+  color: #0E4D3C;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  max-width: 320px;
+  flex: 1 1 280px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.benefit-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1rem;
+}
+
+.benefit-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.benefit-card p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 0.9rem 1.8rem;
+  background: rgb(90, 212, 166);
+  color: #0E4D3C;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.cta-btn:hover {
+  background: #63e6b4;
+}
+
+.section-two {
+  position: relative;
+  padding: 5rem 2rem;
+  color: white;
+  overflow: hidden;
+  text-align: center;
+  background: #0E4D3C; /* fallback */
+}
+
+#particles-js {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+}
+
+.section-two .content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+.feature {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  width: 260px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.feature .icon {
+  width: 50px;
+  margin-bottom: 1rem;
+}
+
+.cta {
+  display: inline-block;
+  background: #12b886;
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.cta:hover {
+  background: #0fa372;
+}
+
+.portfolio {
+  background-color: #f8f9f9;
+  color: black;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.slider {
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.slides-wrapper {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.slide-image {
+  position: relative;
+}
+ .slide-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* Crop image nicely */
+}
+.slide-image {
+  height: 100%;        /* Adjust height */
+}
+
+.slide-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* Crop image nicely */
+}
+
+
+.slide img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(14, 77, 60, 0.8);
+  color: white;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: 0 0 12px 12px;
+}
+
+.slide-image:hover .overlay {
+  opacity: 1;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.controls button {
+  padding: 0.5rem 1rem;
+  background-color: #0E4D3C;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.controls button:hover {
+  background-color: #159b77;
+}
+
+.dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.dot.active {
+  background: #0E4D3C;
+}
+
+
+  </style>
+</head>
+
+<script>
+  function toggleFAQ(index) {
+    const items = document.querySelectorAll('.faq-item');
+
+    items.forEach((item, i) => {
+      if (i === index) {
+        const isActive = item.classList.contains('active');
+        item.classList.toggle('active', !isActive);
+        item.querySelector('.faq-toggle').textContent = isActive ? '+' : '−';
+      } else {
+        item.classList.remove('active');
+        item.querySelector('.faq-toggle').textContent = '+';
+      }
+    });
+  }
+</script>
+
+
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="highlight">Home</a>
+    <a href="aboutus.html">About Us</a>
+    <div class="dropdown">
+  <a href="Services.html" style="display: inline-block;">Services</a>
+      <div class="dropdown-content">
+        <a href="industries.html">Industries</a>
+        <a href="use-cases.html" >Use Cases</a>
+      </div>
+    </div>
+    <a href="Contact.html">Contact Us</a>
+    <a href="resources.html" >Resources</a>
+  </nav>
+  <div class="logo-flags">
+    <select class="language-select" onchange="location = this.value;">
+      <option value="tr-landing.html">Türkçe</option>
+      <option value="de-landing.html">Deutsch</option>
+      <option value="index.html" selected>English</option>
+    </select>
+    <a href="index.html">
+      <img src="images/CSBD-LOGO.png" alt="COMPAS Solutions Logo">
+    </a>
+  </div>
+</header>
+
+<section class="hero" id="landing">
+  <div class="video-container">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="vid/Aircraft/Video 3.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div class="hero-overlay">
+    <h1 class="basic-shadow">Seamless Product Development with Model Based Systems Engineering</h1>
+    <p style="font-size: 1.5rem;">Transforming Ideas into Reality: Agile Systems Engineering for Dynamic Tech Teams.</p>
+  </div>
+</section>
+
+
+
+<!-- <section class="section-two" id="services">
+  <h2>Fueling Innovation for Forward-Thinking Companies</h2>
+  <ul style="padding-top: 10px; padding-left: 10px; text-align: center; margin-top: 5vh; background-color: rgba(14, 77, 60, 0.86); border-radius: 10px; width: 60vb;">
+    <li><strong>Model-Based Systems Architecture Setup <br>–</strong> <span style="color: white;">No COST!</span></li>
+    <li><strong>360° Support Across the Lifecycle</strong><br> – From ideation to deployment,<br> we’ve got you covered 
+      every step of the way.</li>
+    <li><strong>Infrastructure Ramp-up <br> –</strong> Tailored solutions that cover every domain, 
+      <br>ensuring your systems are ready for growth.</li>
+  </ul>
+</section> -->
+<!-- Section Two -->
+<section class="section-two" id="section-two">
+  <div id="particles-js"></div>
+  
+  <div class="content">
+    <h2>Fueling Innovation for Forward-Thinking Companies</h2>
+    
+    <div class="features">
+      <div class="feature">
+        <img src="icons/icons8-architecture-85.png" alt="Architecture Icon" class="icon" />
+        <h3>Model-Based Systems Architecture Setup</h3>
+        <p>No COST! Kickstart your system architecture smoothly.</p>
+      </div>
+
+      <div class="feature">
+        <img src="icons/icons8-circular-60.png" alt="Lifecycle Icon" class="icon" />
+        <h3>360° Support Across the Lifecycle</h3>
+        <p>From ideation to deployment, we’ve got you covered every step of the way.</p>
+      </div>
+
+      <div class="feature">
+        <img src="icons/icons8-growth-48.png" alt="Growth Icon" class="icon" />
+        <h3>Infrastructure Ramp-up</h3>
+        <p>Tailored solutions across every domain, ensuring your systems are ready for growth.</p>
+      </div>
+    </div>
+    
+    <a href="use-cases.html" class="cta">See How It Works</a>
+  </div>
+</section>
+
+<!-- Load Particles.js -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+  particlesJS("particles-js", {
+    "particles": {
+      "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
+      "color": { "value": "#12b886" },
+      "shape": { "type": "circle" },
+      "opacity": { "value": 0.5 },
+      "size": { "value": 3 },
+      "line_linked": {
+        "enable": true,
+        "distance": 150,
+        "color": "#ffffff",
+        "opacity": 0.3,
+        "width": 1
+      },
+      "move": { "enable": true, "speed": 2 }
+    },
+    "interactivity": {
+      "events": {
+        "onhover": { "enable": true, "mode": "grab" },
+        "onclick": { "enable": true, "mode": "push" }
+      },
+      "modes": {
+        "grab": { "distance": 200, "line_linked": { "opacity": 0.6 } }
+      }
+    },
+    "retina_detect": true
+  });
+</script>
+
+
+
+
+<!-- <section class="portfolio" id="portfolio">
+  <h2 style="color: #0E4D3C;">Our Portfolio</h2>
+  <div class="slider">
+    <div class="slides-wrapper" id="slidesWrapper">
+      <div class="slide">
+<img src="chatgpt_img.png" alt="Project 1" style="height: 200px; object-fit: cover;height: 300px;width: auto; object-fit: cover;  border-radius: 8px;">
+        <p>Embedded Control System for Aerospace - <a href="use-cases.html #Agrotech">Read more</a></p>
+      </div>
+      <div class="slide">
+        <img src="uav.jpg" alt="Project 2" style="height: 200px; object-fit: cover;height: 300px;width: auto; object-fit: cover;  border-radius: 8px;">
+        <p>PLM Integration with CAD & Simulink - <a href="use-cases.html #Aerospace">Read more</a></p>
+      </div>
+      <div class="slide">
+        <img src="project3.jpg" alt="Project 3" style="height: 200px; object-fit: cover;height: 300px;width: auto; object-fit: cover;  border-radius: 8px;">
+        <p>Digital Twin Model for Electric Powertrain - <a href="use-cases.html">Read more</a></p>
+      </div>
+    </div>
+    <div class="controls">
+      <button onclick="prevSlide()">Previous</button>
+      <button onclick="nextSlide()">Next</button>
+    </div>
+  </div>
+</section> -->
+<section class="portfolio" id="portfolio">
+  <h2 style="color: #0E4D3C;">Our Portfolio</h2>
+  <p style="margin-bottom: 2rem; font-size: 1.2rem; color:#333;">
+    From Aerospace to Smart Agriculture — see how we turn innovation into reality.
+  </p>
+
+  <div class="slider" onmouseover="pauseSlider()" onmouseleave="resumeSlider()">
+    <div class="slides-wrapper" id="slidesWrapper">
+      <!-- Slide 1 -->
+      <div class="slide">
+        <div class="slide-image">
+          <img src="images/portfolio_greenhouse.jpg" alt="Project 1">
+          <div class="overlay">
+            <h3>Project: OASIS - Smart & AI driven Indoor Farming System</h3>
+            <a href="use-cases.html#Agrotech">Read more →</a>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 2 -->
+      <div class="slide">
+        <div class="slide-image">
+          <img src="images/confmanandmbse_2.png" alt="Project 2">
+          <div class="overlay">
+            <h3>MBSE in Product Lifecycle Management (PLM) Integration with Capella, CAD & Simulink</h3>
+            <a href="use-cases.html#Aerospace">Read more →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <!-- <div class="slide">
+        <div class="slide-image">
+          <img src="project3.jpg" alt="Project 3">
+          <div class="overlay">
+            <h3>Digital Twin Model for Electric Powertrain</h3>
+            <a href="use-cases.html">Read more →</a>
+          </div>
+        </div>
+      </div> -->
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button onclick="prevSlide()">❮</button>
+      <div class="dots" id="dots"></div>
+      <button onclick="nextSlide()">❯</button>
+    </div>
+  </div>
+</section>
+
+
+<section class="faq-section" id="faq">
+  <h2 class="" style="color: white;">Frequently Asked Questions</h2>
+  <div class="faq-container">
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        What is MBSE and why is it important?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        MBSE (Model-Based Systems Engineering) is a systems engineering approach that uses models to support system requirements, design, analysis, and verification.
+      </div>
+    </div>
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        Do you support Aerospace & Defense sectors?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Yes, we offer MBSE, toolchain integration, and lifecycle support tailored for Aerospace and Defense domains.
+      </div>
+    </div>
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        Is the first consultation free?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Absolutely. We offer a no-cost initial MBSE architecture setup to help you get started.
+      </div>
+    </div>
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        Do you provide training services?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Yes, we conduct training sessions on MBSE tools, process development, and verification & validation strategies.
+      </div>
+    </div>
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <div class="faq-question">
+        What tools do you integrate?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        We support tools like Simulink, MATLAB, Polarion, Capella, Enterprise Architect, and various PLM systems.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="scroll-up" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"></div>
+
+<footer>
+  <p>&copy; 2025 Compas Solutions. All rights reserved. | <a href="Contact.html">Contact Us</a> | <a href="privacy_pol.html">Privacy Policy</a></p>
+</footer>
+
+<script>
+  const scrollBtn = document.querySelector('.scroll-up');
+  window.addEventListener('scroll', () => {
+    const firstSection = document.getElementById('landing');
+    if (window.scrollY > firstSection.offsetHeight / 2) {
+      scrollBtn.classList.add('show');
+    } else {
+      scrollBtn.classList.remove('show');
+    }
+  });
+
+  let currentIndex = 0;
+  const slidesWrapper = document.getElementById('slidesWrapper');
+  const totalSlides = slidesWrapper.children.length;
+
+  function updateSlider() {
+    slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlider();
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateSlider();
+  }
+</script>
+
+<script>
+  function toggleFAQ(element) {
+    const isActive = element.classList.contains('active');
+
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.classList.remove('active');
+      item.querySelector('.faq-toggle').textContent = '+';
+    });
+
+    // Open clicked if it wasn’t already active
+    if (!isActive) {
+      element.classList.add('active');
+      element.querySelector('.faq-toggle').textContent = '−';
+    }
+  }
+</script>
+
+<script>
+  let currentIndex = 0;
+  const slidesWrapper = document.getElementById('slidesWrapper');
+  const totalSlides = slidesWrapper.children.length;
+  const dotsContainer = document.getElementById('dots');
+  let autoSlide;
+
+  // Create dots
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(i));
+    dotsContainer.appendChild(dot);
+  }
+  const dots = document.querySelectorAll('.dot');
+
+  function updateSlider() {
+    slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlider();
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateSlider();
+  }
+
+  function goToSlide(index) {
+    currentIndex = index;
+    updateSlider();
+  }
+
+  function startAutoSlide() {
+    autoSlide = setInterval(nextSlide, 5000); // 5s autoplay
+  }
+
+  function pauseSlider() {
+    clearInterval(autoSlide);
+  }
+
+  function resumeSlider() {
+    startAutoSlide();
+  }
+
+  startAutoSlide();
+</script>
+
+
+</body>
+</html>

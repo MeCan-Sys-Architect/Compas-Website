@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dienstleistungen – Compas Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      font-family: 'Exo', sans-serif;
+      background-color: #0E4D3C;
+      color: white;
+    }
+
+    header {
+      background-color: #0E4D3C;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      z-index: 1000;
+    }
+
+    header img {
+      height: auto;
+      max-height: 80px;
+      width: auto;
+      max-width: 180px;
+      object-fit: contain;
+      margin-right: 64px;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+    }
+    nav a {
+      font-family: 'Montserrat', sans-serif;
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      padding: 0.5rem 1rem;
+    }
+   .logo-flags {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+    }
+    .logo-flags img:first-child {
+      height: auto;
+      max-height: 80px;
+      max-width: 180px;
+    }
+    .language-select {
+      font-family: 'Exo', sans-serif;
+      font-size: 0.7rem;
+      padding: 0.3rem;
+      background-color: white;
+      color: #0E4D3C;
+      border: none;
+      border-radius: 4px;
+      order: -1;
+    }
+    .service-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 2rem 4rem;
+      max-width: 100%;
+      margin: 0;
+    }
+
+    .service-text, .service-image {
+      flex: 1 1 500px;
+      padding: 1rem;
+    }
+
+    .service-text h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      color: rgb(90, 212, 166);
+      margin-bottom: 1rem;
+    }
+
+    .service-text p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .service-image img {
+      max-width: 100%;
+      border-radius: 12px;
+    }
+
+    .reverse {
+      flex-direction: row-reverse;
+    }
+
+    .white-bg {
+      background-color: white;
+      color: #0E4D3C;
+      width: 100%;
+    }
+
+    footer {
+      background-color: #000000;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: rgb(90, 212, 166);
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .service-section {
+        flex-direction: column !important;
+        padding-top: 5rem;
+      }
+
+    }
+    .highlight {
+      color: rgb(90, 212, 166);
+      font-weight: bold;
+   }
+    .scroll-up {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: url('cs_triangle.png') no-repeat center center;
+      background-size: contain;
+      cursor: pointer;
+      z-index: 1001;
+      display: none;
+    }
+
+    /* Dropdown Styles */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 180px;
+      background-color: #126d56;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      animation: slideDown 0.3s ease forwards;
+      z-index: 999;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: white;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #159b77;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .scroll-up.show {
+      display: block;
+    }  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html">Startseite</a>
+    <a href="aboutus.html">Über uns</a>
+    <div class="dropdown">
+      <a href="Services.html" style="display: inline-block;" class="highlight">Dienstleistungen</a>
+      <div class="dropdown-content">
+        <a href="industries.html">Anwendungsfälle</a>
+        <a href="Mbse_Approach.html">MBSE-Ansatz</a>
+      </div>
+    </div>
+    <a href="Contact.html">Kontakt</a>
+    <a href="resources.html">Ressourcen</a>
+  </nav>
+  <div class="logo-flags">
+    <select class="language-select" onchange="location = this.value;">
+      <option value="tr-landing.html">Türkçe</option>
+      <option value="de-landing.html" selected>Deutsch</option>
+      <option value="index.html">English</option>
+    </select>
+    <a href="index.html">
+      <img src="images/CSBD-LOGO.png" alt="COMPAS Solutions Logo">
+    </a>
+  </div>
+</header>
+
+<main>
+
+<div class="service-section reverse white-bg">
+  <div class="service-text">
+    <h2>Einrichtung der MBSE-Infrastruktur</h2>
+    <p>Wir richten die Werkzeuge und Systeme ein, die Sie benötigen, um Model-Based Systems Engineering in Ihrem Unternehmen reibungslos umzusetzen. Dies umfasst:</p>
+    <ul>
+      <li>Anbindung an PLM-Systeme zur Verwaltung von Daten und Dokumenten</li>
+      <li>Verknüpfung mit Engineering-Tools wie CAD und MATLAB/Simulink</li>
+      <li>Organisation von Datenbanken zur zentralen Speicherung von Modellen und Informationen</li>
+    </ul>
+    <p><strong>Beispiel:</strong> Für einen Kunden aus der Luft- und Raumfahrt haben wir die Integration <br> von Capella MBSE mit JIRA, Git und CAD-Tools demonstriert.</p>
+    <p>Dieses Setup ermöglichte eine schnelle und automatisierte Dokumentenerstellung, erhöhte die Projektgeschwindigkeit und sicherte die Konsistenz zwischen den Engineering-Teams.</p>
+    <p>Unser Ziel ist es, eine effiziente und vernetzte Umgebung zu schaffen, die die Teamarbeit unterstützt und Ihre Projekte im Zeitplan hält.</p>
+  </div>
+  <div class="service-image">
+    <img src="images/mbse_infrastructure_illustration.png" alt="MBSE Infrastruktur Einrichtung">
+  </div>
+</div>
+
+<div class="service-section">
+  <div class="service-text">
+    <h2>Systemmodell-Bereitstellung</h2>
+    <ul>
+      <li>Wir liefern gebrauchsfertige Komponentenmodelle, die auf zentrale Funktionen abgestimmt sind und Ihre Systementwicklung beschleunigen.</li>
+      <li>Ihre erste Komponentenebene erhalten Sie <strong>kostenlos</strong>.</li>
+      <li>Komplette System- und Subsystem-Architekturen können auf Anfrage bereitgestellt werden und lassen sich nahtlos in Ihre MBSE-Infrastruktur integrieren.</li>
+    </ul>
+  </div>
+  <div class="service-image">
+    <img src="860x580-Model-Based-Systems-Engineering.png" alt="Systemmodell-Bereitstellung">
+  </div>
+</div>
+
+<div class="service-section reverse white-bg">
+  <div class="service-text">
+    <h2>Modellentwicklung</h2>
+    <ul>
+      <li>Wir liefern CAD-Modelle, die direkt aus Anforderungen abgeleitet werden, und gewährleisten so Genauigkeit und Rückverfolgbarkeit.</li>
+      <li>Zusätzlich bieten wir verhaltensgesteuerte Modelle mit MATLAB/Simulink zur Simulation dynamischer Systemleistungen.</li>
+    </ul>
+    <p class="highlight">Die Modelle werden gegen <strong>Systemanforderungen</strong> validiert und verifiziert – für höchste Sicherheit in jeder Projektphase.</p> 
+  </div>
+  <div class="service-image">
+    <img src="go-beyond.jpg" alt="Modellentwicklung">
+  </div>
+</div>
+
+<div class="service-section">
+  <div class="service-text">
+    <h2>Test & Analyse</h2>
+    <p>Nutzen Sie unsere fortschrittlichen virtuellen Testumgebungen zur Verifikation und Validierung Ihrer Systeme durch:</p>
+    <ul>
+      <li>(SIL)-Tests in Simulink</li>
+      <li>Finite-Elemente-Analyse (FEA) mit Abaqus</li>
+      <li>Use-Case-basierte Simulationen</li>
+      <li>Testberichterstattung</li>
+    </ul>
+    <p class="highlight">Wir stellen sicher, dass Ihre Designs robust sind, bevor sie in die reale Welt gelangen.</p>
+  </div>
+  <div class="service-image">
+    <img src="SysmlTestConnect_2.jpg" alt="Test und Analyse">
+  </div>
+</div>
+
+<div class="service-section reverse white-bg">
+  <div class="service-text">
+    <h2>Anforderungsmanagement</h2>
+    <p>Von klassischen bis modellbasierten Ansätzen unterstützen wir den gesamten Lebenszyklus des Requirements Engineering. Wir helfen bei der Erhebung, Strukturierung, Verifikation und Pflege rückverfolgbarer Anforderungen mit Tools wie DOORS, SysML und integrierten PLM-Plattformen. Unser Ansatz sichert die Übereinstimmung zwischen Vision und Umsetzung.</p>
+  </div>
+  <div class="service-image">
+    <img src="reqsImg.png" alt="Anforderungsmanagement">
+  </div>
+</div>
+
+</main>
+
+<div class="scroll-up" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"></div>
+
+<footer>
+  <p>&copy; 2025 Compas Solutions. Alle Rechte vorbehalten. | <a href="Contact.html">Kontakt</a> | <a href="privacy_pol.html">Datenschutzerklärung</a></p>
+</footer>
+
+<script>
+  const scrollBtn = document.querySelector('.scroll-up');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      scrollBtn.classList.add('show');
+    } else {
+      scrollBtn.classList.remove('show');
+    }
+  });
+</script>
+
+</body>
+</html>

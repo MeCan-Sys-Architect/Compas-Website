@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Über Uns | Compas Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      font-family: 'Exo', sans-serif;
+      background-color: #0E4D3C;
+      color: white;
+    }
+    header {
+      background-color: #0E4D3C;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      z-index: 1000;
+    }
+
+    header img {
+      height: auto;
+      max-height: 80px;
+      width: auto;
+      max-width: 180px;
+      object-fit: contain;
+      margin-right: 0px;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+    }
+    nav a {
+      font-family: 'Montserrat', sans-serif;
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      padding: 0.5rem 1rem;
+      padding-top: 0.9rem;
+    }
+   .logo-flags {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+    }
+    .logo-flags img:first-child {
+      height: auto;
+      max-height: 80px;
+      max-width: 180px;
+    }
+    .language-select {
+      font-family: 'Exo', sans-serif;
+      font-size: 0.7rem;
+      padding: 0.3rem;
+      background-color: white;
+      color: #0E4D3C;
+      border: none;
+      border-radius: 4px;
+      order: -1;
+    }
+    h1, h2 {
+      font-family: 'Montserrat', sans-serif;
+    }
+    .highlight {
+      color: rgb(90, 212, 166);
+      font-weight: bold;
+    }
+    footer {
+      background-color: #000000;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: rgb(90, 212, 166);
+      text-decoration: none;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 180px;
+      background-color: #126d56;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      animation: slideDown 0.3s ease forwards;
+      z-index: 999;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: white;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #159b77;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="text-white">
+
+<header>
+  <nav>
+    <a href="index.html">Startseite</a>
+    <a href="aboutus.html" class="highlight">Über Uns</a>
+    <div class="dropdown">
+      <a href="Services.html" style="display: inline-block;">Leistungen</a>
+      <div class="dropdown-content">
+        <a href="industries.html">Anwendungsfälle</a>
+        <a href="Mbse_Approach.html">MBSE-Ansatz</a>
+      </div>
+    </div>
+    <a href="Contact.html">Kontakt</a>
+    <a href="resources.html">Ressourcen</a>
+  </nav>
+  <div class="logo-flags">
+    <select class="language-select" onchange="location = this.value;">
+      <option value="tr-landing.html">Türkçe</option>
+      <option value="de-landing.html" selected>Deutsch</option>
+      <option value="index.html">English</option>
+    </select>
+    <a href="index.html">
+      <img src="images/CSBD-LOGO.png" alt="COMPAS Solutions Logo">
+    </a>
+  </div>
+</header>
+
+<main class="pt-32">
+
+  <section class="bg-[#0E4D3C] text-white py-0 px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-24">
+    <div>
+      <h2 class="text-3xl font-semibold">
+        Von <span class="highlight">Deutschland nach Istanbul</span> – Ein nahtloses Systems Engineering Netzwerk
+      </h2>
+      <p class="text-lg mt-4">
+        Branchenübergreifende Kompetenz, fortschrittliche Methoden und standortübergreifende Zusammenarbeit – gebündelt für Ihre Systeme.
+      </p>
+    </div>
+    <div class="flex justify-center">
+      <img src="europmapeEUTR.jpg" alt="Europakarte mit Deutschland-Istanbul-Verbindung" class="w-full max-w-md rounded-lg shadow-lg" />
+    </div>
+  </section>
+
+  <section class="bg-white text-black py-20 px-8 text-center mt-24">
+    <h2 class="text-3xl font-semibold mb-6">Agil. Ambitioniert. Engineering-getrieben.</h2>
+    <p class="text-lg max-w-3xl mx-auto mb-10">
+      Unser Team vereint akademische Exzellenz mit praktischer Erfahrung aus unterschiedlichsten Unternehmenswelten – für frische Lösungen mit Präzision und Tempo.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+      <div class="flex flex-col items-center">
+        <img src="images/mehmet_img.jpg" alt="Teammitglied 1" class="w-48 h-48 object-cover rounded-full shadow-md mb-4" />
+        <p class="text-base font-medium">Mehmet Can Ünal</p>
+        <p class="text-sm text-gray-600">Systemarchitekt / Modellierung & Simulation</p>
+      </div>
+      <div class="flex flex-col items-center">
+        <img src="images/firat_img.png" alt="Teammitglied 2" class="w-48 h-48 object-cover rounded-full shadow-md mb-4" />
+        <p class="text-base font-medium">Firat Kök</p>
+        <p class="text-sm text-gray-600">Systems Engineering / Anforderungsmanagement, Qualitätssicherung</p>
+      </div>
+      <div class="flex flex-col items-center">
+        <img src="images/mustafa_img.png" alt="Teammitglied 3" class="w-48 h-48 object-cover rounded-full shadow-md mb-4" />
+        <p class="text-base font-medium">Mustafa Akgün</p>
+        <p class="text-sm text-gray-600">Konstrukteur / CAD | FEM-Simulationen</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[rgb(90,212,166)] text-white py-20 px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-24">
+    <div class="flex justify-center">
+      <img src="businessshake.png" alt="Professioneller Händedruck" class="w-full max-w-md rounded-lg shadow-lg" />
+    </div>
+    <div>
+      <h2 class="text-3xl font-semibold">Wir tragen die Komplexität – Sie fokussieren sich auf das Wesentliche</h2>
+      <p class="text-lg mt-4">
+        Validierung, Verifikation und Anforderungsmanagement sind mehr als nur Prozesse – sie sind unser Spezialgebiet. Wir nehmen Ihnen die Last ab und sorgen dafür, dass Ihre Systeme robust, regelkonform und bereit für den Praxiseinsatz sind.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; 2025 Compas Solutions. Alle Rechte vorbehalten. | <a href="Contact.html">Kontakt</a> | <a href="privacy_pol.html">Datenschutz</a></p>
+</footer>
+
+</body>
+</html>

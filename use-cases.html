@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Use Cases | Compas Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <style>
+   /* Full Reset and Scaling Fix */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: 'Exo', sans-serif;
+}
+
+body {
+  background-color: #0E4D3C;
+}
+
+/* Ensure sections don’t overflow */
+section {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+    header {
+      background-color: rgba(14, 77, 60,0.8);
+      position: fixed;
+      width: 100%;
+      height: 9.3%;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      z-index: 1000;
+    }
+    header img 
+    {
+      height: auto;
+      max-height: 80px;
+      width: auto;
+      max-width: 180px;
+      object-fit: contain;
+      margin-right: 15px;
+    }
+    nav 
+    {
+      display: flex;
+      gap: 1rem;
+    }
+    nav a 
+    {
+      font-family: 'Montserrat', sans-serif;
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      padding: 0.5rem 1rem;
+    }
+    .logo-flags 
+    {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+    }
+    .logo-flags img:first-child 
+    {
+      height: auto;
+      max-height: 80px;
+      max-width: 180px;
+    }
+    .language-select 
+    {
+      font-family: 'Exo', sans-serif;
+      font-size: 0.7rem;
+      padding: 0.3rem;
+      background-color: white;
+      color: #0E4D3C;
+      border: none;
+      border-radius: 4px;
+      order: -1;
+    }
+ /* Dropdown Styles */
+    .dropdown 
+    {
+      position: relative;
+    }
+
+    .dropdown-content 
+    {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 180px;
+      background-color: #126d56;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      animation: slideDown 0.3s ease forwards;
+      z-index: 999;
+    }
+    .dropdown:hover .dropdown-content 
+    {
+      display: block;
+    }
+
+    .dropdown-content a 
+    {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: white;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .dropdown-content a:hover 
+    {
+      background-color: #159b77;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 2rem;
+      scroll-snap-align: start;
+      transition: all 0.5s ease;
+      background-color: #0E4D3C;
+      overflow-x: hidden;
+
+    }
+ @media (max-width: 600px) 
+    {
+  
+  .text-area, .media-area 
+      {
+    width: 100% !important;
+    clip-path: none !important;
+      position: absolute;
+      margin-left: auto;
+
+      }
+    }
+    .scroll-up {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: url('cs_triangle.png') no-repeat center center;
+      background-size: contain;
+      cursor: pointer;
+      z-index: 1001;
+      display: none;
+    }
+    .icon-row 
+    {
+    background-color: #0E4D3C;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    gap: 10rem; /* Adjust spacing between images */
+    }
+    .icon-row > div 
+    {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+    .icon-row img 
+    {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+  }
+  .icon-row p 
+  {
+    color: white;
+    font-family: 'Exo', sans-serif;
+    margin: 0;
+    text-align: center;
+  }
+  .scroll-up.show 
+  {
+      display: block;
+  }
+  .highlight 
+  {
+  color: rgb(90, 212, 166);
+  font-weight: bold;
+  }
+  .icon-circle 
+  {
+  background-color: rgba(255, 255, 255, 0.1); /* soft light background */
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 0 8px rgba(90, 212, 166, 0.5); /* subtle glowing effect */
+  }
+  .icon-circle img 
+  {
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  }
+  footer
+  {
+  background-color: #000000;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  width: 100%;
+  }
+  footer a {
+  color: rgb(90, 212, 166);
+  text-decoration: none;
+  }
+    h1, h2, h3 {
+      font-family: 'Montserrat', sans-serif;
+    }
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: url('vid/Aircraft/Video3Thumb.jpg') center/cover no-repeat;
+      background-color: rgba(0,0,0,0.4);
+      background-blend-mode: overlay;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .use-cases-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    .use-case-card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid #5AD4A6;
+      padding: 2rem;
+      border-radius: 8px;
+    }
+    .tag {
+      display: inline-block;
+      background-color: #159b77;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .use-case-card h3 {
+      margin-top: 0;
+    }
+    .cta {
+      text-align: center;
+      padding: 3rem 2rem;
+      background-color: #126d56;
+    }
+    .cta a {
+      color: #5AD4A6;
+      text-decoration: none;
+      font-weight: bold;
+    }
+        .video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-align: center;
+      padding-top: 40vh;
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="aboutus.html">About Us</a>
+    <div class="dropdown">
+      <a href="use-cases.html" class="highlight" style="display: inline-block;": inline-block;>Use Cases</a>
+      <div class="dropdown-content">
+        <a href="Services.html" >Services</a>
+        <a href="industries.html">Industries</a>
+      </div>
+    </div>
+    <a href="Contact.html">Contact Us</a>
+    <a href="resources.html">Resources</a>
+  </nav>
+  <div class="logo-flags">
+    <select class="language-select" onchange="location = this.value;">
+      <option value="tr-landing.html">Türkçe</option>
+      <option value="de-landing.html">Deutsch</option>
+      <option value="index.html" selected>English</option>
+    </select>
+    <a href="index.html">
+      <img src="images/CSBD-LOGO.png" alt="COMPAS Solutions Logo">
+    </a>
+  </div>
+</header>
+
+  <section class="hero">
+      <!-- Background video -->
+  <video class="video-background" autoplay muted loop playsinline>
+    <source src="vid/digital_finger_print.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+    <h1 style="color: #5AD4A6">Real Solutions. Real Impact.</h1>
+    <p  style="color: white;">Explore how we apply systems engineering to solve industry-specific challenges with measurable results.</p>
+  </section>
+
+  <section class="use-cases-container">
+    <div class="use-case-card">
+      <span class="tag">Agrotech</span>
+      <h3 style="color: #5AD4A6">Smart Greenhouse Development</h3>
+      <p style="color: white;"><strong style="color: #cacaca;">Challenge:</strong> Utilization of multi disciplinar domains to develop a cost effective and robust smart Greenhouse system with cross-country teams.</p>
+      <p style="color: white;"><strong style="color: #cacaca;">Solution:</strong> We developed an MBSE-driven smart greenhouse system integrating sensors, irrigation control, and light automation, ensuring optimal growing conditions.</p>
+      <p style="color: white;"><strong style="color: #cacaca;">Technologies Used:</strong> SysML, Arduino, IoT integration, V&V strategy</p>
+      <p style="color: white;"><strong style="color: #cacaca;">Impact:</strong> Increased yield stability by 30% and enabled remote management capabilities for urban growers.</p>
+    </div>
+
+    <div class="use-case-card">
+      <span class="tag">Aerospace</span>
+      <h3 style="color: #5AD4A6">Capella Integration for UAV Manufacturer</h3>
+      <p style="color: white;"><strong style="color: #cacaca;" >Challenge:</strong> Fragmented product development process hindered scalability and cross-team alignment.</p>
+      <p style="color: white;"><strong style="color: #cacaca;">Solution:</strong> We integrated the Capella MBSE tool into the UAV manufacturer's development pipeline, aligning requirements, architecture, and simulation models.</p>
+      <p style="color: white;"><strong style="color: #cacaca;">Technologies Used:</strong> Capella, Simulink, Polarion, MBSE process tailoring</p>
+      <p style="color: white;"><strong style="color: #cacaca;">Impact:</strong> Reduced design inconsistencies by 45% and improved traceability across engineering artifacts.</p>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2 style="color: white;">Ready to transform your system development?</h2>
+    <p><a href="Contact.html">Get in touch with us today →</a></p>
+  </section>
+
+</body>
+</html>
+
+
+
+<div class="scroll-up" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"></div>
+
+<footer>
+  <p>&copy; 2025 Compas Solutions. All rights reserved. | <a href="Contact.html">Contact Us</a> | <a href="privacy_pol.html">Privacy Policy</a></p>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const dropdown = document.querySelector('.dropdown');
+    dropdown.addEventListener('click', () => {
+      const content = dropdown.querySelector('.dropdown-content');
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    });
+  });
+  const scrollBtn = document.querySelector('.scroll-up');
+  window.addEventListener('scroll', () => {
+    const firstSection = document.getElementById('Agro');
+    if (window.scrollY > firstSection.offsetHeight / 2) {
+      scrollBtn.classList.add('show');
+    } else {
+      scrollBtn.classList.remove('show');
+    }
+  });
+</script>
+
+
+
+</body>
+
+</html>
