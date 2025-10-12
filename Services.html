@@ -6,40 +6,55 @@
   <title>Services | Compas Solutions</title>
   <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400&family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <style>
+    /* Base Styles from index.html */
     html, body {
       margin: 0;
       padding: 0;
       scroll-behavior: smooth;
       font-family: 'Exo', sans-serif;
-      background-color: #0E4D3C;
       color: white;
       overflow-x: hidden;
     }
-
+    html {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    html::-webkit-scrollbar {
+      display: none;
+    }
+    body {
+      background-color: #0E4D3C;
+    }
+    
+    /* Header Styles from index.html */
     header {
-      background-color: rgba(14, 77, 60,0.8);
+      background-color: rgba(14, 77, 60, 0.8);
       position: fixed;
-      width: 100%;
+      width: 95%;
+      left: 2.5%;
       height: 5%;
+      min-height: 60px;
       top: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 1rem 2rem;
       z-index: 1000;
+      box-sizing: border-box;
+      transition: height 0.3s ease, width 0.3s ease, left 0.3s ease;
+      border-radius: 0 0 10px 10px;
     }
-
-    header img {
+    .logo-link img {
       height: auto;
-      max-height: 80px;
+      max-height: 80%;
       width: auto;
       max-width: 180px;
       object-fit: contain;
-      margin-right: 64px;
+      vertical-align: middle;
     }
-
     nav {
       display: flex;
+      align-items: center;
       gap: 1rem;
     }
     nav a {
@@ -47,17 +62,7 @@
       text-decoration: none;
       color: rgb(255, 255, 255);
       padding: 0.5rem 1rem;
-    }
-   .logo-flags {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 1rem;
-    }
-    .logo-flags img:first-child {
-      height: auto;
-      max-height: 80px;
-      max-width: 180px;
+      white-space: nowrap;
     }
     .language-select {
       font-family: 'Exo', sans-serif;
@@ -67,92 +72,13 @@
       color: #0E4D3C;
       border: none;
       border-radius: 4px;
-      order: -1;
-    }
-    .service-section {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      padding: 6rem 2rem 4rem;
-      max-width: 100%;
-      margin: 0;
-    }
-
-    .service-text, .service-image {
-      flex: 1 1 500px;
-      padding: 1rem;
-    }
-
-    .service-text h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2rem;
-      color: rgb(90, 212, 166);
-      margin-bottom: 1rem;
-    }
-
-    .service-text p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
-    .service-image img {
-      max-width: 100%;
-      border-radius: 12px;
-    }
-
-    .reverse {
-      flex-direction: row-reverse;
-    }
-
-    .white-bg {
-      background-color: white;
-      color: #0E4D3C;
-      width: 100%;
-    }
-
-    footer {
-      background-color: #000000;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-    }
-
-    footer a {
-      color: rgb(90, 212, 166);
-      text-decoration: none;
-    }
-
-    @media (max-width: 768px) {
-      .service-section {
-        flex-direction: column !important;
-        padding-top: 5rem;
-      }
-
-    }
-    .highlight {
-      color: rgb(90, 212, 166);
-      font-weight: bold;
-   }
-    .scroll-up {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      background: url('cs_triangle.png') no-repeat center center;
-      background-size: contain;
-      cursor: pointer;
-      z-index: 1001;
-      display: none;
+      margin-left: 1rem;
     }
 
     /* Dropdown Styles */
     .dropdown {
       position: relative;
     }
-
     .dropdown-content {
       display: none;
       position: absolute;
@@ -169,7 +95,6 @@
     .dropdown:hover .dropdown-content {
       display: block;
     }
-
     .dropdown-content a {
       display: block;
       padding: 0.5rem 1rem;
@@ -177,82 +102,294 @@
       text-decoration: none;
       transition: background 0.2s;
     }
-
     .dropdown-content a:hover {
       background-color: #159b77;
     }
-
     @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .mobile-menu-toggle {
+      display: none;
+    }
+    .highlight {
+      color: rgb(90, 212, 166);
+      font-weight: bold;
+    }
+
+    /* Hero Section for this page */
+    .services-hero {
+        padding: 12rem 2rem 6rem;
+        text-align: center;
+        background-color: #0E4D3C;
+        color: white;
+    }
+    .services-hero h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: clamp(2rem, 5vw, 3rem);
+        margin: 0;
+        text-shadow: 2px 2px 3px rgba(90, 212, 166, 0.5);
+    }
+
+    /* Service Section Styles (Adapted) */
+    .service-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+      max-width: 100%;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    .service-text, .service-image {
+      flex: 1 1 500px;
+      padding: 1rem;
+    }
+    .service-text h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2rem;
+      color: rgb(90, 212, 166);
+      margin-bottom: 1rem;
+    }
+    .service-text p, .service-text li {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .service-image img {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+    .reverse {
+      flex-direction: row-reverse;
+    }
+    .white-bg {
+      background-color: #f8f9f9;
+      color: #0E4D3C;
+    }
+    .white-bg h2 {
+       color: #0E4D3C;
+    }
+    .blocksatz {
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+    }
+
+    /* Utility & Footer Styles from index.html */
+    .scroll-up {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: url('cs_triangle.png') no-repeat center center;
+      background-size: contain;
+      cursor: pointer;
+      z-index: 1001;
+      display: none;
     }
     .scroll-up.show {
       display: block;
     }
-    .blocksatz {
-    text-align: justify;
-    text-justify: inter-word; /* Better word spacing */
-    hyphens: auto;            /* Allows hyphenation */
+    footer {
+      background-color: #000000;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: rgb(90, 212, 166);
+      text-decoration: none;
+    }
+    
+    body.nav-active {
+        overflow: hidden;
+    }
+
+    /* Responsive Media Queries from index.html */
+    @media (max-width: 767px) {
+      body {
+        padding-top: 60px;
+      }
+      header {
+        width: 100%;
+        left: 0;
+        height: 60px;
+        padding: 0 1rem;
+        border-radius: 0;
+      }
+      .logo-link img {
+        max-height: 40px;
+        max-width: 120px;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: #0E4D3C;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 6rem 2rem;
+        gap: 1.5rem;
+        z-index: 1001;
+        transition: right 0.3s ease-in-out;
+      }
+      nav.active {
+        right: 0;
+      }
+      nav a, nav .dropdown {
+        font-size: 1.2rem;
+        width: 100%;
+        padding: 0;
+      }
+      .dropdown-content {
+        position: static;
+        display: block;
+        background: none;
+        box-shadow: none;
+        animation: none;
+        padding-left: 1rem;
+        padding-top: 0.5rem;
+      }
+      .dropdown-content a {
+        font-size: 1rem;
+      }
+      .language-select {
+        margin: 2rem 0 0 0;
+        width: 100%;
+      }
+.mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 28px;
+        height: 24px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1002;
+      }
+      .mobile-menu-toggle span {
+        width: 100%;
+        height: 3px;
+        background-color: white;
+        border-radius: 3px;
+        transition: transform 0.3s, opacity 0.3s;
+        transform-origin: center;
+      }
+
+      body.nav-active .mobile-menu-toggle span:nth-child(1) {
+        transform: translateY(8.5px) rotate(45deg);
+      }
+      body.nav-active .mobile-menu-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+      body.nav-active .mobile-menu-toggle span:nth-child(3) {
+        transform: translateY(-8.5px) rotate(-45deg);
+      }
+      .services-hero {
+          padding: 4rem 1rem;
+      }
+      .service-section {
+        flex-direction: column !important;
+        padding: 3rem 1rem;
+      }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      body {
+        padding-top: 85px;
+      }
+      header {
+        height: 8%;
+        min-height: 65px;
+        padding: 1rem 1.5rem;
+      }
+      nav a {
+        font-size: 0.95rem;
+      }
+      .service-section {
+          padding: 4rem 1.5rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      body {
+        padding-top: 80px;
+      }
+      header {
+        padding: 1rem 4rem;
+      }
+      .service-section {
+          padding: 5rem 4rem;
+      }
     }
   </style>
 </head>
 <body>
 
 <header>
+  <a href="index.html" class="logo-link">
+    <img src="images/CSBD-LOGO.png" alt="COMPAS Solutions Logo">
+  </a>
   <nav>
     <a href="index.html">Home</a>
     <a href="aboutus.html">About Us</a>
     <div class="dropdown">
-  <a href="Services.html"  style="display: inline-block;" class="highlight">Services</a>
+      <a href="Services.html" style="display: inline-block;" class="highlight">Services</a>
       <div class="dropdown-content">
         <a href="industries.html">Industries</a>
-        <a href="use-cases.html" >Use Cases</a>
+        <a href="use-cases.html">Use Cases</a>
       </div>
     </div>
     <a href="Contact.html">Contact Us</a>
-    <a href="resources.html" >Resources</a>
-  </nav>
-  <div class="logo-flags">
+    <a href="resources.html">Resources</a>
     <select class="language-select" onchange="location = this.value;">
       <option value="tr-landing.html">Türkçe</option>
       <option value="de-landing.html">Deutsch</option>
       <option value="index.html" selected>English</option>
     </select>
-    <a href="index.html">
-      <img src="images/CSBD-LOGO.png" alt="COMPAS Solutions Logo">
-    </a>
-  </div>
+  </nav>
+  <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </header>
 
-<main style="width: 100%;">
+<main>
 
-<div class="service-section reverse white-bg">
+<section class="services-hero">
+    <h1>Our Engineering Services</h1>
+</section>
+
+<section class="service-section reverse white-bg">
   <div class="service-text" style="padding-right: 5%;">
-    <h2 style="color: #0E4D3C;">MBSE Infrastructure Set-Up</h2>
+    <h2>MBSE Infrastructure Set-Up</h2>
     <p>We set up the tools and systems you need to make Model-Based Systems Engineering work smoothly in your organization. This includes:</p>
     <ul>
       <li>Connecting with PLM systems to manage data and documents</li>
       <li>Linking with engineering tools like CAD and MATLAB/Simulink</li>
       <li>Organizing databases to keep models and information in one place</li>
     </ul>
-    <p class="blocksatz"><strong style="color:rgb(90, 212, 166);">Example:</strong> For a recent aerospace and defense client, we demonstrated the integration <br> of Capella MBSE with JIRA, Git, and CAD tools. </p>
+    <p class="blocksatz"><strong class="highlight">Example:</strong> For a recent aerospace and defense client, we demonstrated the integration of Capella MBSE with JIRA, Git, and CAD tools.</p>
     <p>This setup enabled rapid and automated document generation, improving project delivery speed and ensuring consistency across engineering teams.</p>
-    <p><strong style="color:rgb(90, 212, 166);">Our goal is to create an efficient, connected environment that supports teamwork and keeps your projects on track.</strong></p>
+    <p><strong class="highlight">Our goal is to create an efficient, connected environment that supports teamwork and keeps your projects on track.</strong></p>
   </div>
   <div class="service-image">
     <img src="images/digitaltwin.jpeg" alt="MBSE Infrastructure Set Up">
   </div>
-</div>
+</section>
 
-  <div class="service-section">
+  <section class="service-section">
     <div class="service-text">
-      <h2 style="color:white;">System Model Supply</h2>
+      <h2>System Model Supply</h2>
         <ul>
           <li>We provide ready-to-use component models tailored to core functionality, designed to accelerate your system development process.</li>
           <li>Your first module-level component comes <strong>free of charge</strong>.</li>
@@ -262,13 +399,13 @@
     <div class="service-image">
       <img src="images/systemmodel.png" alt="System Model Supply">
     </div>
-  </div>
+  </section>
 
-  <div class="service-section reverse white-bg" >
+  <section class="service-section reverse white-bg">
     <div class="service-text" style="padding-right: 5%;">
-      <h2 style="color: #0E4D3C;">Model Development</h2>
+      <h2>Model Development</h2>
         <ul>
-          <li>We deliver CAD models built directly from requirements, ensuring accuracy and <br> traceability.</li>
+          <li>We deliver CAD models built directly from requirements, ensuring accuracy and traceability.</li>
           <li>Additionally, we provide behavior-driven models using MATLAB/Simulink to simulate dynamic system performance.</li>
         </ul>
         <p class="highlight">Models are validated and verified against <strong>system requirements</strong> for high confidence at every stage.</p> 
@@ -276,39 +413,37 @@
     <div class="service-image">
       <img src="images/model_development_img.jpeg" alt="Model Development">
     </div>
-  </div>
+  </section>
 
-  <div class="service-section">
+  <section class="service-section">
     <div class="service-text">
-      <h2 style="color: #ffffff;">Requirements Management</h2>
-      <p class="blocksatz">From classical to model-based approaches, we support the complete requirements <br> engineering lifecycle. <br>
-        We assist in eliciting, structuring, verifying, and maintaining traceable requirements <br>
+      <h2>Requirements Management</h2>
+      <p class="blocksatz">From classical to model-based approaches, we support the complete requirements engineering lifecycle. 
+        We assist in eliciting, structuring, verifying, and maintaining traceable requirements
          using tools like DOORS, Capella, and integrated PLM platforms.<br>
-        <strong style="color: rgb(90, 212, 166);">Our approach guarantees alignment between vision and implementation.</strong></p>
+        <strong class="highlight">Our approach guarantees alignment between vision and implementation.</strong></p>
     </div>
     <div class="service-image">
       <img src="images/reqsImg.png" alt="Requirements Management">
     </div>
-  </div>
+  </section>
 
-  <div class="service-section reverse white-bg">
+  <section class="service-section reverse white-bg">
     <div class="service-text">
-      <h2 style="color: #0E4D3C;">Test & Analysis</h2>
+      <h2>Test & Analysis</h2>
       <p>Leverage our advanced virtual test environments to validate and verify your system using:</p>
         <ul>
-          <li> (SIL) testing in Simulink.</li>
-          <li> Finite Element Analysis (FEA) via Abaqus</li>
-          <li> Use-case driven simulations</li>
-          <li> test reporting</li>
+          <li>(SIL) testing in Simulink.</li>
+          <li>Finite Element Analysis (FEA) via Abaqus</li>
+          <li>Use-case driven simulations</li>
+          <li>Test reporting</li>
        </ul>
       <p class="highlight">We ensure your designs are robust before they hit the real world.</p>
     </div>
     <div class="service-image">
       <img src="images/Test_Req_Analisis.png" alt="Test and Analysis">
     </div>
-  </div>
-
-
+  </section>
 
 </main>
 
@@ -319,12 +454,29 @@
 </footer>
 
 <script>
-  const scrollBtn = document.querySelector('.scroll-up');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      scrollBtn.classList.add('show');
-    } else {
-      scrollBtn.classList.remove('show');
+  document.addEventListener('DOMContentLoaded', () => {
+    // Scroll-up button logic
+    const scrollBtn = document.querySelector('.scroll-up');
+    if (scrollBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          scrollBtn.classList.add('show');
+        } else {
+          scrollBtn.classList.remove('show');
+        }
+      });
+    }
+
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('nav');
+    const body = document.querySelector('body');
+
+    if (menuToggle && nav && body) {
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            body.classList.toggle('nav-active');
+        });
     }
   });
 </script>

@@ -6,40 +6,53 @@
   <title>Resources | Compas Solutions</title>
   <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400&family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <style>
-       html, body {
+    /* Base Styles from index.html */
+    html, body {
       margin: 0;
       padding: 0;
       scroll-behavior: smooth;
       font-family: 'Exo', sans-serif;
       color: white;
+      overflow-x: hidden;
+    }
+    html {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    html::-webkit-scrollbar {
+      display: none;
     }
     body {
       background-color: #0E4D3C;
-        overflow-x: hidden;
-
     }
     header {
       background-color: rgba(14, 77, 60,0.8);
       position: fixed;
-      width: 100%;
+      width: 95%;
+      left: 2.5%;
       height: 5%;
+      min-height: 60px;
       top: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 1rem 2rem;
       z-index: 1000;
+      box-sizing: border-box;
+      transition: height 0.3s ease, width 0.3s ease, left 0.3s ease;
+      border-radius: 0 0 10px 10px;
     }
-    header img {
+    .logo-link img {
       height: auto;
-      max-height: 80px;
+      max-height: 80%;
       width: auto;
       max-width: 180px;
       object-fit: contain;
-      margin-right: 64px;
+      vertical-align: middle;
     }
     nav {
       display: flex;
+      align-items: center;
       gap: 1rem;
     }
     nav a {
@@ -47,17 +60,7 @@
       text-decoration: none;
       color: rgb(255, 255, 255);
       padding: 0.5rem 1rem;
-    }
-    .logo-flags {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 1rem;
-    }
-    .logo-flags img:first-child {
-      height: auto;
-      max-height: 80px;
-      max-width: 180px;
+      white-space: nowrap;
     }
     .language-select {
       font-family: 'Exo', sans-serif;
@@ -67,20 +70,22 @@
       color: #0E4D3C;
       border: none;
       border-radius: 4px;
-      order: -1;
+      margin-left: 1rem;
     }
- /* Dropdown Styles */
+    h1, h2 {
+      font-family: 'Montserrat', sans-serif;
+    }
+    /* Dropdown Styles */
     .dropdown {
       position: relative;
     }
-
     .dropdown-content {
       display: none;
       position: absolute;
       top: 100%;
       left: 0;
       min-width: 180px;
-      background-color: rgb(18, 109, 86);
+      background-color: #126d56;
       border-radius: 6px;
       overflow: hidden;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
@@ -90,7 +95,6 @@
     .dropdown:hover .dropdown-content {
       display: block;
     }
-
     .dropdown-content a {
       display: block;
       padding: 0.5rem 1rem;
@@ -98,11 +102,9 @@
       text-decoration: none;
       transition: background 0.2s;
     }
-
     .dropdown-content a:hover {
-      background-color: rgb(21, 155, 119);
+      background-color: #159b77;
     }
-
     @keyframes slideDown {
       from {
         opacity: 0;
@@ -113,30 +115,9 @@
         transform: translateY(0);
       }
     }
-
-    section {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      padding: 2rem;
-      scroll-snap-align: start;
-      transition: all 0.5s ease;
-      background-color: #0E4D3C;
-      overflow-x: hidden;
-
+    .mobile-menu-toggle {
+      display: none;
     }
- @media (max-width: 600px) {
-  
-  .text-area, .media-area {
-    width: 100% !important;
-    clip-path: none !important;
-      position: absolute;
-      margin-left: auto;
-
-  }
-}
     .scroll-up {
       position: fixed;
       bottom: 20px;
@@ -149,31 +130,14 @@
       z-index: 1001;
       display: none;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background-color: #0E4D3C;
-      margin-top: 2rem;
-    }
-
-    th, td {
-      border-bottom: 1px solid white;
-      padding: 1.5rem;
-      vertical-align: middle;
-    }
-
-    tr:hover {
-      background-color: rgba(255, 255, 255, 0.05);
-      transition: background-color 0.3s ease;
-    }
     .scroll-up.show {
       display: block;
     }
     .highlight {
-      color: #5ad4a6;
+      color: rgb(90, 212, 166);
       font-weight: bold;
-   }
-    footer {
+    }
+     footer {
       background-color: #000000;
       color: white;
       text-align: center;
@@ -184,80 +148,229 @@
       color: rgb(90, 212, 166);
       text-decoration: none;
     }
-    .blocksatz {
-    text-align: justify;
-    text-justify: inter-word; /* Better word spacing */
-    hyphens: auto;            /* Allows hyphenation */
+    body.nav-active {
+      overflow: hidden;
+    }
+    /* Styles for the resources table */
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100vh - 80px); /* Adjust for header/footer */
+        padding: 2rem;
+        box-sizing: border-box;
+    }
+    table {
+      width: 100%;
+      max-width: 800px; /* Set a max-width for larger screens */
+      border-collapse: collapse;
+      background-color: #0E4D3C;
+      margin-top: 2rem;
+    }
+    th, td {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 1.5rem;
+      vertical-align: middle;
+      text-align: left;
+    }
+    td:first-child {
+      width: 80px; /* Fixed width for the icon column */
+      text-align: center;
+    }
+    td .icon {
+        width: 48px;
+        height: 48px;
+    }
+    tr:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      transition: background-color 0.3s ease;
+    }
+    /* Media Queries for Responsiveness */
+    @media (max-width: 767px) {
+      body {
+        padding-top: 60px;
+      }
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+        width: 100%;
+        left: 0;
+        padding: 0 1rem;
+        position: fixed;
+        top: 0;
+        border-radius: 0;
+      }
+      .logo-link img {
+        max-height: 40px;
+        max-width: 120px;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: #0E4D3C;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 6rem 2rem;
+        gap: 1.5rem;
+        z-index: 1001;
+        transition: right 0.3s ease-in-out;
+      }
+      nav.active {
+        right: 0;
+      }
+      nav a, nav .dropdown {
+        font-size: 1.2rem;
+        width: 100%;
+        padding: 0;
+      }
+      .dropdown-content {
+        position: static;
+        display: block;
+        background: none;
+        box-shadow: none;
+        animation: none;
+        min-width: unset;
+        padding-left: 1rem;
+        padding-top: 0.5rem;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      .dropdown-content a {
+        font-size: 1rem;
+        padding: 0.5rem 0;
+      }
+      .language-select {
+        margin: 2rem 0 0 0;
+        width: 100%;
+      }
+      .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 28px;
+        height: 24px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1002;
+      }
+      .mobile-menu-toggle span {
+        width: 100%;
+        height: 3px;
+        background-color: white;
+        border-radius: 3px;
+        transition: transform 0.3s, opacity 0.3s;
+        transform-origin: center;
+      }
+      body.nav-active .mobile-menu-toggle span:nth-child(1) {
+        transform: translateY(8.5px) rotate(45deg);
+      }
+      body.nav-active .mobile-menu-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+      body.nav-active .mobile-menu-toggle span:nth-child(3) {
+        transform: translateY(-8.5px) rotate(-45deg);
+      }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      body {
+        padding-top: 85px;
+      }
+      header {
+        height: 8%;
+        min-height: 65px;
+        width: 95%;
+        left: 2.5%;
+        padding: 1rem 1.5rem;
+      }
+      .logo-link img {
+        max-height: 70%;
+        max-width: 150px;
+      }
+      nav {
+        gap: 0.8rem;
+      }
+      nav a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.95rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      body {
+        padding-top: 80px;
+      }
+      header {
+        height: 5%;
+        min-height: 60px;
+        width: 95%;
+        left: 2.5%;
+        padding: 1rem 4rem;
+      }
+      nav a {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
 
 <header>
+  <a href="index.html" class="logo-link">
+    <img src="images/CSBD-LOGO.png" alt="COMPAS Solutions Logo">
+  </a>
   <nav>
     <a href="index.html">Home</a>
     <a href="aboutus.html">About Us</a>
     <div class="dropdown">
-  <a href="Services.html" style="display: inline-block;">Services</a>
+      <a href="Services.html" style="display: inline-block;">Services</a>
       <div class="dropdown-content">
         <a href="industries.html">Industries</a>
-        <a href="use-cases.html" >Use Cases</a>
+        <a href="use-cases.html">Use Cases</a>
       </div>
     </div>
     <a href="Contact.html">Contact Us</a>
     <a href="resources.html" class="highlight">Resources</a>
-  </nav>
-  <div class="logo-flags">
     <select class="language-select" onchange="location = this.value;">
       <option value="tr-landing.html">Türkçe</option>
       <option value="de-landing.html">Deutsch</option>
       <option value="index.html" selected>English</option>
     </select>
-    <a href="index.html">
-      <img src="images/CSBD-LOGO.png" alt="COMPAS Solutions Logo">
-    </a>
-  </div>
+  </nav>
+  <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </header>
 
-<section>
-<h1 class="highlight" >Downloadable Resources</h1>
-  <p >Below you can find key documents and assets available for download:</p>
+<main>
+    <h1 class="highlight" style="font-size: 2.5rem; text-align: center;">Downloadable Resources</h1>
+    <p style="text-align: center; max-width: 600px;">Below you can find key documents and assets available for download:</p>
 
- <table>
-  <tr>
-    <td>
-      <a href="downloads/CSBD-PP-0001-02 SFF Final Pitch Deck.pdf" download>
-        <img src="icons/icons8-document-48.png" alt="DOC Icon" class="icon">
-      </a>
-    </td>
-    <td>Company Pitch Deck (PPT, 2025) – Our service and industry overview.</td>
-  </tr>
-  <!-- <tr>
-    <td>
-      <a href="downloads/mbse_starter_kit.zip" download>
-        <img src="icons/zip-icon.png" alt="ZIP Icon" class="icon">
-      </a>
-    </td>
-    <td>MBSE Starter Kit (ZIP) – Tools and templates to kick off your systems engineering infrastructure.</td>
-  </tr>
-  <tr>
-    <td>
-      <a href="downloads/lifecycle_cost_estimator.xlsx" download>
-        <img src="icons/xls-icon.png" alt="XLS Icon" class="icon">
-      </a>
-    </td>
-    <td>Lifecycle Cost Estimator (XLSX) – Calculate project-wide costs across the product lifecycle.</td>
-  </tr>
-  <tr>
-    <td>
-      <a href="downloads/training_slides.pptx" download>
-        <img src="icons/ppt-icon.png" alt="PPT Icon" class="icon">
-      </a>
-    </td>
-    <td>Training Slides (PPT) – MBSE basics and industry applications.</td>
-  </tr> -->
-</table>
-</section>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <a href="downloads/CSBD-PP-0001-02 SFF Final Pitch Deck.pdf" download>
+              <img src="icons/icons8-document-48.png" alt="DOC Icon" class="icon">
+            </a>
+          </td>
+          <td>Company Pitch Deck (PDF, 2025) – Our service and industry overview.</td>
+        </tr>
+        </tbody>
+    </table>
+</main>
 
 <div class="scroll-up" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"></div>
 
@@ -266,12 +379,29 @@
 </footer>
 
 <script>
-  const scrollBtn = document.querySelector('.scroll-up');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-      scrollBtn.classList.add('show');
-    } else {
-      scrollBtn.classList.remove('show');
+  document.addEventListener('DOMContentLoaded', () => {
+    // Scroll-up button logic
+    const scrollBtn = document.querySelector('.scroll-up');
+    if (scrollBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 200) { // Show after scrolling 200px
+          scrollBtn.classList.add('show');
+        } else {
+          scrollBtn.classList.remove('show');
+        }
+      });
+    }
+
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('nav');
+    const body = document.querySelector('body');
+
+    if (menuToggle && nav && body) {
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            body.classList.toggle('nav-active');
+        });
     }
   });
 </script>

@@ -18,13 +18,21 @@
 html, body {
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Reverted to allow vertical scrolling */
   font-family: 'Exo', sans-serif;
 }
 
 body {
   background-color: #0E4D3C;
+  -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+  scrollbar-width: none;  /* Hide scrollbar for Firefox */
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
 
 /* Ensure sections don’t overflow */
 section {
@@ -35,51 +43,41 @@ section {
     header {
       background-color: rgba(14, 77, 60,0.8);
       position: fixed;
-      width: 100%;
-      height: 9.3%;
+      width: 95%; /* 5% narrower */
+      left: 2.5%; /* Center the narrower banner */
+      height: 5%; /* Back to initial 5% */
+      min-height: 60px; /* Ensure minimum height on larger screens */
       top: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 1rem 2rem;
       z-index: 1000;
+      box-sizing: border-box;
+      transition: height 0.3s ease, width 0.3s ease, left 0.3s ease; /* Smooth transitions */
+      border-radius: 0 0 10px 10px; /* Optional: rounded bottom corners for the narrower banner */
     }
-    header img 
-    {
+    .logo-link img {
       height: auto;
-      max-height: 80px;
+      max-height: 80%; /* Allow logo to take up more header height */
       width: auto;
       max-width: 180px;
       object-fit: contain;
-      margin-right: 15px;
+      vertical-align: middle; /* Fix vertical alignment */
     }
-    nav 
-    {
+    nav {
       display: flex;
+      align-items: center;
       gap: 1rem;
     }
-    nav a 
-    {
+    nav a {
       font-family: 'Montserrat', sans-serif;
       text-decoration: none;
       color: rgb(255, 255, 255);
       padding: 0.5rem 1rem;
+      white-space: nowrap;
     }
-    .logo-flags 
-    {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 1rem;
-    }
-    .logo-flags img:first-child 
-    {
-      height: auto;
-      max-height: 80px;
-      max-width: 180px;
-    }
-    .language-select 
-    {
+    .language-select {
       font-family: 'Exo', sans-serif;
       font-size: 0.7rem;
       padding: 0.3rem;
@@ -87,16 +85,14 @@ section {
       color: #0E4D3C;
       border: none;
       border-radius: 4px;
-      order: -1;
+      margin-left: 1rem;
     }
  /* Dropdown Styles */
-    .dropdown 
-    {
+    .dropdown {
       position: relative;
     }
 
-    .dropdown-content 
-    {
+    .dropdown-content {
       display: none;
       position: absolute;
       top: 100%;
@@ -109,13 +105,11 @@ section {
       animation: slideDown 0.3s ease forwards;
       z-index: 999;
     }
-    .dropdown:hover .dropdown-content 
-    {
+    .dropdown:hover .dropdown-content {
       display: block;
     }
 
-    .dropdown-content a 
-    {
+    .dropdown-content a {
       display: block;
       padding: 0.5rem 1rem;
       color: white;
@@ -123,8 +117,7 @@ section {
       transition: background 0.2s;
     }
 
-    .dropdown-content a:hover 
-    {
+    .dropdown-content a:hover {
       background-color: #159b77;
     }
 
@@ -139,8 +132,12 @@ section {
       }
     }
 
+    .mobile-menu-toggle {
+      display: none;
+    }
+
     section {
-      height: 100vh;
+      min-height: 80vh; /* Ensure sections have a minimum height */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -149,13 +146,13 @@ section {
       scroll-snap-align: start;
       transition: all 0.5s ease;
       background-color: #0E4D3C;
-      overflow-x: hidden;
-
+      box-sizing: border-box;
+      position: relative;
     }
- @media (max-width: 600px) 
+ @media (max-width: 600px)
     {
-  
-  .text-area, .media-area 
+
+  .text-area, .media-area
       {
     width: 100% !important;
     clip-path: none !important;
@@ -176,7 +173,7 @@ section {
       z-index: 1001;
       display: none;
     }
-    .icon-row 
+    .icon-row
     {
     background-color: #0E4D3C;
     height: 25%;
@@ -186,13 +183,13 @@ section {
     padding: 1rem 2rem;
     gap: 10rem; /* Adjust spacing between images */
     }
-    .icon-row > div 
+    .icon-row > div
     {
     display: flex;
     flex-direction: column;
     align-items: center;
     }
-    .icon-row img 
+    .icon-row img
     {
     height: 80px;
     width: 80px;
@@ -200,23 +197,23 @@ section {
     object-fit: cover;
     margin-bottom: 0.5rem;
   }
-  .icon-row p 
+  .icon-row p
   {
     color: white;
     font-family: 'Exo', sans-serif;
     margin: 0;
     text-align: center;
   }
-  .scroll-up.show 
+  .scroll-up.show
   {
       display: block;
   }
-  .highlight 
+  .highlight
   {
   color: rgb(90, 212, 166);
   font-weight: bold;
   }
-  .icon-circle 
+  .icon-circle
   {
   background-color: rgba(255, 255, 255, 0.1); /* soft light background */
   border-radius: 50%;
@@ -228,7 +225,7 @@ section {
   margin-bottom: 0.5rem;
   box-shadow: 0 0 8px rgba(90, 212, 166, 0.5); /* subtle glowing effect */
   }
-  .icon-circle img 
+  .icon-circle img
   {
   height: 60px;
   width: 60px;
@@ -243,6 +240,7 @@ section {
   padding: 2rem 1rem;
   font-size: 0.9rem;
   width: 100%;
+  box-sizing: border-box;
   }
   footer a {
   color: rgb(90, 212, 166);
@@ -254,19 +252,45 @@ section {
     .hero {
       text-align: center;
       padding: 4rem 2rem;
-      background: url('vid/Aircraft/Video3Thumb.jpg') center/cover no-repeat;
-      background-color: rgba(0,0,0,0.4);
-      background-blend-mode: overlay;
       position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      box-sizing: border-box;
+      background-color: transparent; /* MODIFICATION: Removed solid background */
+    }
+    /* MODIFICATION: Added overlay for text readability */
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(14, 77, 60, 0.5);
+        z-index: 0;
+    }
+    /* MODIFICATION: Added content wrapper to place text above overlay */
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
     }
     .hero h1 {
-      font-size: 3rem;
+      font-size: clamp(2rem, 5vw, 3rem);
       margin-bottom: 0.5rem;
+      color: #5AD4A6;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     }
     .hero p {
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
       max-width: 700px;
       margin: 0 auto;
+      color: white;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
     }
     .use-cases-container {
       display: grid;
@@ -275,12 +299,19 @@ section {
       padding: 4rem 2rem;
       max-width: 900px;
       margin: auto;
+      box-sizing: border-box;
     }
     .use-case-card {
       background-color: rgba(255, 255, 255, 0.05);
       border-left: 4px solid #5AD4A6;
       padding: 2rem;
       border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .use-case-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
     .tag {
       display: inline-block;
@@ -289,21 +320,48 @@ section {
       border-radius: 4px;
       font-size: 0.8rem;
       margin-bottom: 1rem;
+      color: white;
+      font-weight: bold;
     }
     .use-case-card h3 {
       margin-top: 0;
+      margin-bottom: 1rem;
+      color: #5AD4A6;
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+    }
+    .use-case-card p {
+      color: white;
+      line-height: 1.6;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+    .use-case-card strong {
+      color: #cacaca;
     }
     .cta {
       text-align: center;
       padding: 3rem 2rem;
       background-color: #126d56;
+      box-sizing: border-box;
+    }
+    .cta h2 {
+      color: white;
+      margin-bottom: 1rem;
+      font-size: clamp(1.5rem, 4vw, 2rem);
     }
     .cta a {
-      color: #5AD4A6;
+      display: inline-block;
+      padding: 0.9rem 1.8rem;
+      background: rgb(90, 212, 166);
+      color: #0E4D3C;
+      font-weight: 600;
+      border-radius: 8px;
       text-decoration: none;
-      font-weight: bold;
+      transition: background 0.3s ease;
     }
-        .video-background {
+    .cta a:hover {
+      background: #63e6b4;
+    }
+    .video-background {
       position: absolute;
       top: 0;
       left: 0;
@@ -321,75 +379,251 @@ section {
       padding-top: 40vh;
       font-family: Arial, sans-serif;
     }
+
+    body.nav-active {
+      overflow: hidden;
+    }
+
+    /* Media Queries for Responsiveness */
+
+    /* Small screens (phones) */
+    @media (max-width: 767px) {
+      body {
+        padding-top: 60px;
+      }
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+        width: 100%;
+        left: 0;
+        padding: 0 1rem;
+        position: fixed;
+        top: 0;
+        border-radius: 0;
+      }
+      .logo-link img {
+        max-height: 40px;
+        max-width: 120px;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: #0E4D3C;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 6rem 2rem;
+        gap: 1.5rem;
+        z-index: 1001;
+        transition: right 0.3s ease-in-out;
+      }
+      nav.active {
+        right: 0;
+      }
+      nav a, nav .dropdown {
+        font-size: 1.2rem;
+        width: 100%;
+        padding: 0;
+      }
+      .dropdown-content {
+        position: static;
+        display: block;
+        background: none;
+        box-shadow: none;
+        animation: none;
+        min-width: unset;
+        padding-left: 1rem;
+        padding-top: 0.5rem;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      .dropdown-content a {
+        font-size: 1rem;
+        padding: 0.5rem 0;
+      }
+      .language-select {
+        margin: 2rem 0 0 0;
+        width: 100%;
+      }
+
+      .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 28px;
+        height: 24px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1002;
+      }
+      .mobile-menu-toggle span {
+        width: 100%;
+        height: 3px;
+        background-color: white;
+        border-radius: 3px;
+        transition: transform 0.3s, opacity 0.3s;
+        transform-origin: center;
+      }
+
+      body.nav-active .mobile-menu-toggle span:nth-child(1) {
+        transform: translateY(8.5px) rotate(45deg);
+      }
+      body.nav-active .mobile-menu-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+      body.nav-active .mobile-menu-toggle span:nth-child(3) {
+        transform: translateY(-8.5px) rotate(-45deg);
+      }
+
+      .hero {
+        height: 100vh;
+        min-height: 0;
+        padding-bottom: 120px;
+      }
+      .use-cases-container {
+        padding: 3rem 1rem;
+      }
+      .use-case-card {
+        padding: 1.5rem;
+      }
+      .cta {
+        padding: 2.5rem 1rem;
+      }
+      footer {
+        padding: 1.5rem 0.8rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    /* Medium screens (tablets) */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      body {
+        padding-top: 85px;
+      }
+      header {
+        height: 8%;
+        min-height: 65px;
+        width: 95%;
+        left: 2.5%;
+        padding: 1rem 1.5rem;
+      }
+      .logo-link img {
+        max-height: 70%;
+        max-width: 150px;
+      }
+      nav {
+        gap: 0.8rem;
+      }
+      nav a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.95rem;
+      }
+      .hero {
+        padding-bottom: 170px;
+      }
+      .use-cases-container {
+        padding: 3.5rem 1.5rem;
+      }
+    }
+
+    /* Large screens (desktops) */
+    @media (min-width: 1024px) {
+      body {
+        padding-top: 80px;
+      }
+      header {
+        height: 5%;
+        min-height: 60px;
+        width: 95%;
+        left: 2.5%;
+        padding: 1rem 4rem;
+      }
+      nav a {
+        font-size: 1rem;
+      }
+      .hero {
+        padding-bottom: 160px;
+      }
+    }
   </style>
 </head>
 
 <body>
 <header>
+  <a href="index.html" class="logo-link">
+    <img src="images/CSBD-LOGO.png" alt="COMPAS Solutions Logo">
+  </a>
   <nav>
     <a href="index.html">Home</a>
     <a href="aboutus.html">About Us</a>
     <div class="dropdown">
-      <a href="use-cases.html" class="highlight" style="display: inline-block;": inline-block;>Use Cases</a>
+      <a href="Services.html" style="display: inline-block;">Services</a>
       <div class="dropdown-content">
-        <a href="Services.html" >Services</a>
         <a href="industries.html">Industries</a>
+        <a href="use-cases.html" class="highlight">Use Cases</a>
       </div>
     </div>
     <a href="Contact.html">Contact Us</a>
     <a href="resources.html">Resources</a>
-  </nav>
-  <div class="logo-flags">
     <select class="language-select" onchange="location = this.value;">
       <option value="tr-landing.html">Türkçe</option>
       <option value="de-landing.html">Deutsch</option>
       <option value="index.html" selected>English</option>
     </select>
-    <a href="index.html">
-      <img src="images/CSBD-LOGO.png" alt="COMPAS Solutions Logo">
-    </a>
-  </div>
+  </nav>
+  <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </header>
 
   <section class="hero">
-      <!-- Background video -->
-  <video class="video-background" autoplay muted loop playsinline>
+      <video class="video-background" autoplay muted loop playsinline>
     <source src="vid/digital_finger_print.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
-    <h1 style="color: #5AD4A6">Real Solutions. Real Impact.</h1>
-    <p  style="color: white;">Explore how we apply systems engineering to solve industry-specific challenges with measurable results.</p>
+  <div class="hero-content">
+        <h1>Real Solutions. Real Impact.</h1>
+        <p>Explore how we apply systems engineering to solve industry-specific challenges with measurable results.</p>
+    </div>
   </section>
 
-  <section class="use-cases-container">
-    <div class="use-case-card">
+  <section class="use-cases-container" id="use-cases-section">
+    <div class="use-case-card" id="agrotech-case">
       <span class="tag">Agrotech</span>
-      <h3 style="color: #5AD4A6">Smart Greenhouse Development</h3>
-      <p style="color: white;"><strong style="color: #cacaca;">Challenge:</strong> Utilization of multi disciplinar domains to develop a cost effective and robust smart Greenhouse system with cross-country teams.</p>
-      <p style="color: white;"><strong style="color: #cacaca;">Solution:</strong> We developed an MBSE-driven smart greenhouse system integrating sensors, irrigation control, and light automation, ensuring optimal growing conditions.</p>
-      <p style="color: white;"><strong style="color: #cacaca;">Technologies Used:</strong> SysML, Arduino, IoT integration, V&V strategy</p>
-      <p style="color: white;"><strong style="color: #cacaca;">Impact:</strong> Increased yield stability by 30% and enabled remote management capabilities for urban growers.</p>
+      <h3>Smart Greenhouse Development</h3>
+      <p><strong>Challenge:</strong> Utilization of multi disciplinar domains to develop a cost effective and robust smart Greenhouse system with cross-country teams.</p>
+      <p><strong>Solution:</strong> We developed an MBSE-driven smart greenhouse system integrating sensors, irrigation control, and light automation, ensuring optimal growing conditions.</p>
+      <p><strong>Technologies Used:</strong> SysML, Arduino, IoT integration, V&V strategy</p>
+      <p><strong>Impact:</strong> Increased yield stability by 30% and enabled remote management capabilities for urban growers.</p>
     </div>
 
-    <div class="use-case-card">
+    <div class="use-case-card" id="aerospace-case">
       <span class="tag">Aerospace</span>
-      <h3 style="color: #5AD4A6">Capella Integration for UAV Manufacturer</h3>
-      <p style="color: white;"><strong style="color: #cacaca;" >Challenge:</strong> Fragmented product development process hindered scalability and cross-team alignment.</p>
-      <p style="color: white;"><strong style="color: #cacaca;">Solution:</strong> We integrated the Capella MBSE tool into the UAV manufacturer's development pipeline, aligning requirements, architecture, and simulation models.</p>
-      <p style="color: white;"><strong style="color: #cacaca;">Technologies Used:</strong> Capella, Simulink, Polarion, MBSE process tailoring</p>
-      <p style="color: white;"><strong style="color: #cacaca;">Impact:</strong> Reduced design inconsistencies by 45% and improved traceability across engineering artifacts.</p>
+      <h3>Capella Integration for UAV Manufacturer</h3>
+      <p><strong>Challenge:</strong> Fragmented product development process hindered scalability and cross-team alignment.</p>
+      <p><strong>Solution:</strong> We integrated the Capella MBSE tool into the UAV manufacturer's development pipeline, aligning requirements, architecture, and simulation models.</p>
+      <p><strong>Technologies Used:</strong> Capella, Simulink, Polarion, MBSE process tailoring</p>
+      <p><strong>Impact:</strong> Reduced design inconsistencies by 45% and improved traceability across engineering artifacts.</p>
     </div>
   </section>
 
   <section class="cta">
-    <h2 style="color: white;">Ready to transform your system development?</h2>
+    <h2>Ready to transform your system development?</h2>
     <p><a href="Contact.html">Get in touch with us today →</a></p>
   </section>
-
-</body>
-</html>
-
-
 
 <div class="scroll-up" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"></div>
 
@@ -399,24 +633,54 @@ section {
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const dropdown = document.querySelector('.dropdown');
-    dropdown.addEventListener('click', () => {
-      const content = dropdown.querySelector('.dropdown-content');
-      content.style.display = content.style.display === 'block' ? 'none' : 'block';
-    });
-  });
-  const scrollBtn = document.querySelector('.scroll-up');
-  window.addEventListener('scroll', () => {
-    const firstSection = document.getElementById('Agro');
-    if (window.scrollY > firstSection.offsetHeight / 2) {
-      scrollBtn.classList.add('show');
-    } else {
-      scrollBtn.classList.remove('show');
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('nav');
+    const body = document.querySelector('body');
+
+    if (menuToggle && nav && body) {
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            body.classList.toggle('nav-active');
+        });
     }
+
+    // Scroll-up button logic
+    const scrollBtn = document.querySelector('.scroll-up');
+    if (scrollBtn) {
+      window.addEventListener('scroll', () => {
+        const firstCaseSection = document.getElementById('use-cases-section');
+        if (firstCaseSection && window.scrollY > firstCaseSection.offsetTop / 2) {
+          scrollBtn.classList.add('show');
+        } else {
+          scrollBtn.classList.remove('show');
+        }
+      });
+    }
+
+    // Dropdown functionality for desktop (retained but also handled by CSS hover)
+    const dropdown = document.querySelector('.dropdown');
+    dropdown.addEventListener('click', (event) => {
+        // Only toggle on direct click for non-mobile if JS handles display
+        if (window.innerWidth >= 768) { // Adjust breakpoint as needed
+            const content = dropdown.querySelector('.dropdown-content');
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+        event.stopPropagation(); // Prevent document click from immediately closing
+    });
+
+    // Close dropdown if clicked outside on desktop
+    window.addEventListener('click', () => {
+        if (window.innerWidth >= 768) {
+            const content = document.querySelector('.dropdown-content');
+            if (content) {
+                content.style.display = 'none';
+            }
+        }
+    });
+
   });
 </script>
-
-
 
 </body>
 

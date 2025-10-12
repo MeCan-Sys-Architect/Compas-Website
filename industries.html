@@ -6,81 +6,63 @@
   <title>Industries | Compas Solutions</title>
   <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400&family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <style>
-   /* Full Reset and Scaling Fix */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
-  width: 100%;
-  height: 100%;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-  font-family: 'Exo', sans-serif;
-}
-
-body {
-  background-color: #0E4D3C;
-}
-
-/* Ensure sections don’t overflow */
-section {
-  width: 100%;
-  max-width: 100vw;
-  overflow-x: hidden;
-}
+    /* Base Styles from index.html */
+    html, body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      font-family: 'Exo', sans-serif;
+      color: white;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    html {
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;  /* IE and Edge */
+    }
+    html::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+    body {
+      background-color: #0E4D3C;
+    }
     header {
       background-color: rgba(14, 77, 60,0.8);
       position: fixed;
-      width: 100%;
-      height: 9.3%;
+      width: 95%;
+      left: 2.5%;
+      height: 5%;
+      min-height: 60px;
       top: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 1rem 2rem;
       z-index: 1000;
+      box-sizing: border-box;
+      transition: height 0.3s ease, width 0.3s ease, left 0.3s ease;
+      border-radius: 0 0 10px 10px;
     }
-    header img 
-    {
+    .logo-link img {
       height: auto;
-      max-height: 80px;
+      max-height: 80%;
       width: auto;
       max-width: 180px;
       object-fit: contain;
-      margin-right: 15px;
+      vertical-align: middle;
     }
-    nav 
-    {
+    nav {
       display: flex;
+      align-items: center;
       gap: 1rem;
     }
-    nav a 
-    {
+    nav a {
       font-family: 'Montserrat', sans-serif;
       text-decoration: none;
       color: rgb(255, 255, 255);
       padding: 0.5rem 1rem;
+      white-space: nowrap;
     }
-    .logo-flags 
-    {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 1rem;
-    }
-    .logo-flags img:first-child 
-    {
-      height: auto;
-      max-height: 80px;
-      max-width: 180px;
-    }
-    .language-select 
-    {
+    .language-select {
       font-family: 'Exo', sans-serif;
       font-size: 0.7rem;
       padding: 0.3rem;
@@ -88,16 +70,13 @@ section {
       color: #0E4D3C;
       border: none;
       border-radius: 4px;
-      order: -1;
+      margin-left: 1rem;
     }
- /* Dropdown Styles */
-    .dropdown 
-    {
+    /* Dropdown Styles */
+    .dropdown {
       position: relative;
     }
-
-    .dropdown-content 
-    {
+    .dropdown-content {
       display: none;
       position: absolute;
       top: 100%;
@@ -110,25 +89,19 @@ section {
       animation: slideDown 0.3s ease forwards;
       z-index: 999;
     }
-    .dropdown:hover .dropdown-content 
-    {
+    .dropdown:hover .dropdown-content {
       display: block;
     }
-
-    .dropdown-content a 
-    {
+    .dropdown-content a {
       display: block;
       padding: 0.5rem 1rem;
       color: white;
       text-decoration: none;
       transition: background 0.2s;
     }
-
-    .dropdown-content a:hover 
-    {
+    .dropdown-content a:hover {
       background-color: #159b77;
     }
-
     @keyframes slideDown {
       from {
         opacity: 0;
@@ -139,9 +112,12 @@ section {
         transform: translateY(0);
       }
     }
-
+    .mobile-menu-toggle {
+      display: none;
+    }
+    /* Sections general styling */
     section {
-      height: 100vh;
+      min-height: 80vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -150,20 +126,8 @@ section {
       scroll-snap-align: start;
       transition: all 0.5s ease;
       background-color: #0E4D3C;
-      overflow-x: hidden;
-
-    }
- @media (max-width: 600px) 
-    {
-  
-  .text-area, .media-area 
-      {
-    width: 100% !important;
-    clip-path: none !important;
-      position: absolute;
-      margin-left: auto;
-
-      }
+      box-sizing: border-box;
+      position: relative;
     }
     .scroll-up {
       position: fixed;
@@ -177,130 +141,294 @@ section {
       z-index: 1001;
       display: none;
     }
-    .icon-row 
-    {
-    background-color: #0E4D3C;
-    height: 25%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem 2rem;
-    gap: 10rem; /* Adjust spacing between images */
-    }
-    .icon-row > div 
-    {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    }
-    .icon-row img 
-    {
-    height: 80px;
-    width: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 0.5rem;
-  }
-  .icon-row p 
-  {
-    color: white;
-    font-family: 'Exo', sans-serif;
-    margin: 0;
-    text-align: center;
-  }
-  .scroll-up.show 
-  {
+    .scroll-up.show {
       display: block;
-  }
-  .highlight 
-  {
-  color: rgb(90, 212, 166);
-  font-weight: bold;
-  }
-  .icon-circle 
-  {
-  background-color: rgba(255, 255, 255, 0.1); /* soft light background */
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.5rem;
-  box-shadow: 0 0 8px rgba(90, 212, 166, 0.5); /* subtle glowing effect */
-  }
-  .icon-circle img 
-  {
-  height: 60px;
-  width: 60px;
-  object-fit: cover;
-  border-radius: 50%;
-  }
-  footer
-  {
-  background-color: #000000;
-  color: white;
-  text-align: center;
-  padding: 2rem 1rem;
-  font-size: 0.9rem;
-  width: 100%;
-  }
-  footer a {
-  color: rgb(90, 212, 166);
-  text-decoration: none;
-  }
+    }
+    .highlight {
+      color: rgb(90, 212, 166);
+      font-weight: bold;
+    }
+    footer {
+      background-color: #000000;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      box-sizing: border-box;
+    }
+    footer a {
+      color: rgb(90, 212, 166);
+      text-decoration: none;
+    }
+    body.nav-active {
+      overflow: hidden;
+    }
+
+    /* Styles specific to industries.html content */
+    .icon-row {
+      background-color: #0E4D3C;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem 2rem;
+      gap: 11rem;
+    }
+    .icon-row > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .icon-row p {
+      color: white;
+      font-family: 'Exo', sans-serif;
+      margin: 0;
+      text-align: center;
+    }
+    .icon-circle {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 0 8px rgba(90, 212, 166, 0.5);
+    }
+    .icon-circle img {
+      height: 60px;
+      width: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 767px) {
+      body {
+        padding-top: 60px;
+      }
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+        width: 100%;
+        left: 0;
+        padding: 0 1rem;
+        position: fixed;
+        top: 0;
+        border-radius: 0;
+      }
+      .logo-link img {
+        max-height: 40px;
+        max-width: 120px;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: #0E4D3C;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 6rem 2rem;
+        gap: 1.5rem;
+        z-index: 1001;
+        transition: right 0.3s ease-in-out;
+      }
+      nav.active {
+        right: 0;
+      }
+      nav a, nav .dropdown {
+        font-size: 1.2rem;
+        width: 100%;
+        padding: 0;
+      }
+      .dropdown-content {
+        position: static;
+        display: block;
+        background: none;
+        box-shadow: none;
+        animation: none;
+        min-width: unset;
+        padding-left: 1rem;
+        padding-top: 0.5rem;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      .dropdown-content a {
+        font-size: 1rem;
+        padding: 0.5rem 0;
+      }
+      .language-select {
+        margin: 2rem 0 0 0;
+        width: 100%;
+      }
+      .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 28px;
+        height: 24px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1002;
+      }
+      .mobile-menu-toggle span {
+        width: 100%;
+        height: 3px;
+        background-color: white;
+        border-radius: 3px;
+        transition: transform 0.3s, opacity 0.3s;
+        transform-origin: center;
+      }
+      body.nav-active .mobile-menu-toggle span:nth-child(1) {
+        transform: translateY(8.5px) rotate(45deg);
+      }
+      body.nav-active .mobile-menu-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+      body.nav-active .mobile-menu-toggle span:nth-child(3) {
+        transform: translateY(-8.5px) rotate(-45deg);
+      }
+      
+      /* MOBILE CONTENT ADJUSTMENTS */
+      .video-content-area {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .text-area {
+        width: 90% !important;
+        clip-path: none !important;
+        height: auto !important;
+        padding: 1rem !important;
+        background-color: rgba(14, 77, 60, 0.75) !important;
+        color: white !important;
+        border-radius: 10px;
+        margin: 0;
+      }
+      .text-area p, .text-area h3 {
+          color: white !important;
+          padding: 0 !important;
+      }
+      .text-area h3 {
+          color: rgb(90, 212, 166) !important;
+      }
+      .icon-row {
+          gap: 0;
+          justify-content: space-around;
+          flex-wrap: nowrap;
+          padding: 1rem 0.5rem;
+      }
+      .icon-circle {
+          width: 80px;
+          height: 80px;
+      }
+      .icon-circle img {
+          width: 45px;
+          height: 45px;
+      }
+      .icon-row p {
+          font-size: 0.7rem;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      body {
+        padding-top: 85px;
+      }
+      header {
+        height: 8%;
+        min-height: 65px;
+        width: 95%;
+        left: 2.5%;
+        padding: 1rem 1.5rem;
+      }
+      .logo-link img {
+        max-height: 70%;
+        max-width: 150px;
+      }
+      nav {
+        gap: 0.8rem;
+      }
+      nav a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      body {
+        padding-top: 80px;
+      }
+      header {
+        height: 5%;
+        min-height: 60px;
+        width: 95%;
+        left: 2.5%;
+        padding: 1rem 4rem;
+      }
+      nav a {
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 
 <body>
 <header>
+  <a href="index.html" class="logo-link">
+    <img src="images/CSBD-LOGO.png" alt="COMPAS Solutions Logo">
+  </a>
   <nav>
     <a href="index.html">Home</a>
     <a href="aboutus.html">About Us</a>
     <div class="dropdown">
-      <a href="industries.html" class="highlight" style="display: inline-block;": inline-block;>Industries</a>
+      <a href="industries.html" class="highlight" style="display: inline-block;">Industries</a>
       <div class="dropdown-content">
-        <a href="Services.html" >Services</a>
-        <a href="use-cases.html" >Use Cases</a>
+        <a href="Services.html">Services</a>
+        <a href="use-cases.html">Use Cases</a>
       </div>
     </div>
     <a href="Contact.html">Contact Us</a>
     <a href="resources.html">Resources</a>
-  </nav>
-  <div class="logo-flags">
     <select class="language-select" onchange="location = this.value;">
       <option value="tr-landing.html">Türkçe</option>
       <option value="de-landing.html">Deutsch</option>
       <option value="index.html" selected>English</option>
     </select>
-    <a href="index.html">
-      <img src="images/CSBD-LOGO.png" alt="COMPAS Solutions Logo">
-    </a>
-  </div>
+  </nav>
+  <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </header>
 
 
-<!-- Section: Agrotech -->
-<section id="Agrotech" style="height: 90vh; display: flex; flex-direction: column; overflow: hidden;">
+<section id="Agrotech" style="height: 100vh; display: flex; flex-direction: column; overflow: hidden; padding:0;">
 
-  <!-- Header -->
-  <div style="background-color: #0E4D3C; height: 15%; display: flex; align-items: center; justify-content: center; padding-top: 80px;">
+  <div style="background-color: #0E4D3C; height: 18.75vh; display: flex; align-items: center; justify-content: center; padding-top: 80px;">
     <h2 style="color: white; font-family: 'Montserrat', sans-serif; font-size: 3rem; margin: 0;">
       Agrotech
     </h2>
   </div>
 
-  <!-- Content with Video Background -->
-  <div style="position: relative; flex: 1; width: 100%; overflow: hidden; margin-top: 5%;">
-
-    <!-- Background Video -->
-    <video autoplay muted loop aria-hidden="true" poster="fallback-image.jpg"
-      style="position: absolute; right: 0%; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+  <div class="video-content-area" style="position: relative; width: 100%; height: 50vh; overflow: hidden;">
+    <video autoplay muted loop playsinline aria-hidden="true" poster="fallback-image.jpg"
+      style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
       <source src="vid/Agriculture/Video_5.mp4" type="video/mp4">
     </video>
 
-    <!-- Text Area -->
-    <div style="
+    <div class="text-area" style="
       position: relative;
       z-index: 2;
       width: 35%;
@@ -312,31 +440,30 @@ section {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       padding: 2.5rem;
-      text-align: left;">
+      text-align: center;">
       <h3 style="color: rgb(90, 212, 166); font-size: 1.75rem; margin-bottom: 2rem;">Precision</h3>
-      <p style="font-size: 1.2rem; line-height: 1.2;">
-        Model-based systems optimize water usage, increase yield, and improve operational <br> efficiency in modern agriculture.
+      <p style="font-size: 1.2rem; line-height: 1.2; padding-right:20px; text-align: left; padding-bottom: 50px">
+        Model-based systems optimize water usage, increase yield, and improve operational efficiency in modern agriculture.
       </p>
     </div>
   </div>
 
-  <!-- Icon Row -->
-  <div class="icon-row" style="background-color: #0E4D3C; height: 25%; display: flex; justify-content: space-around; align-items: center; padding: 1rem 2rem; padding-top: 7%;">
-    <div style="display: flex; flex-direction: column; align-items: center;">
+  <div class="icon-row" style="height: 31.25vh;">
+    <div>
       <div class="icon-circle">
         <img src="icons/agrotech1.png" alt="Agro 1">
       </div>
       <p>Ecologically Engineered</p>
     </div>
-    <div style="display: flex; flex-direction: column; align-items: center;">
+    <div>
       <div class="icon-circle">
         <img src="icons/agrotech2.png" alt="Agro 2">
       </div>
       <p>Technologically Executed</p>
     </div>
-    <div style="display: flex; flex-direction: column; align-items: center;">
+    <div>
       <div class="icon-circle">
         <img src="icons/agrotech3.png" alt="Agro 3">
       </div>
@@ -345,27 +472,21 @@ section {
   </div>
 </section>
 
-<!-- Section: Aerospace -->
-<section id="aerospace" style="height: 90vh; display: flex; flex-direction: column; overflow: hidden;">
+<section id="aerospace" style="height: 100vh; display: flex; flex-direction: column; overflow: hidden; padding:0;">
 
-  <!-- Header -->
-  <div style="background-color: #0E4D3C; height: 15%; display: flex; align-items: center; justify-content: center; padding-top: 80px;">
+  <div style="background-color: #0E4D3C; height: 18.75vh; display: flex; align-items: center; justify-content: center; padding-top: 80px;">
     <h2 style="color: white; font-family: 'Montserrat', sans-serif; font-size: 3rem; margin: 0;">
       Aerospace
     </h2>
   </div>
 
-  <!-- Content with Video Background -->
-  <div style="position: relative; flex: 1; width: 100%; overflow: hidden; margin-top: 5%;">
-
-    <!-- Background Video -->
-    <video autoplay muted loop aria-hidden="true" poster="fallback-image.jpg"
-      style="position: absolute; right: 0%; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+  <div class="video-content-area" style="position: relative; width: 100%; height: 50vh; overflow: hidden;">
+    <video autoplay muted loop playsinline aria-hidden="true" poster="fallback-image.jpg"
+      style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
       <source src="vid/Aircraft/Video 2.mp4" type="video/mp4">
     </video>
 
-    <!-- Text Area -->
-    <div style="
+    <div class="text-area" style="
       position: relative;
       z-index: 2;
       width: 35%;
@@ -377,32 +498,31 @@ section {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       padding: 2.5rem;
-      text-align: left;">
+      text-align: center;">
       <h3 style="color: rgb(90, 212, 166); font-size: 1.75rem; margin-bottom: 1rem;">Digital Continuity</h3>
-      <p style="font-size: 1rem; line-height: 1.2; padding-right: 10%;">Systems engineering accelerates aerospace innovation by enabling cross-domain collaboration and model-based validation 
+      <p style="font-size: 0.95rem; line-height: 1.2; padding-right: 10%;">Systems engineering accelerates aerospace innovation by enabling cross-domain collaboration and model-based validation
 	across the full lifecycle.
 	From early requirements to digital twins, we ensure traceability, risk mitigation, and compliance — all while reducing time-to-flight.
-	Compas Solutions delivers tailored MBSE <br> architectures, simulation integration, and <br>PLM strategies for next-gen aerospace systems.</p>
+	Compas Solutions delivers tailored MBSE architectures, simulation integration, and PLM strategies for next-gen aerospace systems.</p>
     </div>
   </div>
 
-  <!-- Icon Row -->
-  <div class="icon-row" style="background-color: #0E4D3C; height: 25%; display: flex; justify-content: space-around; align-items: center; padding: 1rem 2rem; padding-top: 7%;">
-    <div style="display: flex; flex-direction: column; align-items: center;">
+  <div class="icon-row" style="height: 31.25vh;">
+    <div>
       <div class="icon-circle">
         <img src="icons/aerospace1.png" alt="Aero 1">
       </div>
       <p>Regulation Conformity — Guaranteed.</p>
     </div>
-    <div style="display: flex; flex-direction: column; align-items: center;">
+    <div>
       <div class="icon-circle">
         <img src="icons/aerospace2.png" alt="Aero 2">
       </div>
       <p>Traceability — Ensured.</p>
     </div>
-    <div style="display: flex; flex-direction: column; align-items: center;">
+    <div>
       <div class="icon-circle">
         <img src="icons/aerospace3.png" alt="Aero 3">
       </div>
@@ -411,27 +531,21 @@ section {
   </div>
 </section>
 
-<!-- Section: Defence -->
-<section id="defence" style="height: 90vh; display: flex; flex-direction: column; overflow: hidden; margin-bottom:10% ;">
+<section id="defence" style="height: 100vh; display: flex; flex-direction: column; overflow: hidden; padding:0;">
 
-  <!-- Header -->
-  <div style="background-color: #0E4D3C; height: 15%; display: flex; align-items: center; justify-content: center; padding-top: 80px;">
+  <div style="background-color: #0E4D3C; height: 18.75vh; display: flex; align-items: center; justify-content: center; padding-top: 80px;">
     <h2 style="color: white; font-family: 'Montserrat', sans-serif; font-size: 3rem; margin: 0;">
       Defence & Space
     </h2>
   </div>
 
-  <!-- Content with Video Background -->
-  <div style="position: relative; flex: 1; width: 100%; overflow: hidden; margin-top: 5%;">
-
-    <!-- Background Video -->
-    <video autoplay muted loop aria-hidden="true" poster="fallback-image.jpg"
-      style="position: absolute; right: 0%; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+  <div class="video-content-area" style="position: relative; width: 100%; height: 50vh; overflow: hidden;">
+    <video autoplay muted loop playsinline aria-hidden="true" poster="fallback-image.jpg"
+      style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
       <source src="vid/Defense/Video_1.mp4" type="video/mp4">
     </video>
 
-    <!-- Text Area -->
-    <div style="
+    <div class="text-area" style="
       position: relative;
       z-index: 2;
       width: 35%;
@@ -443,31 +557,30 @@ section {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       padding: 2.5rem;
-      text-align: left;">
+      text-align: center;">
       <h3 style="color: rgb(90, 212, 166); font-size: 1.75rem; margin-bottom: 1rem;">Mission-Critical System Integrity</h3>
-      <p style="font-size: 1rem; line-height: 1.2; padding-right: 10%;">In Defence, precision and reliability aren't optional — they're vital.
+      <p style="font-size: 0.95rem; line-height: 1.2; padding-right: 10%;">In Defence, precision and reliability aren't optional — they're vital.
 We deploy model-based systems engineering to manage complexity, secure stakeholder alignment, and maintain compliance with evolving standards.
-From command systems to embedded platforms, Compas Solutions ensures <br>verifiable performance, integration <br>readiness, and lifecycle resilience.</p>
+From command systems to embedded platforms, Compas Solutions ensures verifiable performance, integration readiness, and lifecycle resilience.</p>
     </div>
   </div>
 
-  <!-- Icon Row -->
-  <div class="icon-row" style="background-color: #0E4D3C; height: 25%; display: flex; justify-content: space-around; align-items: center; padding: 1rem 2rem; padding-top: 7%;">
-    <div style="display: flex; flex-direction: column; align-items: center;">
+  <div class="icon-row" style="height: 31.25vh;">
+    <div>
       <div class="icon-circle">
         <img src="icons/def_1.png" alt="Def 1">
       </div>
       <p>Precision for Mission-Critical Success</p>
     </div>
-    <div style="display: flex; flex-direction: column; align-items: center;">
+    <div>
       <div class="icon-circle">
         <img src="icons/def_2.png" alt="Def 2">
       </div>
       <p>Trusted Defence Solutions</p>
     </div>
-    <div style="display: flex; flex-direction: column; align-items: center;">
+    <div>
       <div class="icon-circle">
         <img src="icons/def_3.png" alt="Def 3">
       </div>
@@ -485,24 +598,32 @@ From command systems to embedded platforms, Compas Solutions ensures <br>verifia
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const dropdown = document.querySelector('.dropdown');
-    dropdown.addEventListener('click', () => {
-      const content = dropdown.querySelector('.dropdown-content');
-      content.style.display = content.style.display === 'block' ? 'none' : 'block';
-    });
-  });
-  const scrollBtn = document.querySelector('.scroll-up');
-  window.addEventListener('scroll', () => {
-    const firstSection = document.getElementById('Agrotech');
-    if (window.scrollY > firstSection.offsetHeight / 2) {
-      scrollBtn.classList.add('show');
-    } else {
-      scrollBtn.classList.remove('show');
+    // Scroll-up button logic
+    const scrollBtn = document.querySelector('.scroll-up');
+    if (scrollBtn) {
+      window.addEventListener('scroll', () => {
+        const firstSection = document.getElementById('Agrotech');
+        if (firstSection && window.scrollY > firstSection.offsetHeight / 2) {
+          scrollBtn.classList.add('show');
+        } else {
+          scrollBtn.classList.remove('show');
+        }
+      });
+    }
+
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('nav');
+    const body = document.querySelector('body');
+
+    if (menuToggle && nav && body) {
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            body.classList.toggle('nav-active');
+        });
     }
   });
 </script>
 
-
 </body>
-
 </html>

@@ -6,53 +6,61 @@
   <title>Privacy Policy | Compas Solutions</title>
   <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400&family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Exo', sans-serif;
-      background-color: #0E4D3C;
-      color: white;
+    /* Base Styles from index.html */
+    html, body {
       margin: 0;
       padding: 0;
+      scroll-behavior: smooth;
+      font-family: 'Exo', sans-serif;
+      color: white;
+      overflow-x: hidden;
+    }
+    html {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    html::-webkit-scrollbar {
+      display: none;
+    }
+    body {
+      background-color: #0E4D3C;
     }
     header {
       background-color: rgba(14, 77, 60,0.8);
       position: fixed;
-      width: 100%;
+      width: 95%;
+      left: 2.5%;
       height: 5%;
+      min-height: 60px;
       top: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 1rem 2rem;
       z-index: 1000;
+      box-sizing: border-box;
+      transition: height 0.3s ease, width 0.3s ease, left 0.3s ease;
+      border-radius: 0 0 10px 10px;
     }
-    header img {
+    .logo-link img {
       height: auto;
-      max-height: 80px;
+      max-height: 80%;
       width: auto;
       max-width: 180px;
       object-fit: contain;
-      margin-right: 64px;
+      vertical-align: middle;
     }
     nav {
       display: flex;
+      align-items: center;
       gap: 1rem;
     }
     nav a {
       font-family: 'Montserrat', sans-serif;
       text-decoration: none;
-      color: white;
+      color: rgb(255, 255, 255);
       padding: 0.5rem 1rem;
-    }
-    .logo-flags {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 1rem;
-    }
-    .logo-flags img:first-child {
-      height: auto;
-      max-height: 80px;
-      max-width: 180px;
+      white-space: nowrap;
     }
     .language-select {
       font-family: 'Exo', sans-serif;
@@ -62,13 +70,15 @@
       color: #0E4D3C;
       border: none;
       border-radius: 4px;
-      order: -1;
+      margin-left: 1rem;
     }
- /* Dropdown Styles */
+    h1, h2 {
+      font-family: 'Montserrat', sans-serif;
+    }
+    /* Dropdown Styles */
     .dropdown {
       position: relative;
     }
-
     .dropdown-content {
       display: none;
       position: absolute;
@@ -85,7 +95,6 @@
     .dropdown:hover .dropdown-content {
       display: block;
     }
-
     .dropdown-content a {
       display: block;
       padding: 0.5rem 1rem;
@@ -93,11 +102,9 @@
       text-decoration: none;
       transition: background 0.2s;
     }
-
     .dropdown-content a:hover {
       background-color: #159b77;
     }
-
     @keyframes slideDown {
       from {
         opacity: 0;
@@ -108,23 +115,8 @@
         transform: translateY(0);
       }
     }
-
-    main {
-      padding: 6rem 2rem 4rem;
-      max-width: 100%%;
-      margin: 0 auto;
-      line-height: 1.8;
-    }
-    h1, h2 {
-      font-family: 'Montserrat', sans-serif;
-    }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    h2 {
-      font-size: 1.5rem;
-      margin-top: 2rem;
+    .mobile-menu-toggle {
+      display: none;
     }
     .scroll-up {
       position: fixed;
@@ -138,7 +130,14 @@
       z-index: 1001;
       display: none;
     }
-    footer {
+    .scroll-up.show {
+      display: block;
+    }
+    .highlight {
+      color: rgb(90, 212, 166);
+      font-weight: bold;
+    }
+     footer {
       background-color: #000000;
       color: white;
       text-align: center;
@@ -149,79 +148,282 @@
       color: rgb(90, 212, 166);
       text-decoration: none;
     }
+    body.nav-active {
+      overflow: hidden;
+    }
+    
+    /* Privacy Policy Page Specific Styles */
+    main.privacy-content {
+      padding: 4rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    main.privacy-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid rgb(90, 212, 166);
+      padding-bottom: 0.5rem;
+    }
+    main.privacy-content h2 {
+      font-size: 1.75rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: rgb(90, 212, 166);
+    }
+    main.privacy-content p, main.privacy-content ul {
+        color: rgba(255, 255, 255, 0.9);
+    }
+    main.privacy-content a {
+        color: #63e6b4;
+        text-decoration: underline;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 767px) {
+      body {
+        padding-top: 60px;
+      }
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+        width: 100%;
+        left: 0;
+        padding: 0 1rem;
+        position: fixed;
+        top: 0;
+        border-radius: 0;
+      }
+      .logo-link img {
+        max-height: 40px;
+        max-width: 120px;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: #0E4D3C;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 6rem 2rem;
+        gap: 1.5rem;
+        z-index: 1001;
+        transition: right 0.3s ease-in-out;
+      }
+      nav.active {
+        right: 0;
+      }
+      nav a, nav .dropdown {
+        font-size: 1.2rem;
+        width: 100%;
+        padding: 0;
+      }
+      .dropdown-content {
+        position: static;
+        display: block;
+        background: none;
+        box-shadow: none;
+        animation: none;
+        min-width: unset;
+        padding-left: 1rem;
+        padding-top: 0.5rem;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      .dropdown-content a {
+        font-size: 1rem;
+        padding: 0.5rem 0;
+      }
+      .language-select {
+        margin: 2rem 0 0 0;
+        width: 100%;
+      }
+      .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 28px;
+        height: 24px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1002;
+      }
+      .mobile-menu-toggle span {
+        width: 100%;
+        height: 3px;
+        background-color: white;
+        border-radius: 3px;
+        transition: transform 0.3s, opacity 0.3s;
+        transform-origin: center;
+      }
+      body.nav-active .mobile-menu-toggle span:nth-child(1) {
+        transform: translateY(8.5px) rotate(45deg);
+      }
+      body.nav-active .mobile-menu-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+      body.nav-active .mobile-menu-toggle span:nth-child(3) {
+        transform: translateY(-8.5px) rotate(-45deg);
+      }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      body {
+        padding-top: 85px;
+      }
+      header {
+        height: 8%;
+        min-height: 65px;
+        width: 95%;
+        left: 2.5%;
+        padding: 1rem 1.5rem;
+      }
+      .logo-link img {
+        max-height: 70%;
+        max-width: 150px;
+      }
+      nav {
+        gap: 0.8rem;
+      }
+      nav a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.95rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      body {
+        padding-top: 80px;
+      }
+      header {
+        height: 5%;
+        min-height: 60px;
+        width: 95%;
+        left: 2.5%;
+        padding: 1rem 4rem;
+      }
+      nav a {
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
+
 <header>
+  <a href="index.html" class="logo-link">
+    <img src="images/CSBD-LOGO.png" alt="COMPAS Solutions Logo">
+  </a>
   <nav>
-    <a href="index.html" >Home</a>
+    <a href="index.html">Home</a>
     <a href="aboutus.html">About Us</a>
     <div class="dropdown">
-  <a href="Services.html" style="display: inline-block;">Services</a>
+      <a href="Services.html" style="display: inline-block;">Services</a>
       <div class="dropdown-content">
         <a href="industries.html">Industries</a>
-        <a href="use-cases.html" >Use Cases</a>
+        <a href="use-cases.html">Use Cases</a>
       </div>
     </div>
     <a href="Contact.html">Contact Us</a>
-    <a href="resources.html" >Resources</a>
-  </nav>
-  <div class="logo-flags">
+    <a href="resources.html">Resources</a>
     <select class="language-select" onchange="location = this.value;">
       <option value="tr-landing.html">Türkçe</option>
       <option value="de-landing.html">Deutsch</option>
       <option value="index.html" selected>English</option>
     </select>
-    <a href="index.html">
-      <img src="images/CSBD-LOGO.png" alt="COMPAS Solutions Logo">
-    </a>
-  </div>
+  </nav>
+  <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </header>
 
-  <main>
+<main class="privacy-content">
     <h1>Privacy Policy</h1>
-    <p>Your privacy is important to us. At Compas Solutions, we are committed to protecting the personal information you share with us through our website.</p>
+    <p><strong>Effective Date:</strong> October 7, 2025</p>
+    <p>Your privacy is important to us. This Privacy Policy explains how Compas Solutions ("we," "us," or "our") collects, uses, and discloses information about you when you access or use our website (the "Service").</p>
 
-    <h2 id="trigger-point">Information We Collect</h2>
-    <p>We may collect personal information such as your name, email address, and company details when you contact us through our forms. We also use cookies to improve user experience.</p>
+    <h2>Information We Collect</h2>
+    <p>We collect information you provide directly to us and information we collect automatically when you use our Service.</p>
+    <ul>
+        <li><strong>Personal Information:</strong> This includes information you voluntarily provide, such as your name, email address, phone number, and company details when you fill out our contact form or communicate with us.</li>
+        <li><strong>Usage Data:</strong> We may automatically collect information about your device and how you interact with our website. This can include your IP address, browser type, operating system, pages viewed, and the dates/times of your visits.</li>
+    </ul>
 
     <h2>How We Use Your Information</h2>
-    <p>The information we collect is used to respond to inquiries, provide our services, and enhance website performance. We do not sell or share your information with third parties unless legally required.</p>
+    <p>We use the information we collect for various purposes, including to:</p>
+    <ul>
+        <li>Provide, maintain, and improve our Service.</li>
+        <li>Respond to your comments, questions, and requests.</li>
+        <li>Communicate with you about services, offers, and events offered by Compas Solutions.</li>
+        <li>Monitor and analyze trends, usage, and activities in connection with our Service.</li>
+        <li>Detect and prevent fraudulent or illegal activities.</li>
+    </ul>
+
+    <h2>Cookies and Tracking Technologies</h2>
+    <p>We use cookies and similar tracking technologies to track activity on our Service and hold certain information. Cookies are files with a small amount of data which may include an anonymous unique identifier. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.</p>
 
     <h2>Data Security</h2>
-    <p>We implement standard security measures to protect your information. However, please be aware that no method of transmission over the Internet is 100% secure.</p>
+    <p>We implement reasonable security measures to help protect your information from loss, theft, misuse, and unauthorized access. However, please be aware that no method of transmission over the Internet or method of electronic storage is 100% secure.</p>
+    
+    <h2>Data Retention</h2>
+    <p>We will retain your personal information only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your information to the extent necessary to comply with our legal obligations, resolve disputes, and enforce our policies.</p>
 
     <h2>Your Rights</h2>
-    <p>You have the right to access, correct, or request the deletion of your personal information. To exercise these rights, please contact us via the details provided on the website.</p>
+    <p>Depending on your location, you may have certain rights regarding your personal information, such as the right to access, correct, or request the deletion of your data. To exercise these rights, please contact us using the details provided below.</p>
+
+    <h2>Links to Other Websites</h2>
+    <p>Our Service may contain links to other websites that are not operated by us. If you click on a third-party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.</p>
 
     <h2>Changes to This Policy</h2>
-    <p>We may update this privacy policy periodically. We encourage users to review this page regularly for any changes.</p>
+    <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes.</p>
 
-    <h2>Contact</h2>
-    <p>If you have any questions regarding this privacy policy, please contact us via our <a href="Contact.html">contact page</a>.</p>
-  </main>
+    <h2>Contact Us</h2>
+    <p>If you have any questions regarding this Privacy Policy, please contact us via our <a href="Contact.html">contact page</a>.</p>
+</main>
 
-  <div class="scroll-up" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"></div>
+<div class="scroll-up" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"></div>
 
-  <footer>
-    <p>&copy; 2025 Compas Solutions. All rights reserved. | <a href="#contact">Contact</a> | <a href="#">Privacy Policy</a></p>
-  </footer>
+<footer>
+  <p>&copy; 2025 Compas Solutions. All rights reserved. | <a href="Contact.html">Contact</a> | <a href="privacy_pol.html">Privacy Policy</a></p>
+</footer>
 
-  <script>
-    window.addEventListener('scroll', () => {
-      const scrollButton = document.querySelector('.scroll-up');
-      const heading = document.querySelector('main h1');
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Scroll-up button logic
+    const scrollBtn = document.querySelector('.scroll-up');
+    if (scrollBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 200) {
+          scrollBtn.classList.add('show');
+        } else {
+          scrollBtn.classList.remove('show');
+        }
+      });
+    }
 
-      if (!scrollButton || !heading) return;
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('nav');
+    const body = document.querySelector('body');
 
-      const headingOffset = heading.getBoundingClientRect().top;
+    if (menuToggle && nav && body) {
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            body.classList.toggle('nav-active');
+        });
+    }
+  });
+</script>
 
-      if (window.scrollY > 50 && headingOffset < 0) {
-        scrollButton.style.display = 'block';
-      } else {
-        scrollButton.style.display = 'none';
-      }
-    });
-  </script>
 </body>
 </html>
