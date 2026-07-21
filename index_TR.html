@@ -801,6 +801,7 @@
 }
 </script>
 <link rel="stylesheet" href="/index.css">
+  <script src="language.js"></script>
 </head>
 
 <body>
@@ -821,9 +822,9 @@
     </div>
     <a href="Contact_TR.html">İletişim</a>
     <a href="resources_TR.html" >Kaynaklar</a>
-    <select class="language-select" onchange="location = this.value;">
+    <select class="language-select" onchange="changeLanguage(this.value);">
       <option value="index_TR.html" selected>Türkçe</option>
-      <option value="de-landing.html">Deutsch</option>
+      <option value="index_DE.html">Deutsch</option>
       <option value="index.html">English</option>
     </select>
   </nav>
@@ -837,7 +838,7 @@
 <section class="hero" id="landing">
   <div class="video-container">
     <video autoplay muted loop playsinline class="hero-video">
-      <source src="vid/Aircraft/Video 3.mp4" type="video/mp4" />
+      <source src="vid/hero_vid_artefacts2systems.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
   </div>

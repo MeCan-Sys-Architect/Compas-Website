@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kaynaklar | Compas Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Über uns | Compas Solutions</title>
   <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     /* Base Styles from index.html */
     html, body {
@@ -151,41 +152,6 @@
     body.nav-active {
       overflow: hidden;
     }
-    /* Styles for the resources table */
-    main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: calc(100vh - 80px); /* Adjust for header/footer */
-        padding: 2rem;
-        box-sizing: border-box;
-    }
-    table {
-      width: 100%;
-      max-width: 800px; /* Set a max-width for larger screens */
-      border-collapse: collapse;
-      background-color: #0E4D3C;
-      margin-top: 2rem;
-    }
-    th, td {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 1.5rem;
-      vertical-align: middle;
-      text-align: left;
-    }
-    td:first-child {
-      width: 80px; /* Fixed width for the icon column */
-      text-align: center;
-    }
-    td .icon {
-        width: 48px;
-        height: 48px;
-    }
-    tr:hover {
-      background-color: rgba(255, 255, 255, 0.05);
-      transition: background-color 0.3s ease;
-    }
     /* Media Queries for Responsiveness */
     @media (max-width: 767px) {
       body {
@@ -324,28 +290,28 @@
   </style>
   <script src="language.js"></script>
 </head>
-<body>
+<body class="text-white">
 
 <header>
-  <a href="index_TR.html" class="logo-link">
+  <a href="index_DE.html" class="logo-link">
     <img src="images/CSBD-LOGO.png" alt="COMPAS Solutions Logo">
   </a>
   <nav>
-    <a href="index_TR.html">Ana Sayfa</a>
-    <a href="aboutus_TR.html">Hakkımızda</a>
+    <a href="index_DE.html">Startseite</a>
+    <a href="aboutus_DE.html" class="highlight">Über uns</a>
     <div class="dropdown">
-      <a href="Services_TR.html" style="display: inline-block;">Hizmetler</a>
+      <a href="Services_DE.html" style="display: inline-block;">Dienstleistungen</a>
       <div class="dropdown-content">
-        <a href="industries_TR.html">Sektörler</a>
-        <a href="use-cases_TR.html">Örnek Çalışmalar</a>
+        <a href="industries_DE.html">Branchen</a>
+        <a href="use-cases_DE.html">Fallstudien</a>
       </div>
     </div>
-    <a href="Contact_TR.html">İletişim</a>
-    <a href="resources_TR.html" class="highlight">Kaynaklar</a>
+    <a href="Contact_DE.html">Kontakt</a>
+    <a href="resources_DE.html">Ressourcen</a>
     <select class="language-select" onchange="changeLanguage(this.value);">
-      <option value="resources_TR.html" selected>Türkçe</option>
-      <option value="resources_DE.html">Deutsch</option>
-      <option value="resources.html">English</option>
+      <option value="aboutus_TR.html">Türkçe</option>
+      <option value="aboutus_DE.html" selected>Deutsch</option>
+      <option value="aboutus.html">English</option>
     </select>
   </nav>
   <button class="mobile-menu-toggle" aria-label="Toggle navigation">
@@ -355,28 +321,65 @@
   </button>
 </header>
 
-<main>
-    <h1 class="highlight" style="font-size: 2.5rem; text-align: center;">İndirilebilir Kaynaklar</h1>
-    <p style="text-align: center; max-width: 600px;">Aşağıda indirmeye hazır önemli belgeleri ve dokümanları bulabilirsiniz:</p>
-
-    <table>
-      <tbody>
-        <tr>
-          <td>
-            <a href="downloads/CSBD-PP-0001-02 SFF Final Pitch Deck.pdf" download>
-              <img src="icons/icons8-document-48.png" alt="DOC Icon" class="icon">
-            </a>
-          </td>
-          <td>Şirket Tanıtım Sunumu (PDF, 2025) – Hizmet ve sektör genel bakışımız.</td>
-        </tr>
-        </tbody>
-    </table>
-</main>
-
 <div class="scroll-up" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"></div>
 
+<main class="pt-16 md:pt-24">
+
+    <section class="bg-[#0E4D3C] text-white py-0 px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-24">
+      <div>
+        <h2 class="text-3xl font-semibold">
+        <span class="highlight"> Ansässig in Mittel- und Südosteuropa</span> – Ein nahtloses Systems Engineering Netzwerk
+        </h2>
+        <p class="text-lg mt-4">
+          Unterstützung von Industrien mit gebündelter Expertise, fortschrittlichen Methoden und überregionaler Zusammenarbeit.
+        </p>
+      </div>
+      <div class="flex justify-center">
+        <img src="images/europmapeEUTR.png" alt="Map of Europe with Germany-Istanbul trajectory" class="w-full max-w-md rounded-lg shadow-lg" />
+      </div>
+    </section>
+
+    <section class="bg-white text-black py-20 px-8 text-center mt-24">
+      <h2 class="text-3xl font-semibold mb-6">Agil. Ehrgeizig. Technikgetrieben.</h2>
+      <p class="text-lg max-w-3xl mx-auto mb-10">
+        Unser Team verbindet akademische Exzellenz mit praktischer Erfahrung in diversen Unternehmensumgebungen und liefert frische Lösungen mit Geschwindigkeit und Präzision.      
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+        <div class="flex flex-col items-center">
+          <img src="images/team/mehmet_img.jpg" alt="Team Member 1" class="w-48 h-48 object-cover object-center rounded-full shadow-md mb-4" />
+          <p class="text-base font-medium">Mehmet Can Ünal</p>
+          <p class="text-sm text-gray-600">Systemarchitekt / <br>Systemmodellierung und Simulation</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="images/team/firat_img.png" alt="Team Member 2" class="w-48 h-48 object-cover object-top rounded-full shadow-md mb-4" />
+          <p class="text-base font-medium">Firat Kök</p>
+          <p class="text-sm text-gray-600 text-center">Systems Engineering / <br> Requirements Engineering | Qualitätsmanagement</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="images/team/mustafa_img.png" alt="Team Member 3" class="w-48 h-48 object-cover object-top rounded-full shadow-md mb-4" />
+          <p class="text-base font-medium">Mustafa Akgün</p>
+          <p class="text-sm text-gray-600 text-center">Konstruktionsingenieur / <br> CAD | FEM-Simulationen</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-[rgb(90,212,166)] text-white py-20 px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-24 mb-24">
+      <div class="flex justify-center">
+        <img src="images/businessshake.png" alt="Professional handshake" class="w-full max-w-md rounded-lg shadow-lg" />
+      </div>
+      <div>
+        <h2 class="text-3xl font-semibold">Wir übernehmen die Komplexität und stärken Ihren Fokus</h2>
+        <p class="text-lg mt-4">
+          Validierung, Verifizierung und Anforderungsmanagement sind mehr als nur Prozesse – sie sind unsere Expertise.
+          Wir sind hier, um Sie zu entlasten und sicherzustellen, dass Ihre Systeme robust, konform und bereit für die reale Welt sind.    
+        </p>
+      </div>
+    </section>
+
+</main>
+
 <footer>
-  <p>&copy; 2025 Compas Solutions. Tüm hakları saklıdır. | <a href="Contact_TR.html">İletişim</a> | <a href="privacy_pol_TR.html">Gizlilik Politikası</a></p>
+  <p>&copy; 2025 Compas Solutions. Alle Rechte vorbehalten. | <a href="Contact_DE.html">Kontakt</a> | <a href="privacy_pol_DE.html">Datenschutzrichtlinie</a></p>
 </footer>
 
 <script>

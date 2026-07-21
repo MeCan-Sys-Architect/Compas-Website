@@ -657,6 +657,7 @@ section {
       }
     }
   </style>
+  <script src="language.js"></script>
 </head>
 
 <body>
@@ -676,10 +677,10 @@ section {
     </div>
     <a href="Contact.html">Contact Us</a>
     <a href="resources.html">Resources</a>
-    <select class="language-select" onchange="location = this.value;">
+    <select class="language-select" onchange="changeLanguage(this.value);">
       <option value="use-cases_TR.html">Türkçe</option>
-      <option value="de-landing.html">Deutsch</option>
-      <option value="index.html" selected>English</option>
+      <option value="use-cases_DE.html">Deutsch</option>
+      <option value="use-cases.html" selected>English</option>
     </select>
   </nav>
   <button class="mobile-menu-toggle" aria-label="Toggle navigation">

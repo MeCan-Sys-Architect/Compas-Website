@@ -320,6 +320,7 @@
       }
     }
   </style>
+  <script src="language.js"></script>
 </head>
 
 <body class="contact-page">
@@ -340,10 +341,10 @@
     </div>
     <a href="Contact.html" class="highlight">Contact Us</a>
     <a href="resources.html">Resources</a>
-    <select class="language-select" onchange="location = this.value;">
-      <option value="tr-landing.html">Türkçe</option>
-      <option value="de-landing.html">Deutsch</option>
-      <option value="index.html" selected>English</option>
+    <select class="language-select" onchange="changeLanguage(this.value);">
+      <option value="Contact_TR.html">Türkçe</option>
+      <option value="Contact_DE.html">Deutsch</option>
+      <option value="Contact.html" selected>English</option>
     </select>
   </nav>
   <button class="mobile-menu-toggle" aria-label="Toggle navigation">

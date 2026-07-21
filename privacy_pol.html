@@ -315,6 +315,7 @@
       }
     }
   </style>
+  <script src="language.js"></script>
 </head>
 <body>
 
@@ -334,10 +335,10 @@
     </div>
     <a href="Contact.html">Contact Us</a>
     <a href="resources.html">Resources</a>
-    <select class="language-select" onchange="location = this.value;">
-      <option value="tr-landing.html">Türkçe</option>
-      <option value="de-landing.html">Deutsch</option>
-      <option value="index.html" selected>English</option>
+    <select class="language-select" onchange="changeLanguage(this.value);">
+      <option value="privacy_pol_TR.html">Türkçe</option>
+      <option value="privacy_pol_DE.html">Deutsch</option>
+      <option value="privacy_pol.html" selected>English</option>
     </select>
   </nav>
   <button class="mobile-menu-toggle" aria-label="Toggle navigation">
