@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hakkımızda | Compas Solutions</title>
-  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <style>
     /* Base Styles from index.html */
     html, body {
@@ -13,7 +12,6 @@
       padding: 0;
       scroll-behavior: smooth;
       font-family: 'Exo', sans-serif;
-      color: white;
       overflow-x: hidden;
     }
     html {
@@ -25,7 +23,13 @@
     }
     body {
       background-color: #0E4D3C;
+      color: white;
     }
+    h1, h2, h3 {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Header Styles from index.html */
     header {
       background-color: rgba(14, 77, 60,0.8);
       position: fixed;
@@ -73,9 +77,7 @@
       border-radius: 4px;
       margin-left: 1rem;
     }
-    h1, h2 {
-      font-family: 'Montserrat', sans-serif;
-    }
+
     /* Dropdown Styles */
     .dropdown {
       position: relative;
@@ -107,17 +109,15 @@
       background-color: #159b77;
     }
     @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .mobile-menu-toggle {
       display: none;
+    }
+    .highlight {
+      color: rgb(90, 212, 166);
+      font-weight: bold;
     }
     .scroll-up {
       position: fixed;
@@ -134,11 +134,7 @@
     .scroll-up.show {
       display: block;
     }
-    .highlight {
-      color: rgb(90, 212, 166);
-      font-weight: bold;
-    }
-     footer {
+    footer {
       background-color: #000000;
       color: white;
       text-align: center;
@@ -152,6 +148,152 @@
     body.nav-active {
       overflow: hidden;
     }
+
+    /* ============================
+       ABOUT US PAGE — REDESIGN
+       ============================ */
+
+    /* --- Hero Banner --- */
+    .about-hero {
+      padding: 10rem 2rem 4rem;
+      text-align: center;
+      background-color: #0E4D3C;
+      color: white;
+    }
+    .about-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      margin: 0 0 1rem;
+      line-height: 1.2;
+    }
+    .about-hero .hero-sub {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.85);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* --- Content Sections --- */
+    .content-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 5rem 4rem;
+      max-width: 100%;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    .content-section.dark-bg {
+      background-color: #0E4D3C;
+      color: white;
+    }
+    .content-section.deep-bg {
+      background-color: #0b3d30;
+      color: white;
+    }
+    .content-section.light-bg {
+      background-color: #f4f6f5;
+      color: #0E4D3C;
+    }
+    .content-section.teal-accent {
+      background-color: #5AD4A6;
+      color: #0E4D3C;
+    }
+    .content-section.reverse {
+      flex-direction: row-reverse;
+    }
+    
+    .section-text, .section-visual {
+      flex: 1 1 480px;
+      padding: 1.5rem;
+    }
+    
+    .section-text h2 {
+      font-size: 2rem;
+      margin: 0 0 1rem;
+      line-height: 1.3;
+    }
+    .dark-bg .section-text h2, .deep-bg .section-text h2 { color: #5AD4A6; }
+    .light-bg .section-text h2, .teal-accent .section-text h2 { color: #0E4D3C; }
+
+    .section-text p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .dark-bg .section-text p, .deep-bg .section-text p { color: rgba(255,255,255,0.9); }
+    .light-bg .section-text p, .teal-accent .section-text p { color: #444; }
+
+    .section-visual img {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* --- Team Section --- */
+    .team-section {
+      background-color: #f4f6f5;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    .team-section h2 {
+      font-size: 2.2rem;
+      color: #0E4D3C;
+      margin: 0 0 1rem;
+    }
+    .team-section .team-sub {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      line-height: 1.6;
+    }
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .team-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem 1.5rem;
+      flex: 1 1 280px;
+      max-width: 320px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+    .team-card img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      border: 4px solid #5AD4A6;
+      display: block;
+    }
+    .team-card h3 {
+      font-size: 1.3rem;
+      color: #0E4D3C;
+      margin: 0 0 0.5rem;
+    }
+    .team-card p {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.5;
+      margin: 0;
+    }
+
     /* Media Queries for Responsiveness */
     @media (max-width: 767px) {
       body {
@@ -248,6 +390,22 @@
       body.nav-active .mobile-menu-toggle span:nth-child(3) {
         transform: translateY(-8.5px) rotate(-45deg);
       }
+
+      /* Mobile: Layout Adjustments */
+      .about-hero {
+        padding: 6rem 1.5rem 3rem;
+      }
+      .content-section {
+        flex-direction: column !important;
+        padding: 3rem 1.5rem;
+      }
+      .section-text, .section-visual {
+        flex: 1 1 auto;
+        padding: 1rem 0;
+      }
+      .team-section {
+        padding: 4rem 1.5rem;
+      }
     }
     @media (min-width: 768px) and (max-width: 1023px) {
       body {
@@ -271,6 +429,9 @@
         padding: 0.4rem 0.8rem;
         font-size: 0.95rem;
       }
+      .content-section {
+        padding: 4rem 2rem;
+      }
     }
     @media (min-width: 1024px) {
       body {
@@ -290,7 +451,8 @@
   </style>
   <script src="language.js"></script>
 </head>
-<body class="text-white">
+
+<body>
 
 <header>
   <a href="index_TR.html" class="logo-link">
@@ -321,63 +483,68 @@
   </button>
 </header>
 
-<div class="scroll-up" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"></div>
+<main>
 
-<main class="pt-16 md:pt-24">
+  <!-- ========== HERO ========== -->
+  <section class="about-hero">
+    <h1><span class="highlight">Compas Solutions</span> Hakkında</h1>
+    <p class="hero-sub">Çevik. Hırslı. Mühendislik Odaklı. Sağlam sistem mühendisliği çözümleri sunmak için derin akademik mükemmelliği uygulamalı deneyimle birleştiriyoruz.</p>
+  </section>
 
-    <section class="bg-[#0E4D3C] text-white py-0 px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-24">
-      <div>
-        <h2 class="text-3xl font-semibold">
-        <span class="highlight">Orta ve Güneydoğu Avrupa'ya yayılan</span> – Kesintisiz Tek Bir Sistem Mühendisliği Ağı
-        </h2>
-        <p class="text-lg mt-4">
-          Birleşik uzmanlık, ileri metodolojiler ve bölgeler arası iş birliğiyle sektörleri güçlendiriyoruz.
-        </p>
-      </div>
-      <div class="flex justify-center">
-        <img src="images/europmapeEUTR.png" alt="Map of Europe with Germany-Istanbul trajectory" class="w-full max-w-md rounded-lg shadow-lg" />
-      </div>
-    </section>
+  <!-- ========== GLOBAL PRESENCE ========== -->
+  <section class="content-section deep-bg">
+    <div class="section-text">
+      <h2>Avrupa Genelinde Kesintisiz Tek Bir Ağ</h2>
+      <p>Orta ve Güneydoğu Avrupa genelinde konumlanmış olarak, birleşik bir sistem mühendisliği ağı olarak faaliyet gösteriyoruz. Bu stratejik konumlandırma, sektörleri gelişmiş metodolojiler, verimli iş akışları ve güçlü bölgeler arası iş birliğiyle güçlendiriyor.</p>
+    </div>
+    <div class="section-visual">
+      <img src="images/europmapeEUTR.png" alt="Operasyonel varlığımızı gösteren Avrupa haritası" />
+    </div>
+  </section>
 
-    <section class="bg-white text-black py-20 px-8 text-center mt-24">
-      <h2 class="text-3xl font-semibold mb-6">Çevik. Hırslı. Mühendislik Odaklı.</h2>
-      <p class="text-lg max-w-3xl mx-auto mb-10">
-        Ekibimiz, akademik mükemmelliği çeşitli şirket ortamlarındaki uygulamalı deneyimle birleştirerek
-        hız ve hassasiyetle yenilikçi çözümler sunar.      
-      </p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
-        <div class="flex flex-col items-center">
-          <img src="images/team/mehmet_img.jpg" alt="Team Member 1" class="w-48 h-48 object-cover object-center rounded-full shadow-md mb-4" />
-          <p class="text-base font-medium">Mehmet Can Ünal</p>
-          <p class="text-sm text-gray-600">Sistem Mimarı / <br>Sistem Modelleme ve Simülasyon</p>
-        </div>
-        <div class="flex flex-col items-center">
-          <img src="images/team/firat_img.png" alt="Team Member 2" class="w-48 h-48 object-cover object-top rounded-full shadow-md mb-4" />
-          <p class="text-base font-medium">Fırat Kök</p>
-          <p class="text-sm text-gray-600 text-center">Sistem Mühendisliği / <br> Gereksinim Mühendisliği | Kalite Yönetimi</p>
-        </div>
-        <div class="flex flex-col items-center">
-          <img src="images/team/mustafa_img.png" alt="Team Member 3" class="w-48 h-48 object-cover object-top rounded-full shadow-md mb-4" />
-          <p class="text-base font-medium">Mustafa Akgün</p>
-          <p class="text-sm text-gray-600 text-center">Makine Tasarım Mühendisi / <br> CAD | FEM Simülasyonları</p>
-        </div>
+  <!-- ========== TEAM SECTION ========== -->
+  <section class="team-section">
+    <h2>Çekirdek Ekiple Tanışın</h2>
+    <p class="team-sub">Karmaşık zorluklarınızı üstlenmek için sistem mimarisi, gereksinim mühendisliği ve mekanik tasarım alanlarındaki uzmanlığı bir araya getiriyoruz.</p>
+    
+    <div class="team-grid">
+      <!-- Team Member 1 -->
+      <div class="team-card">
+        <img src="images/team/mehmet_img.jpg" alt="Mehmet Can Ünal" />
+        <h3>Mehmet Can Ünal</h3>
+        <p>Sistem Mimarı<br>Sistem Modelleme ve Simülasyon</p>
       </div>
-    </section>
 
-    <section class="bg-[rgb(90,212,166)] text-white py-20 px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-24 mb-24">
-      <div class="flex justify-center">
-        <img src="images/businessshake.png" alt="Professional handshake" class="w-full max-w-md rounded-lg shadow-lg" />
+      <!-- Team Member 2 -->
+      <div class="team-card">
+        <img src="images/team/firat_img.png" alt="Firat Kök" />
+        <h3>Firat Kök</h3>
+        <p>Sistem Mühendisliği<br>Gereksinim Mühendisliği<br>Kalite Yönetimi</p>
       </div>
-      <div>
-        <h2 class="text-3xl font-semibold">Karmaşıklığı Biz Üstleniyoruz, Odağınızı Siz Artırıyorsunuz</h2>
-        <p class="text-lg mt-4">
-          Doğrulama, geçerli kılma ve gereksinim yönetimi birer süreçten fazlasıdır — bizim uzmanlığımızdır.
-          Yükünüzü hafifletmek ve sistemlerinizin sağlam, mevzuata uygun ve gerçek dünyaya hazır olmasını sağlamak için buradayız.    
-        </p>
+
+      <!-- Team Member 3 -->
+      <div class="team-card">
+        <img src="images/team/mustafa_img.png" alt="Mustafa Akgün" />
+        <h3>Mustafa Akgün</h3>
+        <p>Makine Tasarım Mühendisi<br>CAD ve FEM Simülasyonları</p>
       </div>
-    </section>
+    </div>
+  </section>
+
+  <!-- ========== VALUE PROP / FOOTER ACCENT ========== -->
+  <section class="content-section reverse light-bg border-top">
+    <div class="section-text">
+      <h2>Karmaşıklığı Biz Üstleniyoruz, Odağınızı Siz Artırıyorsunuz</h2>
+      <p>Doğrulama, geçerli kılma ve gereksinim yönetimi birer süreçten fazlasıdır — bizim uzmanlığımızdır. Yükünüzü hafifletiyor ve sistemlerinizin sağlam, mevzuata uygun ve gerçek dünyaya hazır olmasını sağlıyoruz.</p>
+    </div>
+    <div class="section-visual">
+      <img src="images/businessshake.png" alt="Profesyonel iş birliği" />
+    </div>
+  </section>
 
 </main>
+
+<div class="scroll-up" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"></div>
 
 <footer>
   <p>&copy; 2025 Compas Solutions. Tüm hakları saklıdır. | <a href="Contact_TR.html">İletişim</a> | <a href="privacy_pol_TR.html">Gizlilik Politikası</a></p>
@@ -389,7 +556,7 @@
     const scrollBtn = document.querySelector('.scroll-up');
     if (scrollBtn) {
       window.addEventListener('scroll', () => {
-        if (window.scrollY > 200) { // Show after scrolling 200px
+        if (window.scrollY > 200) {
           scrollBtn.classList.add('show');
         } else {
           scrollBtn.classList.remove('show');
