@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Us | Compas Solutions</title>
-  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <title>Kontakt | Compas Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <style>
     /* Base Styles from index.html */
     html, body {
@@ -25,11 +25,11 @@
       background-color: #0E4D3C;
       color: white;
     }
-    /* Specific styles for the contact page body */
-    body.contact-page {
-        background-color: #FFFFFF;
-        color: #333;
+    h1, h2, h3 {
+      font-family: 'Montserrat', sans-serif;
     }
+
+    /* Header Styles from index.html */
     header {
       background-color: rgba(14, 77, 60,0.8);
       position: fixed;
@@ -77,9 +77,7 @@
       border-radius: 4px;
       margin-left: 1rem;
     }
-    h1, h2 {
-      font-family: 'Montserrat', sans-serif;
-    }
+
     /* Dropdown Styles */
     .dropdown {
       position: relative;
@@ -111,17 +109,15 @@
       background-color: #159b77;
     }
     @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .mobile-menu-toggle {
       display: none;
+    }
+    .highlight {
+      color: rgb(90, 212, 166);
+      font-weight: bold;
     }
     .scroll-up {
       position: fixed;
@@ -138,11 +134,7 @@
     .scroll-up.show {
       display: block;
     }
-    .highlight {
-      color: rgb(90, 212, 166);
-      font-weight: bold;
-    }
-     footer {
+    footer {
       background-color: #000000;
       color: white;
       text-align: center;
@@ -156,26 +148,223 @@
     body.nav-active {
       overflow: hidden;
     }
-    /* Contact Page Specific Styles */
-    .contact-section {
-        padding: 4rem 2rem 2rem;
-        max-width: 800px;
-        margin: 0 auto;
-        text-align: center;
+
+    /* ============================
+       CONTACT PAGE — REDESIGN
+       ============================ */
+
+    /* --- Hero Banner --- */
+    .contact-hero {
+      padding: 10rem 2rem 3.5rem;
+      text-align: center;
+      background-color: #0E4D3C;
     }
-    .contact-section h2 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        color: #0E4D3C;
+    .contact-hero h1 {
+      font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+      margin: 0 0 0.8rem;
+      line-height: 1.2;
     }
-    .contact-section p {
-        margin-bottom: 2rem;
-        color: #555;
+    .contact-hero .hero-sub {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.82);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* --- Pillar Quick-Links (if arriving from Services CTA) --- */
+    .pillar-quicklinks {
+      background-color: #0b3d30;
+      border-top: 3px solid #5AD4A6;
+      padding: 2rem 2rem;
+      display: none; /* shown by JS when ?pillar= param exists */
+    }
+    .pillar-quicklinks.visible {
+      display: block;
+    }
+    .pillar-quicklinks .ql-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .pillar-quicklinks .ql-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #5AD4A6;
+      margin-bottom: 0.4rem;
+    }
+    .pillar-quicklinks .ql-text {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* --- Main Content Grid --- */
+    .contact-content {
+      background-color: #f4f6f5;
+      padding: 4rem 2rem;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    /* --- Sidebar Info --- */
+    .contact-sidebar {
+      color: #0E4D3C;
+      position: sticky;
+      top: 120px; /* Accounts for header height + padding */
+      align-self: start;
+    }
+    .contact-sidebar h2 {
+      font-size: 1.5rem;
+      margin: 0 0 1.5rem;
+      color: #0E4D3C;
+    }
+    .info-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .info-card .info-icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+    .info-card .info-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #0E4D3C;
+      margin-bottom: 0.3rem;
+    }
+    .info-card .info-value {
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.6;
+    }
+    .info-card .info-value a {
+      color: #0E4D3C;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .info-card .info-value a:hover {
+      color: #5AD4A6;
+    }
+
+    /* Trust Badges */
+    .trust-badges {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: #0E4D3C;
+      font-weight: 600;
+    }
+    .trust-badge .tb-check {
+      color: #5AD4A6;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* --- Form Container --- */
+    .contact-form-wrapper {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      min-height: 500px;
+    }
+    .contact-form-wrapper h2 {
+      font-size: 1.4rem;
+      color: #0E4D3C;
+      margin: 0 0 0.4rem;
+    }
+    .contact-form-wrapper .form-subtitle {
+      font-size: 0.92rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
     }
     .form-container iframe {
-        width: 100%;
-        height: 1225px;
-        border: none;
+      width: 100%;
+      height: 1550px; /* Increased to avoid internal iframe scrolling */
+      border: none;
+      border-radius: 8px;
+    }
+
+    /* --- Entry Points Section --- */
+    .entry-points {
+      background-color: #0E4D3C;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .entry-points h2 {
+      font-size: 1.6rem;
+      color: #5AD4A6;
+      margin: 0 0 0.5rem;
+    }
+    .entry-points .ep-subtitle {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 2.5rem;
+    }
+    .ep-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 950px;
+      margin: 0 auto;
+    }
+    .ep-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(90,212,166,0.2);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .ep-card:hover {
+      border-color: #5AD4A6;
+      transform: translateY(-3px);
+    }
+    .ep-card .ep-icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+    .ep-card .ep-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .ep-card .ep-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+    .ep-card .ep-meta {
+      font-size: 0.72rem;
+      color: #5AD4A6;
+      font-weight: 600;
     }
 
     /* Media Queries for Responsiveness */
@@ -274,11 +463,30 @@
       body.nav-active .mobile-menu-toggle span:nth-child(3) {
         transform: translateY(-8.5px) rotate(-45deg);
       }
-      .contact-section {
-          padding: 2rem 1rem;
+
+      /* Mobile: stack grid */
+      .contact-hero {
+        padding: 5rem 1.2rem 2.5rem;
+      }
+      .contact-content {
+        padding: 2.5rem 1rem;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .contact-form-wrapper {
+        padding: 1.2rem;
       }
       .form-container iframe {
-          height: 1300px; /* Adjust height for smaller screens if needed */
+        height: 1800px;
+      }
+      .ep-cards {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .entry-points {
+        padding: 3rem 1.2rem;
       }
     }
     @media (min-width: 768px) and (max-width: 1023px) {
@@ -303,6 +511,14 @@
         padding: 0.4rem 0.8rem;
         font-size: 0.95rem;
       }
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .ep-cards {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
     }
     @media (min-width: 1024px) {
       body {
@@ -323,7 +539,7 @@
   <script src="language.js"></script>
 </head>
 
-<body class="contact-page">
+<body>
 
 <header>
   <a href="index_DE.html" class="logo-link">
@@ -355,13 +571,101 @@
 </header>
 
 <main>
-  <section class="contact-section">
-    <h2>Kontaktieren Sie uns</h2>
-    <p>Wir freuen uns, von Ihnen zu hören. Bitte füllen Sie das untenstehende Formular aus, und wir werden uns in Kürze bei Ihnen melden.</p>
-    <div class="form-container">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSewLUd_x6vrAePg1Bl14rK5P9U1lSxA8LQpSH5sOULopD-hfg/viewform?embedded=true">Wird geladen…</iframe>
+
+<!-- ========== HERO ========== -->
+<section class="contact-hero">
+  <h1>Schließen Sie Ihre <span style="color: #5AD4A6;">Compliance-Lücke</span></h1>
+  <p class="hero-sub">Ob Zertifizierungsaudit, Toolchain-Demo oder KI-Agenten-Pilotprojekt – wir sind für Sie da. Erzählen Sie uns von Ihrer Herausforderung.</p>
+</section>
+
+<!-- ========== PILLAR QUICKLINK (shown when ?pillar= param exists) ========== -->
+<section class="pillar-quicklinks" id="pillarQuicklink">
+  <div class="ql-inner">
+    <div class="ql-label">Sie erkundigen sich nach</div>
+    <div class="ql-text" id="pillarText"></div>
+  </div>
+</section>
+
+<!-- ========== MAIN CONTENT: SIDEBAR + FORM ========== -->
+<section class="contact-content">
+  <div class="contact-grid">
+
+    <!-- Sidebar -->
+    <aside class="contact-sidebar">
+      <h2>Kontaktieren Sie uns</h2>
+
+      <div class="info-card">
+        <span class="info-icon">📧</span>
+        <div class="info-label">E-Mail</div>
+        <div class="info-value"><a href="mailto:compassolutions.info@gmail.com">compassolutions.info@gmail.com</a></div>
+      </div>
+
+      <div class="info-card">
+        <span class="info-icon">📍</span>
+        <div class="info-label">Standort</div>
+        <div class="info-value">Nürnberg, Deutschland <br> Bursa, Türkei</div>
+      </div>
+
+      <div class="info-card">
+        <span class="info-icon">⏱️</span>
+        <div class="info-label">Antwortzeit</div>
+        <div class="info-value">Wir antworten in der Regel innerhalb von <strong>1 Werktag</strong></div>
+      </div>
+
+      <div class="trust-badges">
+        <div class="trust-badge">
+          <span class="tb-check">✓</span> Kostenlose 30-minütige Compliance-Audit-Überprüfung
+        </div>
+        <div class="trust-badge">
+          <span class="tb-check">✓</span> Unverbindlich — nur umsetzbare Erkenntnisse
+        </div>
+        <div class="trust-badge">
+          <span class="tb-check">✓</span> DO-178C / DO-254 / ARP4754A Expertise
+        </div>
+        <div class="trust-badge">
+          <span class="tb-check">✓</span> Unterstützung für Capella-, DOORS-, Jira-Integration
+        </div>
+      </div>
+    </aside>
+
+    <!-- Form -->
+    <div class="contact-form-wrapper">
+      <h2>Senden Sie uns eine Nachricht</h2>
+      <p class="form-subtitle">Füllen Sie das untenstehende Formular aus, und wir melden uns innerhalb eines Werktages bei Ihnen.</p>
+      <div class="form-container">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSewLUd_x6vrAePg1Bl14rK5P9U1lSxA8LQpSH5sOULopD-hfg/viewform?embedded=true">Wird geladen…</iframe>
+      </div>
     </div>
-  </section>
+
+  </div>
+</section>
+
+<!-- ========== ENTRY POINTS ========== -->
+<section class="entry-points">
+  <h2>Nicht sicher, wo Sie anfangen sollen?</h2>
+  <p class="ep-subtitle">Wählen Sie das Angebot, das zu Ihren Bedürfnissen passt.</p>
+  <div class="ep-cards">
+    <div class="ep-card">
+      <span class="ep-icon">🔍</span>
+      <div class="ep-title">Compliance-Audit-Überprüfung</div>
+      <div class="ep-desc">Wir identifizieren Rückverfolgbarkeitslücken, Abdeckungslücken und Zertifizierungsrisiken in Ihrem aktuellen Prozess.</div>
+      <div class="ep-meta">30 Minuten · Kostenlos</div>
+    </div>
+    <div class="ep-card">
+      <span class="ep-icon">🏗️</span>
+      <div class="ep-title">Toolchain-Integrations-Demo</div>
+      <div class="ep-desc">Erleben Sie live, wie DOORS, Capella, Jira und Git zu einem einheitlichen digitalen Thread verbunden werden.</div>
+      <div class="ep-meta">Individuelle Demo · Unverbindlich</div>
+    </div>
+    <div class="ep-card">
+      <span class="ep-icon">🤖</span>
+      <div class="ep-title">KI-Agenten-Pilotprojekt</div>
+      <div class="ep-desc">Setzen Sie in nur einer Woche einen Proof-of-Concept-KI-Agenten in Ihrem Engineering-Workflow ein.</div>
+      <div class="ep-meta">1 Woche · Kostenloser Pilot</div>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <div class="scroll-up" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"></div>
@@ -394,6 +698,23 @@
             nav.classList.toggle('active');
             body.classList.toggle('nav-active');
         });
+    }
+
+    // Pillar quicklink: detect ?pillar= param and show contextual banner
+    const params = new URLSearchParams(window.location.search);
+    const pillar = params.get('pillar');
+    if (pillar) {
+      const quicklink = document.getElementById('pillarQuicklink');
+      const pillarText = document.getElementById('pillarText');
+      const pillarMap = {
+        'certification': '🔍 Sicherheitskritische Systeme & Zertifizierungsbeschleunigung — Compliance-Audit-Überprüfung',
+        'mbse': '🏗️ Digitale Engineering-Infrastruktur & MBSE-Architektur — Toolchain-Integrations-Demo',
+        'ai-agents': '🤖 KI-Agenten & autonome Engineering-Workflows — 1-wöchiger Agenten-Pilot'
+      };
+      if (pillarMap[pillar]) {
+        pillarText.textContent = pillarMap[pillar];
+        quicklink.classList.add('visible');
+      }
     }
   });
 </script>
