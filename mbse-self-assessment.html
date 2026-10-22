@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MBSE Maturity &amp; Readiness Self-Assessment | Compas Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================
+       BASE (shared with site)
+       ============================ */
+    html, body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      font-family: 'Exo', sans-serif;
+      overflow-x: hidden;
+    }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+    body { background-color: #0E4D3C; color: white; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+
+    header {
+      background-color: rgba(14, 77, 60, 0.9);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      position: fixed;
+      width: 95%; left: 2.5%; height: 5%; min-height: 60px; top: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem; z-index: 1000; box-sizing: border-box;
+      transition: height 0.3s ease, width 0.3s ease, left 0.3s ease;
+      border-radius: 0 0 10px 10px;
+      border-bottom: 1px solid rgba(90, 212, 166, 0.1);
+    }
+    .logo-link img { height: auto; max-height: 80%; width: auto; max-width: 180px; object-fit: contain; vertical-align: middle; }
+    nav { display: flex; align-items: center; gap: 1rem; }
+    nav a { font-family: 'Montserrat', sans-serif; text-decoration: none; color: #fff; padding: 0.5rem 1rem; white-space: nowrap; transition: color 0.2s; }
+    nav a:hover { color: #5AD4A6; }
+    .language-select { font-family: 'Exo', sans-serif; font-size: 0.7rem; padding: 0.3rem; background-color: white; color: #0E4D3C; border: none; border-radius: 4px; margin-left: 1rem; }
+    .dropdown { position: relative; }
+    .dropdown-content { display: none; position: absolute; top: 100%; left: 0; min-width: 180px; background-color: #126d56; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.2); animation: slideDown 0.3s ease forwards; z-index: 999; }
+    .dropdown:hover .dropdown-content { display: block; }
+    .dropdown-content a { display: block; padding: 0.5rem 1rem; color: white; text-decoration: none; transition: background 0.2s; }
+    .dropdown-content a:hover { background-color: #159b77; }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    .mobile-menu-toggle { display: none; }
+    .highlight, nav a.highlight { color: rgb(90, 212, 166) !important; font-weight: bold; }
+    .scroll-up { position: fixed; bottom: 20px; right: 20px; width: 40px; height: 40px; background: url('cs_triangle.png') no-repeat center center; background-size: contain; cursor: pointer; z-index: 1001; display: none; transition: opacity 0.3s; }
+    .scroll-up.show { display: block; }
+    body.nav-active { overflow: hidden; }
+    footer { background-color: #000; color: white; text-align: center; padding: 2rem 1rem; font-size: 0.9rem; box-sizing: border-box; }
+    footer a { color: rgb(90, 212, 166); text-decoration: none; }
+
+    /* ============================
+       ASSESSMENT PAGE
+       ============================ */
+    .assess-hero {
+      padding: 9.5rem 2rem 2.5rem;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(14,77,60,1) 0%, rgba(11,61,48,1) 100%);
+    }
+    .assess-hero .eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+      color: #5AD4A6; margin-bottom: 0.8rem;
+    }
+    .assess-hero h1 { font-size: clamp(1.8rem, 4.5vw, 2.6rem); margin: 0 0 0.8rem; line-height: 1.2; }
+    .assess-hero p { font-size: 1.05rem; color: rgba(255,255,255,0.82); max-width: 620px; margin: 0 auto; line-height: 1.6; font-weight: 300; }
+
+    .assess-wrap { background-color: #f4f6f5; padding: 3rem 1.2rem 5rem; box-sizing: border-box; }
+    .assess-card {
+      max-width: 680px; margin: 0 auto;
+      background: white; border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+      padding: 2.2rem 2rem;
+      box-sizing: border-box;
+      color: #0E4D3C;
+    }
+
+    /* Progress bar */
+    .progress-track { height: 6px; background: #e6ebe9; border-radius: 6px; margin-bottom: 1.8rem; overflow: hidden; }
+    .progress-fill { height: 100%; width: 14%; background: linear-gradient(90deg, #5AD4A6, #0E4D3C); border-radius: 6px; transition: width 0.4s ease; }
+    .step-count { font-size: 0.78rem; color: #888; font-weight: 600; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    .step { display: none; }
+    .step.active { display: block; animation: fadeIn 0.35s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .step h2 { font-size: 1.3rem; margin: 0 0 0.4rem; color: #0E4D3C; line-height: 1.35; }
+    .step .step-sub { font-size: 0.92rem; color: #666; margin-bottom: 1.4rem; line-height: 1.5; }
+
+    .option-list { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 1.6rem; }
+    .option-btn {
+      text-align: left; width: 100%; font-family: 'Exo', sans-serif;
+      background: #f7f9f8; border: 2px solid #e6ebe9; border-radius: 10px;
+      padding: 0.9rem 1.1rem; font-size: 0.96rem; color: #0E4D3C; cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .option-btn:hover { border-color: #5AD4A6; background: #eefaf4; }
+    .option-btn.selected { border-color: #0E4D3C; background: #0E4D3C; color: white; font-weight: 600; }
+
+    .nav-buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; }
+    .btn {
+      font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem;
+      padding: 0.75rem 1.6rem; border-radius: 8px; border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.15s, opacity 0.2s;
+    }
+    .btn-primary { background: #5AD4A6; color: #0E4D3C; }
+    .btn-primary:hover { background: #48c898; transform: translateY(-1px); }
+    .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+    .btn-ghost { background: transparent; color: #0E4D3C; border: 2px solid #e6ebe9; }
+    .btn-ghost:hover { border-color: #0E4D3C; }
+    .btn-ghost.invisible { visibility: hidden; }
+
+    /* Lead capture form */
+    .form-grid { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.6rem; }
+    .form-field label { display: block; font-size: 0.82rem; font-weight: 700; color: #0E4D3C; margin-bottom: 0.35rem; font-family: 'Montserrat', sans-serif; }
+    .form-field input {
+      width: 100%; box-sizing: border-box; padding: 0.75rem 0.9rem; border-radius: 8px;
+      border: 2px solid #e6ebe9; font-family: 'Exo', sans-serif; font-size: 0.95rem; color: #0E4D3C;
+    }
+    .form-field input:focus { outline: none; border-color: #5AD4A6; }
+    .form-note { font-size: 0.8rem; color: #888; margin-top: -0.4rem; margin-bottom: 1rem; line-height: 1.5; }
+
+    /* Results */
+    .result-band {
+      display: inline-block; font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em;
+      background: rgba(90,212,166,0.15); color: #0E4D3C; padding: 0.35rem 0.8rem; border-radius: 20px;
+      margin-bottom: 0.9rem;
+    }
+    .result-score { font-family: 'Montserrat', sans-serif; font-size: 2.6rem; color: #0E4D3C; margin: 0 0 0.2rem; }
+    .result-score span { font-size: 1.1rem; color: #999; font-weight: 400; }
+    .result-headline { font-size: 1.25rem; margin: 0 0 0.8rem; color: #0E4D3C; }
+    .result-desc { font-size: 0.96rem; line-height: 1.65; color: #444; margin-bottom: 1.6rem; }
+    .result-cta-box { background: #0E4D3C; border-radius: 12px; padding: 1.6rem; text-align: center; }
+    .result-cta-box .rc-label { font-family: 'Montserrat', sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: #5AD4A6; margin-bottom: 0.5rem; }
+    .result-cta-box .rc-text { color: rgba(255,255,255,0.9); font-size: 0.95rem; margin-bottom: 1.2rem; line-height: 1.5; }
+    .result-cta-box a.cta-button {
+      display: inline-block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.95rem;
+      padding: 0.85rem 2rem; background: #5AD4A6; color: #0E4D3C; border-radius: 8px; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .result-cta-box a.cta-button:hover { background: white; transform: translateY(-2px); }
+    .result-restart { text-align: center; margin-top: 1.4rem; }
+    .result-restart button { background: none; border: none; color: #888; font-size: 0.82rem; text-decoration: underline; cursor: pointer; font-family: 'Exo', sans-serif; }
+    .result-restart button:hover { color: #0E4D3C; }
+
+    /* Mobile */
+    @media (max-width: 767px) {
+      body { padding-top: 60px; }
+      header { flex-direction: row; justify-content: space-between; align-items: center; height: 60px; width: 100%; left: 0; padding: 0 1rem; border-radius: 0; }
+      .logo-link img { max-height: 40px; max-width: 120px; }
+      nav { position: fixed; top: 0; right: -100%; width: 80%; max-width: 300px; height: 100vh; background: #0E4D3C; box-shadow: -5px 0 15px rgba(0,0,0,0.2); flex-direction: column; align-items: flex-start; padding: 6rem 2rem; gap: 1.5rem; z-index: 1001; transition: right 0.3s ease-in-out; }
+      nav.active { right: 0; }
+      nav a, nav .dropdown { font-size: 1.2rem; width: 100%; padding: 0; }
+      .dropdown-content { position: static; display: block; background: none; box-shadow: none; animation: none; min-width: unset; padding-left: 1rem; padding-top: 0.5rem; }
+      .dropdown:hover .dropdown-content { display: block; }
+      .dropdown-content a { font-size: 1rem; padding: 0.5rem 0; }
+      .language-select { margin: 2rem 0 0 0; width: 100%; }
+      .mobile-menu-toggle { display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 24px; background: transparent; border: none; cursor: pointer; padding: 0; z-index: 1002; }
+      .mobile-menu-toggle span { width: 100%; height: 3px; background-color: white; border-radius: 3px; transition: transform 0.3s, opacity 0.3s; transform-origin: center; }
+      body.nav-active .mobile-menu-toggle span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
+      body.nav-active .mobile-menu-toggle span:nth-child(2) { opacity: 0; }
+      body.nav-active .mobile-menu-toggle span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
+      .assess-hero { padding: 5.5rem 1.2rem 2rem; }
+      .assess-card { padding: 1.6rem 1.2rem; }
+      .result-score { font-size: 2.1rem; }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      body { padding-top: 85px; }
+      header { height: 8%; min-height: 65px; width: 95%; left: 2.5%; padding: 1rem 1.5rem; }
+      .logo-link img { max-height: 70%; max-width: 150px; }
+      nav { gap: 0.8rem; }
+      nav a { padding: 0.4rem 0.8rem; font-size: 0.95rem; }
+    }
+    @media (min-width: 1024px) {
+      body { padding-top: 80px; }
+      header { height: 5%; min-height: 60px; width: 95%; left: 2.5%; padding: 1rem 4rem; }
+      nav a { font-size: 1rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html" class="logo-link">
+    <img src="images/CSBD-LOGO.png" alt="COMPAS Solutions Logo">
+  </a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="aboutus.html">About Us</a>
+    <div class="dropdown">
+      <a href="Services.html" style="display: inline-block;">Services</a>
+      <div class="dropdown-content">
+        <a href="industries.html">Industries</a>
+        <a href="use-cases.html">Use Cases</a>
+      </div>
+    </div>
+    <a href="Contact.html">Contact Us</a>
+    <a href="resources.html">Resources</a>
+    <select class="language-select" onchange="changeLanguage(this.value);">
+      <option value="mbse-self-assessment_TR.html">Türkçe</option>
+      <option value="mbse-self-assessment_DE.html">Deutsch</option>
+      <option value="mbse-self-assessment.html" selected>English</option>
+    </select>
+  </nav>
+  <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<section class="assess-hero">
+  <div class="eyebrow">Free 2-Minute Self-Assessment</div>
+  <h1>Get Your <span style="color:#5AD4A6;">MBSE Maturity Score</span></h1>
+  <p>Answer a few quick questions about how your team works today. We'll score your MBSE maturity (or adoption readiness) and show you exactly where the biggest gaps — and opportunities — are.</p>
+</section>
+
+<section class="assess-wrap">
+  <div class="assess-card">
+
+    <div class="step-count" id="stepCount">Step 1 of 6</div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+    <!-- STEP 1: MBSE usage -->
+    <div class="step active" data-step="1">
+      <h2>Are you currently using MBSE (Model-Based Systems Engineering)?</h2>
+      <p class="step-sub">This helps us tailor the rest of the assessment to where you actually are.</p>
+      <div class="option-list" id="opts-usage"></div>
+      <div class="nav-buttons">
+        <button class="btn btn-ghost invisible">Back</button>
+        <button class="btn btn-primary" id="next1" disabled>Next</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: branch question (3.1 / 3.2) -->
+    <div class="step" data-step="2">
+      <h2 id="branchQuestion">What's driving this?</h2>
+      <p class="step-sub" id="branchSub"></p>
+      <div class="option-list" id="opts-purpose"></div>
+      <div class="nav-buttons">
+        <button class="btn btn-ghost" id="back2">Back</button>
+        <button class="btn btn-primary" id="next2" disabled>Next</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: traceability -->
+    <div class="step" data-step="3">
+      <h2>How would you describe your requirements traceability today?</h2>
+      <p class="step-sub">From requirement, to design, to verification evidence.</p>
+      <div class="option-list" id="opts-q1"></div>
+      <div class="nav-buttons">
+        <button class="btn btn-ghost" id="back3">Back</button>
+        <button class="btn btn-primary" id="next3" disabled>Next</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: tool integration -->
+    <div class="step" data-step="4">
+      <h2>How integrated are your engineering tools?</h2>
+      <p class="step-sub">Requirements, architecture models, and verification/test tooling.</p>
+      <div class="option-list" id="opts-q2"></div>
+      <div class="nav-buttons">
+        <button class="btn btn-ghost" id="back4">Back</button>
+        <button class="btn btn-primary" id="next4" disabled>Next</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: certification planning -->
+    <div class="step" data-step="5">
+      <h2>Where are you on certification &amp; compliance planning?</h2>
+      <p class="step-sub">E.g. DO-178C, ARP4754A, DO-254, EASA / SHGM.</p>
+      <div class="option-list" id="opts-q3"></div>
+      <div class="nav-buttons">
+        <button class="btn btn-ghost" id="back5">Back</button>
+        <button class="btn btn-primary" id="next5" disabled>Next</button>
+      </div>
+    </div>
+
+    <!-- STEP 6: lead capture -->
+    <div class="step" data-step="6">
+      <h2>Almost there — where should we send your score?</h2>
+      <p class="step-sub">Get your personalized MBSE maturity report and a recommended next step.</p>
+      <form id="leadForm">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="leadName">Full name</label>
+            <input type="text" id="leadName" name="leadName" required autocomplete="name">
+          </div>
+          <div class="form-field">
+            <label for="leadEmail">Work email</label>
+            <input type="email" id="leadEmail" name="leadEmail" required autocomplete="email">
+          </div>
+          <div class="form-field">
+            <label for="leadCompany">Company</label>
+            <input type="text" id="leadCompany" name="leadCompany" required autocomplete="organization">
+          </div>
+        </div>
+        <p class="form-note">We'll only use this to send your score and relevant follow-up — no spam.</p>
+        <div class="nav-buttons">
+          <button type="button" class="btn btn-ghost" id="back6">Back</button>
+          <button type="submit" class="btn btn-primary">Reveal My Score</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- STEP 7: results -->
+    <div class="step" data-step="7">
+      <div class="result-band" id="resultBand">Your Result</div>
+      <div class="result-score" id="resultScore">0 <span>/ 12</span></div>
+      <h2 class="result-headline" id="resultHeadline">Headline</h2>
+      <p class="result-desc" id="resultDesc">Description</p>
+
+      <div class="result-cta-box">
+        <div class="rc-label">Recommended Next Step</div>
+        <div class="rc-text" id="resultCtaText"></div>
+        <a href="Contact.html" class="cta-button" id="resultCtaBtn">Talk to Us</a>
+      </div>
+
+      <div class="result-restart">
+        <button type="button" id="restartBtn">Retake the assessment</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="scroll-up" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"></div>
+
+<footer>
+  <p>&copy; 2025 Compas Solutions. All rights reserved. | <a href="Contact.html">Contact Us</a> | <a href="privacy_pol.html">Privacy Policy</a></p>
+</footer>
+
+<script>
+  /* ============================
+     NAV / SCROLL CHROME (shared)
+     ============================ */
+  document.addEventListener('DOMContentLoaded', () => {
+    const scrollBtn = document.querySelector('.scroll-up');
+    if (scrollBtn) {
+      window.addEventListener('scroll', () => {
+        scrollBtn.classList.toggle('show', window.scrollY > 200);
+      });
+    }
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('nav');
+    const body = document.body;
+    if (menuToggle && nav && body) {
+      menuToggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
+        body.classList.toggle('nav-active');
+      });
+    }
+  });
+
+  /* ============================
+     ASSESSMENT LOGIC
+     ============================ */
+  const state = {
+    step: 1,
+    totalSteps: 6, // steps 1-6 count toward progress; step 7 is the reveal
+    usage: null,       // 'yes' | 'no'
+    purpose: null,     // selected purpose/motivation object {label, value}
+    q1: null, q2: null, q3: null, // maturity scores 1-4 each
+    lead: { name: '', email: '', company: '' }
+  };
+
+  // --- Option data ---
+  const usageOptions = [
+    { label: 'Yes — we actively use MBSE', value: 'yes' },
+    { label: 'No — not yet, but we\u2019re interested', value: 'no' }
+  ];
+
+  const purposeOptionsYes = [
+    { label: 'Optimizing or improving our current models & process', score: 2 },
+    { label: 'Tooling integration & digital thread (Capella, model servers, PLM/Git)', score: 3 },
+    { label: 'Certification & compliance traceability', score: 3 },
+    { label: 'Scaling MBSE practice across more teams', score: 4 }
+  ];
+
+  const purposeOptionsNo = [
+    { label: 'An upcoming certification requirement (DO-178C / ARP4754A / EASA-SHGM)', score: 4 },
+    { label: 'A customer or program requirement', score: 3 },
+    { label: 'Staying competitive as the industry shifts to MBSE', score: 2 },
+    { label: 'Just exploring — evaluating whether it fits us', score: 1 }
+  ];
+
+  const scaleOptions = (labels) => labels.map((label, i) => ({ label, value: i + 1 }));
+
+  const q1Options = scaleOptions([
+    'No formal traceability — tribal knowledge & documents',
+    'Spreadsheets or Word/Excel-based traceability',
+    'Partial, tool-based traceability for some items',
+    'Fully model-based traceability end-to-end'
+  ]);
+  const q2Options = scaleOptions([
+    'Disconnected tools — mostly manual copy/paste',
+    'Some manual integration between key tools',
+    'Partially integrated toolchain',
+    'Fully integrated digital thread across tools'
+  ]);
+  const q3Options = scaleOptions([
+    'Not yet started — certification isn\u2019t on the roadmap yet',
+    'Early planning — aware of the requirements',
+    'In progress — actively building the compliance case',
+    'Established, repeatable certification process'
+  ]);
+
+  // --- Render helpers ---
+  function renderOptions(containerId, options, groupKey, nextBtnId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    options.forEach((opt) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'option-btn';
+      btn.textContent = opt.label;
+      btn.addEventListener('click', () => {
+        [...container.children].forEach(c => c.classList.remove('selected'));
+        btn.classList.add('selected');
+        state[groupKey] = opt;
+        document.getElementById(nextBtnId).disabled = false;
+      });
+      container.appendChild(btn);
+    });
+  }
+
+  function goToStep(n) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.querySelector(`.step[data-step="${n}"]`).classList.add('active');
+    state.step = n;
+    const pct = Math.min(n, state.totalSteps) / state.totalSteps * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    if (n <= state.totalSteps) {
+      document.getElementById('stepCount').textContent = `Step ${n} of ${state.totalSteps}`;
+    }
+    window.scrollTo({ top: document.querySelector('.assess-card').offsetTop - 100, behavior: 'smooth' });
+  }
+
+  // --- Step 1: usage ---
+  renderOptions('opts-usage', usageOptions, 'usage', 'next1');
+  document.getElementById('next1').addEventListener('click', () => {
+    const branchQ = document.getElementById('branchQuestion');
+    const branchSub = document.getElementById('branchSub');
+    document.getElementById('next2').disabled = true;
+    if (state.usage.value === 'yes') {
+      branchQ.textContent = 'What\u2019s the purpose of your current MBSE usage?';
+      branchSub.textContent = 'This tells us where to focus — process optimization vs. tooling vs. scale.';
+      renderOptions('opts-purpose', purposeOptionsYes, 'purpose', 'next2');
+    } else {
+      branchQ.textContent = 'What\u2019s driving your interest in MBSE?';
+      branchSub.textContent = 'This tells us what\u2019s pushing you to consider MBSE now.';
+      renderOptions('opts-purpose', purposeOptionsNo, 'purpose', 'next2');
+    }
+    goToStep(2);
+  });
+
+  // --- Step 2 ---
+  document.getElementById('back2').addEventListener('click', () => goToStep(1));
+  document.getElementById('next2').addEventListener('click', () => goToStep(3));
+
+  // --- Step 3 ---
+  renderOptions('opts-q1', q1Options, 'q1', 'next3');
+  document.getElementById('back3').addEventListener('click', () => goToStep(2));
+  document.getElementById('next3').addEventListener('click', () => goToStep(4));
+
+  // --- Step 4 ---
+  renderOptions('opts-q2', q2Options, 'q2', 'next4');
+  document.getElementById('back4').addEventListener('click', () => goToStep(3));
+  document.getElementById('next4').addEventListener('click', () => goToStep(5));
+
+  // --- Step 5 ---
+  renderOptions('opts-q3', q3Options, 'q3', 'next5');
+  document.getElementById('back5').addEventListener('click', () => goToStep(4));
+  document.getElementById('next5').addEventListener('click', () => goToStep(6));
+
+  // --- Step 6: lead capture ---
+  document.getElementById('back6').addEventListener('click', () => goToStep(5));
+  document.getElementById('leadForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Validate all form fields are filled
+    const name = document.getElementById('leadName').value.trim();
+    const email = document.getElementById('leadEmail').value.trim();
+    const company = document.getElementById('leadCompany').value.trim();
+    
+    if (!name || !email || !company) {
+      alert('Please fill in all fields');
+      return;
+    }
+    
+    // Validate assessment state is complete
+    if (!state.q1 || !state.q2 || !state.q3) {
+      console.error('Assessment incomplete:', state);
+      alert('Something went wrong. Please go back and retry.');
+      return;
+    }
+    
+    state.lead.name = name;
+    state.lead.email = email;
+    state.lead.company = company;
+
+    // HOOK: wire this up to your actual lead capture endpoint (CRM, Google Form
+    // submit, HubSpot form, Zapier webhook, etc). Example using a hidden Google
+    // Form the way Contact.html embeds one, or a fetch() POST to your CRM API.
+    // Left as a stub here since no backend endpoint was provided.
+    console.log('Lead captured:', state.lead, {
+      usage: state.usage.value,
+      purpose: state.purpose.label,
+      q1: state.q1.value, q2: state.q2.value, q3: state.q3.value
+    });
+
+    try {
+      renderResult();
+      goToStep(7);
+    } catch (err) {
+      console.error('Error rendering result:', err);
+      alert('Error showing your score. Check console and try again.');
+    }
+  });
+
+  // --- Step 7: results ---
+  const bandsYes = [
+    {
+      max: 5, label: 'Early Stage',
+      headline: 'You\u2019re early in your MBSE journey — and that\u2019s a normal place to be.',
+      desc: 'Traceability and tool integration are still mostly manual. The good news: the biggest maturity gains usually come from a handful of targeted process changes, not a full overhaul.',
+      ctaText: 'A Plan & Process Analysis will map exactly where your current MBSE practice is losing time and traceability — and give you a prioritized roadmap to close the gap.',
+      pillar: 'mbse', ctaLabel: 'Get a Plan & Process Analysis'
+    },
+    {
+      max: 8, label: 'Developing',
+      headline: 'You\u2019ve got real MBSE foundations in place.',
+      desc: 'Some traceability and tooling integration already exist, but they\u2019re not yet consistent across the team. This is exactly the stage where tooling integration (Capella, model servers, PLM/Git) tends to unlock the next jump in maturity.',
+      ctaText: 'Let\u2019s look at your current toolchain and process together, and identify the highest-leverage integration points to push you into the "Advancing" band.',
+      pillar: 'mbse', ctaLabel: 'Review My Toolchain'
+    },
+    {
+      max: 10, label: 'Advancing',
+      headline: 'Your MBSE practice is genuinely advancing.',
+      desc: 'You\u2019ve got model-based traceability and a partially integrated toolchain. From here, the gains come from tightening the digital thread and scaling the practice to more teams and programs.',
+      ctaText: 'A focused Plan & Process Analysis will help you scale what\u2019s already working — and close the remaining integration gaps.',
+      pillar: 'mbse', ctaLabel: 'Scale My MBSE Practice'
+    },
+    {
+      max: 12, label: 'Optimized',
+      headline: 'You\u2019re running a mature, model-based practice.',
+      desc: 'Full model-based traceability and an integrated digital thread put you ahead of most organizations we work with. The opportunity now is fine-tuning and extending — new domains, more automation, AI-assisted workflows.',
+      ctaText: 'Let\u2019s talk about where AI agents and deeper automation can extend the maturity you\u2019ve already built.',
+      pillar: 'mbse', ctaLabel: 'Explore AI-Assisted Workflows'
+    }
+  ];
+
+  const bandsNo = [
+    {
+      max: 5, label: 'Not Yet Ready',
+      headline: 'MBSE adoption is still an open question for you — that\u2019s a good time to ask it.',
+      desc: 'Traceability and tooling are largely manual today, and certification planning hasn\u2019t started. Starting from a clear GAP-Analysis will show you precisely what adopting MBSE would actually change.',
+      ctaText: 'A GAP-Analysis will translate your current process into the certification requirements you\u2019re facing (DO-178C, ARP4754A, EASA/SHGM) — and show exactly what MBSE adoption would close.',
+      pillar: 'certification', ctaLabel: 'Start My GAP-Analysis'
+    },
+    {
+      max: 8, label: 'Building the Case',
+      headline: 'You\u2019re building the case for MBSE adoption.',
+      desc: 'There\u2019s some awareness of certification requirements and a bit of tooling in place, but nothing formalized yet. This is the right moment to get a clear, evidence-based picture before committing.',
+      ctaText: 'A GAP-Analysis will give you a concrete, certification-aligned business case for MBSE adoption to bring back to your team or leadership.',
+      pillar: 'certification', ctaLabel: 'Get My GAP-Analysis'
+    },
+    {
+      max: 10, label: 'Ready to Start',
+      headline: 'You\u2019re in a strong position to start adopting MBSE now.',
+      desc: 'You already have some traceability and tooling in place, and certification planning is underway. Adoption from here can be fast and targeted rather than starting from zero.',
+      ctaText: 'Let\u2019s scope a certification-driven MBSE adoption plan, starting from a GAP-Analysis against DO-178C / ARP4754A / EASA-SHGM.',
+      pillar: 'certification', ctaLabel: 'Scope My Adoption Plan'
+    },
+    {
+      max: 12, label: 'Certification-Driven & Ready',
+      headline: 'You\u2019re certification-ready to adopt MBSE — the pieces are already there.',
+      desc: 'Solid traceability, decent tool integration, and an active certification process — you\u2019re further along than most organizations that haven\u2019t formally adopted MBSE yet.',
+      ctaText: 'A focused GAP-Analysis will show you the fastest, lowest-risk path to formalize MBSE within your existing certification process.',
+      pillar: 'certification', ctaLabel: 'Fast-Track My Adoption'
+    }
+  ];
+
+  function pickBand(score, branch) {
+    const bands = branch === 'yes' ? bandsYes : bandsNo;
+    return bands.find(b => score <= b.max) || bands[bands.length - 1];
+  }
+
+  function renderResult() {
+    // Defensive: ensure all state is populated
+    if (!state.q1 || !state.q2 || !state.q3 || !state.usage) {
+      throw new Error('Incomplete assessment state: ' + JSON.stringify(state));
+    }
+    
+    const score = (state.q1.value || 0) + (state.q2.value || 0) + (state.q3.value || 0);
+    const branch = state.usage.value;
+    const band = pickBand(score, branch);
+
+    document.getElementById('resultBand').textContent = band.label;
+    document.getElementById('resultScore').innerHTML = `${score} <span>/ 12</span>`;
+    document.getElementById('resultHeadline').textContent = band.headline;
+    document.getElementById('resultDesc').textContent = band.desc;
+    document.getElementById('resultCtaText').textContent = band.ctaText;
+
+    const ctaBtn = document.getElementById('resultCtaBtn');
+    ctaBtn.textContent = band.ctaLabel;
+    ctaBtn.href = `Contact.html?pillar=${band.pillar}`;
+  }
+
+  document.getElementById('restartBtn').addEventListener('click', () => {
+    state.usage = null; state.purpose = null; state.q1 = null; state.q2 = null; state.q3 = null;
+    document.querySelectorAll('.option-btn.selected').forEach(b => b.classList.remove('selected'));
+    ['next1','next2','next3','next4','next5'].forEach(id => document.getElementById(id).disabled = true);
+    document.getElementById('leadForm').reset();
+    goToStep(1);
+  });
+</script>
+
+</body>
+</html>
