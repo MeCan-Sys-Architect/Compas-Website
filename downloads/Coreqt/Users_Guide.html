@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coreqt RM Plugin - User's Guide</title>
+    <style>
+        :root {
+            --primary-color: #0366d6;
+            --secondary-color: #24292e;
+            --bg-color: #ffffff;
+            --text-color: #24292e;
+            --border-color: #eaecef;
+            --code-bg: #f6f8fa;
+            --alert-bg: #fffbdd;
+            --alert-border: #d3c23f;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--secondary-color);
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+
+        h1 { font-size: 2.25em; border-bottom: 1px solid var(--border-color); padding-bottom: 0.3em; }
+        h2 { font-size: 1.75em; border-bottom: 1px solid var(--border-color); padding-bottom: 0.3em; margin-top: 1.5em; }
+        h3 { font-size: 1.5em; }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+
+        code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            background-color: var(--code-bg);
+            border-radius: 3px;
+        }
+
+        .toc {
+            background-color: var(--code-bg);
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 40px;
+        }
+
+        .toc h2 {
+            margin-top: 0;
+            border-bottom: none;
+        }
+
+        .toc ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .toc > ul {
+            padding-left: 0;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .alert {
+            padding: 15px;
+            background-color: var(--alert-bg);
+            border-left: 4px solid var(--alert-border);
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .alert strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--code-bg);
+            font-weight: 600;
+        }
+
+        .icon {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+        
+        .screenshot-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .screenshot {
+            max-width: 100%;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .placeholder {
+            display: inline-block;
+            width: 80%;
+            height: 200px;
+            background-color: #f1f3f5;
+            border: 2px dashed #adb5bd;
+            border-radius: 6px;
+            line-height: 200px;
+            color: #6c757d;
+            font-weight: 500;
+            text-align: center;
+            font-family: monospace;
+        }
+
+        /* Print Optimization */
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 0;
+                font-size: 11pt;
+            }
+            .toc {
+                page-break-after: always;
+            }
+            h2 {
+                page-break-before: always;
+            }
+            a {
+                color: #000;
+                text-decoration: none;
+            }
+            @page {
+                margin: 2cm;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>CoreQT Requirements Management — Capella Viewpoint Plugin</h1>
+    
+    <div style="margin-bottom: 20px;">
+        <span style="background-color: #f6f8fa; border: 1px solid #d1d5da; border-radius: 3px; padding: 2px 5px; font-size: 12px; font-family: monospace; font-weight: bold; margin-right: 5px;">Java <span style="background-color: #e36209; color: white; padding: 1px 4px; border-radius: 2px;">17</span></span>
+        <span style="background-color: #f6f8fa; border: 1px solid #d1d5da; border-radius: 3px; padding: 2px 5px; font-size: 12px; font-family: monospace; font-weight: bold; margin-right: 5px;">Eclipse <span style="background-color: #6f42c1; color: white; padding: 1px 4px; border-radius: 2px;">2021-06</span></span>
+        <span style="background-color: #f6f8fa; border: 1px solid #d1d5da; border-radius: 3px; padding: 2px 5px; font-size: 12px; font-family: monospace; font-weight: bold;">Capella <span style="background-color: #0366d6; color: white; padding: 1px 4px; border-radius: 2px;">6.1</span></span>
+    </div>
+
+    <p>Welcome to the official manual for the <strong>CoreQT RM Plugin</strong> for Eclipse Capella. This document explains how to install the plugin, enable test cases, and use the advanced Traceability Matrix features including Baselines and the Suspicion Engine.</p>
+
+    <div class="toc">
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#ch1">1. Overview & Prerequisites</a></li>
+            <li><a href="#ch-install">2. Installation & Quick Start</a></li>
+            <li><a href="#ch2">3. Capella Setup: Enabling Test Cases</a></li>
+            <li><a href="#ch3">4. The Traceability Matrix</a></li>
+            <li><a href="#ch4">5. The Suspicion Engine</a></li>
+            <li><a href="#ch5">6. Impact Analysis</a></li>
+            <li><a href="#ch6">7. Baselines & Version Control</a></li>
+            <li><a href="#ch7">8. Version History</a></li>
+            <li><a href="#ch8">9. Role-Based Access Control (RBAC)</a></li>
+        </ul>
+    </div>
+
+    <h2 id="ch1">1. Overview & Prerequisites</h2>
+    <h3>Overview</h3>
+    <p><strong>CoreQT RM</strong> is an Eclipse/Capella plugin that extends the <a href="#">Capella MBSE</a> workbench with advanced requirements management capabilities built on top of the <a href="#">Requirements Viewpoint (VP)</a>. It provides a traceability matrix engine for extracting, analyzing, and visualizing relationships between Capella model elements and their associated requirements, along with a role-based access control (RBAC) system that governs who can view, edit, or approve changes.</p>
+    
+    <h3>Features Summary</h3>
+    <ul>
+        <li><strong>Automated Extraction</strong> — Scans the Capella model and Requirements VP to build a full traceability matrix linking system components to their requirements.</li>
+        <li><strong>Interactive Matrix View</strong> — An SWT-based table view embedded in the Capella workbench for browsing and filtering requirement-to-element relationships.</li>
+        <li><strong>Suspicion Engine</strong> — Detects potentially broken or stale requirement traces when the underlying model changes.</li>
+    </ul>
+
+    <h3>Prerequisites</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Dependency</th>
+                <th>Version</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Java (JDK)</strong></td>
+                <td>17+</td>
+                <td><a href="#">Eclipse Adoptium Temurin</a> recommended</td>
+            </tr>
+            <tr>
+                <td><strong>Eclipse IDE</strong></td>
+                <td>2021-06+</td>
+                <td>With PDE (Plugin Development Environment)</td>
+            </tr>
+            <tr>
+                <td><strong>Capella</strong></td>
+                <td>6.1.x</td>
+                <td><a href="#">Download</a></td>
+            </tr>
+            <tr>
+                <td><strong>Requirements VP</strong></td>
+                <td>0.13.x</td>
+                <td>Must be installed in the Capella target platform</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 id="ch-install">2. Installation & Quick Start</h2>
+    <h3>Installation</h3>
+    <ol>
+        <li>Clone this repository into your Eclipse workspace.</li>
+        <li><strong>Import</strong> the project: <em>File &rarr; Import &rarr; Existing Projects into Workspace</em>.</li>
+        <li>Set the <strong>Target Platform</strong> to your Capella installation (<em>Window &rarr; Preferences &rarr; Plug-in Development &rarr; Target Platform</em>).</li>
+        <li>Build: <em>Project &rarr; Clean &rarr; Build All</em>.</li>
+        <li>Run: <em>Run &rarr; Run Configurations &rarr; Eclipse Application</em> (pointing to your Capella product).</li>
+    </ol>
+
+    <h3>Quick Start — RBAC Setup</h3>
+    <ol>
+        <li>Launch Capella with the plugin installed.</li>
+        <li>A <strong>CoreQT Login</strong> dialog will appear. Enter your OS username.</li>
+        <li>On first launch, create your initial admin user:
+            <ul>
+                <li>Right-click in the Project Explorer &rarr; <strong>Coreqt RM &rarr; Manage Users</strong>.</li>
+                <li>Add your username with role <code>ADMIN</code>.</li>
+                <li>Click <strong>Save Changes</strong>.</li>
+            </ul>
+        </li>
+        <li>Subsequent launches will enforce role-based permissions on all model modifications.</li>
+    </ol>
+
+    <h2 id="ch2">3. Capella Setup: Enabling Test Cases</h2>
+    <p>Before you can trace Requirements to Test Cases, you must enable the native Kitalpha Requirements extension in your Capella Session.</p>
+
+    <h3>Activating the Add-on in the .aird File</h3>
+    <div class="screenshot-container">
+        <img class="screenshot" src="docs/images/activate-viewpoint.png" alt="Activating Viewpoint" onerror="this.outerHTML='<div class=\'placeholder\'>docs/images/activate-viewpoint.png</div>'">
+    </div>
+    <ol>
+        <li>Open your Capella project and double-click the <code>.aird</code> file to open the <strong>Session Editor</strong>.</li>
+        <li>In the Session Editor, find the section labeled <strong>Viewpoint Manager</strong>.</li>
+        <li>Look for the Viewpoint named <strong>Requirements</strong> (provided by Kitalpha).</li>
+        <li>Right-click the Viewpoint and select <strong>Reference</strong> (or check the box to activate it).</li>
+        <li>Save the <code>.aird</code> file. Your model is now ready to handle native Requirements and Test Cases.</li>
+    </ol>
+
+    <h3>Creating and Linking Test Cases</h3>
+    <div class="screenshot-container">
+        <img class="screenshot" src="docs/images/create-test-case.png" alt="Creating a Test Case" onerror="this.outerHTML='<div class=\'placeholder\'>docs/images/create-test-case.png</div>'">
+    </div>
+    <p>With the viewpoint active, you can now instantiate Test Cases in your Architecture (e.g., Logical Architecture or Physical Architecture). <strong>Test Cases can typically be created in Architecture Blank diagrams</strong>, such as the System Architecture Blank (SAB), Logical Architecture Blank (LAB), or Physical Architecture Blank (PAB).</p>
+    
+    <div class="alert">
+        <strong>Enabling Test Cases in Diagrams:</strong> If you don't see the "Test Case" element in your diagram palette on the right, you need to activate the Requirements layer for that specific diagram. Click anywhere on the white background of your open diagram, go to the <strong>Properties View</strong> at the bottom, select the <strong>Layers</strong> tab, and check the box for the "Requirements" or "Kitalpha" layer. The tools will then appear in the Palette!
+    </div>
+
+    <ul>
+        <li>Use the Capella Palette to drop a <strong>Test Case</strong> element onto your diagram or create it via the Model Explorer.</li>
+        <li>In the Semantic Browser or Properties View, you can manually link this Test Case to a System Component.</li>
+        <li><em>Note: The Traceability Matrix will automatically detect these links to warn you if a requirement has a component, but that component lacks a test case!</em></li>
+    </ul>
+
+    <h2 id="ch3">4. The Traceability Matrix</h2>
+    <p>The Traceability Matrix is the core feature of the plugin, providing a bird's-eye view of your project's requirement coverage.</p>
+
+    <h3>Extracting the Matrix</h3>
+    <div class="screenshot-container">
+        <img class="screenshot" src="docs/images/extract-matrix.png" alt="Extract Matrix Menu" onerror="this.outerHTML='<div class=\'placeholder\'>docs/images/extract-matrix.png</div>'">
+    </div>
+    <ol>
+        <li>In the Model Explorer, right-click on a Capella `.melodymodeller` file or a specific architecture layer (e.g., Physical Architecture).</li>
+        <li>Select <strong>Coreqt RM > Extract Requirements Matrix</strong>.</li>
+        <li>The <em>Traceability Matrix</em> view will open automatically at the bottom of your screen.</li>
+    </ol>
+
+    <h3>Interactive Traceability (Creating Links)</h3>
+    <div class="screenshot-container">
+        <img class="screenshot" src="docs/images/matrix-view.png" alt="Matrix View" onerror="this.outerHTML='<div class=\'placeholder\'>docs/images/matrix-view.png</div>'">
+    </div>
+    <p>Unlike standard static matrices, the Coreqt RM Matrix is fully interactive:</p>
+    <ul>
+        <li><strong>Create a Link:</strong> Double-click any empty cell where a Requirement (Row) and a Component (Column) intersect. The plugin will automatically generate a native Capella Trace in the background and update the cell.</li>
+        <li><strong>Remove a Link:</strong> Double-click a cell that currently contains a link (e.g., marked with ✅). The plugin will delete the trace from the Capella model safely.</li>
+    </ul>
+
+    <h3>Gap Analysis</h3>
+    <div class="screenshot-container">
+        <img class="screenshot" src="docs/images/gap-analysis.png" alt="Gap Analysis Tab" onerror="this.outerHTML='<div class=\'placeholder\'>docs/images/gap-analysis.png</div>'">
+    </div>
+    <p>At the bottom of the Traceability Matrix view, click the <strong>Gap Analysis</strong> tab. This tab lists all Requirements that currently have zero links to any system components. This is critical for ensuring 100% requirements coverage during reviews.</p>
+
+    <h2 id="ch4">5. The Suspicion Engine</h2>
+    <div class="screenshot-container">
+        <img class="screenshot" src="docs/images/suspicion-engine.png" alt="Suspicion Engine Icons" onerror="this.outerHTML='<div class=\'placeholder\'>docs/images/suspicion-engine.png</div>'">
+    </div>
+    <p>The Traceability Matrix includes a built-in "Suspicion Engine" that analyzes the health of your traces in real-time. It ensures that the critical chain: <strong>Requirement ➔ Component ➔ Test Case</strong> is fully intact.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Icon</th>
+                <th>Meaning</th>
+                <th>Action Required</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="icon">✅</span></td>
+                <td><strong>Healthy Link</strong></td>
+                <td>None. The Requirement is properly linked to the Component, and the Component is properly linked to a Test Case.</td>
+            </tr>
+            <tr>
+                <td><span class="icon">❌</span></td>
+                <td><strong>Missing Test Case</strong></td>
+                <td>The Requirement is linked to a Component, but the Component has <strong>no Test Case</strong> assigned to it. You must create a Test Case for this component in Capella.</td>
+            </tr>
+            <tr>
+                <td><span class="icon">⚠️</span></td>
+                <td><strong>Suspicious / Orphaned</strong></td>
+                <td>The Trace exists in the model, but one of the endpoints (the Requirement or the Component) has been deleted or corrupted. The link should be investigated or removed.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="alert">
+        <strong>Tip:</strong> You can use the "Source Filter" and "Target Filter" dropdowns at the top of the matrix to quickly filter the view to only show "Missing Test Cases" (❌) or "Healthy Links" (✅).
+    </div>
+
+    <h2 id="ch5">6. Impact Analysis</h2>
+    <p>When changing a system component or a requirement, it is crucial to understand what other parts of the system will be affected. The Impact Analysis feature generates a visual graph of all downstream trace links.</p>
+
+    <h3>Running an Impact Analysis</h3>
+    <div class="screenshot-container">
+        <img class="screenshot" src="docs/images/impact-analysis.png" alt="Analyze Impact Menu" onerror="this.outerHTML='<div class=\'placeholder\'>docs/images/impact-analysis.png</div>'">
+    </div>
+    <ol>
+        <li>Right-click any model element (e.g., a Requirement, a Logical Component, or a Test Case) in the Model Explorer or inside a diagram.</li>
+        <li>Select <strong>Coreqt RM > Analyze Impact</strong>.</li>
+        <li>The system traverses the model's trace links up to a depth of 3 hops and computes all affected elements.</li>
+    </ol>
+
+    <h3>The Impact Graph View</h3>
+    <p>If affected elements are found, the <strong>Impact Analysis Graph</strong> view will open.</p>
+    <ul>
+        <li><strong>Visual Representation:</strong> The selected root element is displayed on the left, branching out to all impacted elements on the right.</li>
+        <li><strong>Trace Paths:</strong> Arrows between the nodes show exactly how one element affects another.</li>
+        <li><strong>Detailed Reporting:</strong> The console will log exactly how many elements were found and affected.</li>
+    </ul>
+
+    <h2 id="ch6">7. Baselines & Version Control</h2>
+    <p>Baselines allow you to take a "snapshot" of your requirements and matrix state at a specific point in time (e.g., before a major design review).</p>
+
+    <h3>Creating a Baseline</h3>
+    <div class="screenshot-container">
+        <img class="screenshot" src="docs/images/create-baseline.png" alt="Create Baseline" onerror="this.outerHTML='<div class=\'placeholder\'>docs/images/create-baseline.png</div>'">
+    </div>
+    <ol>
+        <li>Right-click anywhere in your project and select <strong>Coreqt RM > Create Baseline</strong>.</li>
+        <li>The system will generate a new folder named <code>coreqt-baselines</code> containing a <code>.baseline</code> file and a <code>.coreqt</code> manifest.</li>
+    </ol>
+
+    <h3>Comparing Baselines</h3>
+    <div class="screenshot-container">
+        <img class="screenshot" src="docs/images/compare-baselines.png" alt="Compare Baselines" onerror="this.outerHTML='<div class=\'placeholder\'>docs/images/compare-baselines.png</div>'">
+    </div>
+    <p>You can compare two different baselines to see exactly what changed between them.</p>
+    <ol>
+        <li>Hold <code>Ctrl</code> (or <code>Cmd</code> on Mac) and select exactly <strong>two</strong> <code>.baseline</code> files in the Project Explorer.</li>
+        <li>Right-click and choose one of the following:
+            <ul>
+                <li><strong>Compare Baselines (Matrix):</strong> Opens a visual matrix showing added, removed, and unchanged links side-by-side.</li>
+                <li><strong>Compare Baselines (Summary):</strong> Opens a text-based dialogue summarizing exactly how many links were added or deleted.</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3>Compare with Live Model</h3>
+    <p>If you want to see what has changed since your last snapshot: Right-click a <strong>single</strong> <code>.baseline</code> file and select <strong>Coreqt RM > Compare with Live Model (Matrix)</strong>. This compares the saved baseline against your current, unsaved Capella model.</p>
+
+    <h2 id="ch7">8. Version History</h2>
+    <div class="screenshot-container">
+        <img class="screenshot" src="docs/images/version-history.png" alt="Version History View" onerror="this.outerHTML='<div class=\'placeholder\'>docs/images/version-history.png</div>'">
+    </div>
+    <p>The Version History view provides a chronological ledger of all baselines created in your project.</p>
+    <ul>
+        <li>Open it via <strong>Window > Show View > Other... > Coreqt RM > Coreqt Version History</strong>.</li>
+        <li>This view automatically scans your project for all <code>.baseline</code> files and displays them in a neat table, showing the Baseline ID, Author, and Timestamp.</li>
+        <li>This is highly useful for auditors to prove that requirements were tracked and versioned over the lifecycle of the project.</li>
+    </ul>
+
+    <h2 id="ch8">9. Role-Based Access Control (RBAC)</h2>
+    <p>The CoreQT RM Plugin includes a Role-Based Access Control (RBAC) system that governs who can view, edit, or approve changes in the model. This ensures that only authorized personnel can modify critical system architecture or requirement traces.</p>
+
+    <ul>
+        <li><strong>Hierarchical Roles</strong> — Five privilege levels: <code>READER</code> &rarr; <code>REVIEWER</code> &rarr; <code>REQUIREMENTS_ENGINEER</code> &rarr; <code>APPROVER</code> &rarr; <code>ADMIN</code>.</li>
+        <li><strong>Fine-Grained Write Protection</strong> — A pre-commit transaction listener intercepts all model modifications and enforces role-appropriate access:
+            <ul>
+                <li>General Capella elements (components, functions, etc.) &rarr; requires <code>ADMIN</code>.</li>
+                <li>Requirements VP elements (requirement names, relations) &rarr; requires <code>REQUIREMENTS_ENGINEER</code> or above.</li>
+            </ul>
+        </li>
+        <li><strong>Login Prompt</strong> — Startup dialog validates the user against a secure, encrypted user store.</li>
+        <li><strong>AES-256 Encrypted User Store</strong> — User-role mappings are stored in a GCM-encrypted binary file (<code>coreqt-users.dat</code>) to prevent external tampering.</li>
+        <li><strong>In-App User Management</strong> — Administrators can add, edit, and remove users through a built-in dialog (right-click menu &rarr; <em>Coreqt RM &rarr; Manage Users</em>).</li>
+        <li><strong>Audit Logging</strong> — Every permission check (allowed or denied) is appended to an audit trail (<code>coreqt-audit.log</code>).</li>
+    </ul>
+
+    <hr style="margin-top: 50px; border: 0; border-top: 1px solid var(--border-color);">
+    <h3 id="license">License</h3>
+    <p>&copy; 2026 COMPAS Solutions. All rights reserved.</p>
+
+</body>
+</html>

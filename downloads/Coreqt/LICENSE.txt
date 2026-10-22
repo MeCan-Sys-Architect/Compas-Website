@@ -1,0 +1,38 @@
+# Coreqt — End User License Agreement (EULA) & Terms of Service
+
+Effective Date: August 20, 2026
+Licensor: COMPAS Solutions (Mehmet C. Ünal), Germany
+Product: Coreqt RM Plugin for Eclipse Capella
+
+1. Grant of License
+Subject to the terms and tier of your purchased subscription (Community, Per-Seat, or Team License), COMPAS Solutions grants you a non-exclusive, non-transferable, revocable license to install and use the Coreqt plugin directly within Eclipse Capella environments.
+
+2. Customer Data Ownership & Zero External Telemetry
+- Ownership: You retain full, unencumbered ownership of all requirements, traces, models, baselines, and metadata entered into or processed by Coreqt.
+- On-Premise / Air-Gapped Operation: Coreqt operates completely on-premise within your local Eclipse Capella installation. No customer requirements data, model metadata, or telemetry is transmitted across external networks.
+- Portability: All traceability matrices, audit logs, and baselines remain exportable (CSV, XMI, Dynamic EMF .coreqt) ensuring full data portability upon subscription termination.
+
+3. Export Control & Restricted Data Classification (ITAR, EAR, EU Dual-Use)
+- Coreqt is a general-purpose requirements management software plugin.
+- Customer Responsibility: The Customer is strictly responsible for classifying, marking, safeguarding, and restricting access to any export-controlled technical data (including ITAR, EAR, EU Dual-Use Regulation (EU) 2021/821, or national defense classification standards) placed into or managed via Coreqt.
+- Licensor does not host, access, or process Customer's classified or export-controlled datasets.
+
+4. Evidence Generation vs. Certification Disclaimer
+- Audit-Readiness: Coreqt provides automated tools (suspect link detection, cryptographic electronic approvals, version baselines, and change logs) designed to support evidence generation for audits (e.g., DO-178C, ARP4754A, ISO 26262).
+- No Guarantee of Certification: Coreqt does NOT guarantee certification or successful audit outcomes. Certification is the sole responsibility of the Customer and the applicable certification authority. Coreqt is not independently pre-qualified under DO-330 unless expressly stated under an enterprise qualification kit.
+
+5. Electronic Signatures Disclaimer (eIDAS Compliance)
+- Approval workflows and digital sign-offs generated within Coreqt constitute Simple Electronic Signatures (SES) or advanced system-level audit stamps under EU Regulation No 910/2014 (eIDAS).
+- Customers requiring Qualified Electronic Signatures (QES) must integrate external hardware/PKI verification into their overarching engineering release procedure.
+
+6. Eclipse Public License (EPL-2.0) Architecture Isolation
+- Coreqt is architected and packaged as an independent, proprietary Eclipse plugin interfacing with Capella via standard public APIs.
+- Coreqt does not constitute a derivative work of EPL-licensed Capella components, preserving proprietary commercial licensing.
+
+7. Warranty Disclaimer & Limitation of Liability
+- Warranty: Coreqt is provided "AS IS" without warranties of any kind, whether express or implied, including fitness for a particular purpose.
+- Liability Cap: In no event shall Licensor’s aggregate liability arising out of or related to this Agreement exceed the total fees paid by Customer for the Coreqt license in the twelve (12) months preceding the incident.
+
+Appendix: Defense & Sovereign Program Flow-Down Rider
+1. Flow-Down Compliance: Applicable standard clauses regarding data safeguarding and domestic residency are respected via Coreqt's 100% on-premise runtime architecture.
+2. Restricted Party Screening: License issuance is conditional on recipient compliance with applicable EU, US, and international sanctions lists.

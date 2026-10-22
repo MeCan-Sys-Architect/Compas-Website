@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- Document base in Compas light green (#5AD4A6) matching icons8-document-48.png -->
+  <path d="M8 3H29L40 14V45H8V3Z" fill="#5AD4A6" stroke="#3BB98B" stroke-width="1.5" stroke-linejoin="round"/>
+  <!-- Folded corner -->
+  <path d="M29 3V14H40L29 3Z" fill="#E5F9F2" stroke="#3BB98B" stroke-width="1.5" stroke-linejoin="round"/>
+  <!-- Zipper teeth track -->
+  <rect x="19" y="5" width="3" height="2.5" rx="0.5" fill="#0B3D30"/>
+  <rect x="22" y="8" width="3" height="2.5" rx="0.5" fill="#0B3D30"/>
+  <rect x="19" y="11" width="3" height="2.5" rx="0.5" fill="#0B3D30"/>
+  <rect x="22" y="14" width="3" height="2.5" rx="0.5" fill="#0B3D30"/>
+  <rect x="19" y="17" width="3" height="2.5" rx="0.5" fill="#0B3D30"/>
+  <!-- Zipper slider / pull tab -->
+  <rect x="18.5" y="20.5" width="7" height="7" rx="1.5" fill="#0B3D30"/>
+  <rect x="20.5" y="22.5" width="3" height="3" rx="0.7" fill="#E5F9F2"/>
+  <!-- ZIP label plate -->
+  <rect x="12" y="31" width="24" height="10" rx="2" fill="#0B3D30"/>
+  <text x="24" y="38.5" text-anchor="middle" font-family="'Montserrat', 'Segoe UI', Arial, sans-serif" font-size="7.5" font-weight="700" fill="#E5F9F2" letter-spacing="1">ZIP</text>
+</svg>
