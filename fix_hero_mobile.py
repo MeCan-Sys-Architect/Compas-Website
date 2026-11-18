@@ -1,6 +1,6 @@
 import os
 
-files = ['index.html', 'index_DE.html', 'index_TR.html']
+files = ['index.html', os.path.join('index_DE', 'index.html'), os.path.join('index_TR', 'index.html')]
 
 for file in files:
     with open(file, 'r', encoding='utf-8') as f:

@@ -90,12 +90,13 @@ translations = {
     "Get in touch with us today →": "Kontaktieren Sie uns noch heute →"
 }
 
-with open('use-cases_DE.html', 'r', encoding='utf-8') as f:
+filepath = os.path.join('use-cases_DE', 'index.html')
+with open(filepath, 'r', encoding='utf-8') as f:
     content = f.read()
 
 for eng, ger in translations.items():
     content = content.replace(eng, ger)
 
-with open('use-cases_DE.html', 'w', encoding='utf-8') as f:
+with open(filepath, 'w', encoding='utf-8') as f:
     f.write(content)
-print("use-cases_DE.html translated")
+print("use-cases_DE/index.html translated")
